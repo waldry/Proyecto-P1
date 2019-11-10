@@ -7,6 +7,7 @@ public class HistorialPago {
 	private ArrayList<Factura> facturas;
 	private ArrayList<Cliente> clientes;
 	private Date fecha;
+	private static HistorialPago historiaPago = null;
 	
 	public HistorialPago(ArrayList<Factura> facturas, ArrayList<Cliente> clientes, Date fecha) {
 		super();
@@ -31,5 +32,11 @@ public class HistorialPago {
 	}
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+	public HistorialPago getInstance() {
+		if(historiaPago==null) {
+			historiaPago = new HistorialPago(null,null,null);
+		}
+		return historiaPago;
 	}
 }
