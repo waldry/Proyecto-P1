@@ -9,7 +9,7 @@ public class HistorialPago {
 	private Date fecha;
 	private static HistorialPago historiaPago = null;
 	
-	public HistorialPago(ArrayList<Factura> facturas, ArrayList<Cliente> clientes, Date fecha) {
+	private HistorialPago(ArrayList<Factura> facturas, ArrayList<Cliente> clientes, Date fecha) {
 		super();
 		this.facturas = facturas;
 		this.clientes = clientes;
