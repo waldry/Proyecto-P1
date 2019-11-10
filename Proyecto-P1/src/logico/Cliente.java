@@ -6,7 +6,7 @@ public class Cliente {
 	private String apellido;
 	private String direccion;
 	private String telefono;
-	private boolean activo;
+	private boolean activo; 
 	
 	public Cliente(String cedula, String nombre, String apellido, String direccion, String telefono, boolean activo) {
 		super();
