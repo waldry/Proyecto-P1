@@ -25,6 +25,12 @@ public class Internet extends Servicio {
 	public void setAnchoBandaSubida(int anchoBandaSubida) {
 		this.anchoBandaSubida = anchoBandaSubida;
 	}
+
+	@Override
+	public float costoServicio() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	
 }

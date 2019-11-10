@@ -7,5 +7,11 @@ public class Cable extends Servicio {
 		super(nombre, costo);
 		this.cantCanales = cantCanales;
 	}
+
+	@Override
+	public float costoServicio() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }

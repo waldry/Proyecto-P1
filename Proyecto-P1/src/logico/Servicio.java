@@ -1,6 +1,6 @@
 package logico;
 
-public class Servicio {
+public abstract class Servicio {
 	protected String nombre;
 	protected float costo;
 	
@@ -9,4 +9,6 @@ public class Servicio {
 		this.nombre = nombre;
 		this.costo = costo;
 	}
+	
+	public abstract float costoServicio();
 }

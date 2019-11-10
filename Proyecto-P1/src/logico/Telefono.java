@@ -25,6 +25,12 @@ public class Telefono extends Servicio {
 	public void setIlimitado(boolean ilimitado) {
 		this.ilimitado = ilimitado;
 	}
+
+	@Override
+	public float costoServicio() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	
 }
