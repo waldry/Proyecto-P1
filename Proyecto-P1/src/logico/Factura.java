@@ -11,6 +11,7 @@ public class Factura {
 	private boolean activa;
 	private float monto;
 	
+	
 	public Factura(Cliente cliente, Plan planCliente, Date fecha, float monto, ArrayList<Servicio> services, boolean activa) {
 		super();
 		this.cliente = cliente;
