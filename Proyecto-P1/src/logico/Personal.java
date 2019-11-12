@@ -5,13 +5,15 @@ public class Personal {
 	private String apellido;
 	private String oficina;
 	private String tipo;
+	private String pass;
 	
-	public Personal(String nombre, String apellido, String oficina, String tipo) {
+	public Personal(String nombre, String apellido, String oficina, String tipo, String pass) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.oficina = oficina;
 		this.tipo = tipo;
+		this.pass = pass;
 	}
 
 	public String getNombre() {
@@ -44,6 +46,14 @@ public class Personal {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 	
 }
