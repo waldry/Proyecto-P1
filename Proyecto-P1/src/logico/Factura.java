@@ -76,6 +76,9 @@ public class Factura {
 		for (Servicio servicio : services) {
 			total = total + servicio.costoServicio();
 		}
+		for (Servicio servicioPlan : planCliente.getServicios()) {
+			total += servicioPlan.costoServicio();
+		}
 		return total;
 	}
 
