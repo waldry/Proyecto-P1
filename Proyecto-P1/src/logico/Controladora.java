@@ -53,5 +53,32 @@ public class Controladora {
 		facturas.add(fact);
 	}
 	
+	public Cliente findClienteById(String cedulaCliente) {
+		Cliente client = null;
+		boolean found = false;
+		int i = 0;
+		while(!found && i<clientes.size()) {
+			if(clientes.get(i).getCedula().equalsIgnoreCase(cedulaCliente)) {
+				client = clientes.get(i);
+				found = true;
+			}
+			i++;
+		}
+		return client;
+	}
+	
+	public Factura findFacturaByCodigo(String idFactura) {
+		Factura aux = null;
+		boolean found = false;
+		int i = 0;
+		while(!found && i<facturas.size()) {
+			if(facturas.get(i).getId().equalsIgnoreCase(idFactura)) {
+				aux = facturas.get(i);
+				found = true;
+			}
+			i++;
+		}
+		return aux;
+	}
 	
 }
