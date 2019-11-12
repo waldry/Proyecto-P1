@@ -86,7 +86,7 @@ public class Controladora {
 	public boolean confirmLogin(String username, String pass) {
 		boolean login = false;
 		for (Personal empleado : empleados) {
-			if(empleado.getNombre().equals(username)) {
+			if(empleado.getNombre().equals(username) && empleado.getPass().equals(pass)) {
 				empleado = loggedUser;
 				login = true;
 			}
