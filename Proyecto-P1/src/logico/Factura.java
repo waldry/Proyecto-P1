@@ -79,6 +79,7 @@ public class Factura {
 	public void setMonto(float monto) {
 		this.monto = monto;
 	}
+	
 	public float cotizar() {
 		float total = 0;
 		for (Servicio servicio : services) {
