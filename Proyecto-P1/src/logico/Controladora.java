@@ -1,12 +1,18 @@
 package logico;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Controladora {
 	private static Controladora cont = null;
+	private ArrayList<Factura> facturas;
+	private ArrayList<Cliente> clientes;
+	private Date fecha;
 	
-	private Controladora() {
+	public Controladora() {
 		super();
+		this.clientes = new ArrayList<Cliente>();
+		this.facturas = new ArrayList<Factura>();
 	}
 	
 	public Controladora getInstance() {
@@ -15,4 +21,5 @@ public class Controladora {
 		}
 		return cont;
 	}
+	
 }
