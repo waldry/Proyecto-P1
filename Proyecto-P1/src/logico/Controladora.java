@@ -7,6 +7,8 @@ public class Controladora {
 	private static Controladora cont = null;
 	private ArrayList<Factura> facturas;
 	private ArrayList<Cliente> clientes;
+	private ArrayList<Personal> empleados;
+	private Personal loggedUser;
 	private Date fecha;
 	
 	public Controladora() {
@@ -79,6 +81,17 @@ public class Controladora {
 			i++;
 		}
 		return aux;
+	}
+	
+	public boolean confirmLogin(String username, String pass) {
+		boolean login = false;
+		for (Personal empleado : empleados) {
+			if(empleado.getNombre().equals(username)) {
+				empleado = loggedUser;
+				login = true;
+			}
+		}
+		return login;
 	}
 	
 }
