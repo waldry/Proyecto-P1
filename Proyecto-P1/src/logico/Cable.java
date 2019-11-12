@@ -13,5 +13,13 @@ public class Cable extends Servicio {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	public int getCantCanales() {
+		return cantCanales;
+	}
+
+	public void setCantCanales(int cantCanales) {
+		this.cantCanales = cantCanales;
+	}
 	
 }
