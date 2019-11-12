@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Factura {
+	private String id;
 	private Cliente cliente;
 	private ArrayList<Servicio> services;
 	private Date fecha;
@@ -12,8 +13,9 @@ public class Factura {
 	private float monto;
 	
 	
-	public Factura(Cliente cliente, Plan planCliente, Date fecha, float monto, ArrayList<Servicio> services, boolean activa) {
+	public Factura(String id, Cliente cliente, Plan planCliente, Date fecha, float monto, ArrayList<Servicio> services, boolean activa) {
 		super();
+		this.id = id;
 		this.cliente = cliente;
 		this.planCliente = planCliente;
 		this.fecha = fecha;
@@ -75,5 +77,13 @@ public class Factura {
 			total = total + servicio.costoServicio();
 		}
 		return total;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 }
