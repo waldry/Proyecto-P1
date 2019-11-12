@@ -24,6 +24,14 @@ public class Factura {
 		this.activa = activa;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+	
 	public ArrayList<Servicio> getServices() {
 		return services;
 	}
@@ -80,13 +88,5 @@ public class Factura {
 			total += servicioPlan.costoServicio();
 		}
 		return total;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
 	}
 }
