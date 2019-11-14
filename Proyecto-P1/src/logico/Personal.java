@@ -7,15 +7,17 @@ public class Personal {
 	private String apellido;
 	private String oficina;
 	private String tipo;
+	private String username;
 	private String pass;
 	private Date lastLogin;
 	
-	public Personal(String nombre, String apellido, String oficina, String tipo, String pass, Date lastLogin) {
+	public Personal(String nombre, String apellido, String oficina, String tipo, String username, String pass, Date lastLogin) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.oficina = oficina;
 		this.tipo = tipo;
+		this.username = username;
 		this.pass = pass;
 		this.lastLogin = lastLogin;
 	}
@@ -66,6 +68,14 @@ public class Personal {
 
 	public void setLastLogin(Date lastLogin) {
 		this.lastLogin = lastLogin;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 }
