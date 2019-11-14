@@ -54,6 +54,9 @@ public class Controladora {
 	public void agregarFactura(Factura fact) {
 		facturas.add(fact);
 	}
+	public void registrarUsuario(Personal user) {
+		empleados.add(user);
+	}
 	
 	public Cliente findClienteById(String cedulaCliente) {
 		Cliente client = null;
