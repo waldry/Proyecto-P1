@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -19,6 +20,16 @@ public class RegistrarCliente extends JDialog {
 	private JTextField txtnombre;
 	private JTextField txtapellido;
 	private JTextField txtdireccion;
+	private JFormattedTextField ftxtcedula = new JFormattedTextField();
+	private MaskFormatter mascara() {
+		MaskFormatter mascara = new MaskFormatter();
+		try {
+			mascara = new MaskFormatter("###-#######-#");
+			} catch(Exception ex){
+			ex.printStackTrace();
+		}
+		return mascara;
+	}
 
 	/**
 	 * Launch the application.
@@ -28,6 +39,9 @@ public class RegistrarCliente extends JDialog {
 			RegistrarCliente dialog = new RegistrarCliente();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
+			MaskFormatter mascara = new MaskFormatter("###-#######-#");
+			mascara.setPlaceholderCharacter('_');
+//			dialog.setLayout(new FlowLayout());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -83,7 +97,7 @@ public class RegistrarCliente extends JDialog {
 		contentPanel.add(txtdireccion);
 		txtdireccion.setColumns(10);
 		
-		JFormattedTextField ftxtcedula = new JFormattedTextField();
+		ftxtcedula = new JFormattedTextField(mascara());
 		ftxtcedula.setBounds(84, 23, 152, 19);
 		contentPanel.add(ftxtcedula);
 		
