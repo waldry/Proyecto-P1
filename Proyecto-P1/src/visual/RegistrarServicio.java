@@ -154,7 +154,7 @@ public class RegistrarServicio extends JDialog {
 			bg.add(rdbtnTelefono);
 			bg.add(rdbtnMiscelaneos);
 			rdbtnInternet.setSelected(true);
-			
+			 
 			internet_panel = new JPanel();
 			internet_panel.setBorder(new TitledBorder(null, "Internet", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			internet_panel.setBounds(10, 101, 451, 106);
