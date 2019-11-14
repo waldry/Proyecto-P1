@@ -8,7 +8,12 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+
+import logico.Controladora;
+import logico.Personal;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -22,6 +27,8 @@ public class RegistrarUsuario extends JDialog {
 	private JTextField txtapellido;
 	private JTextField txtuser;
 	private JTextField txtpass;
+	private JComboBox cbxtipo;
+	private JComboBox cbxoficina;
 
 	/**
 	 * Launch the application.
@@ -42,7 +49,7 @@ public class RegistrarUsuario extends JDialog {
 	public RegistrarUsuario() {
 		setTitle("Registrar Usuario");
 		setResizable(false);
-		setBounds(100, 100, 450, 253);
+		setBounds(100, 100, 450, 299);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new TitledBorder(null, "Registro de informaci\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -96,16 +103,33 @@ public class RegistrarUsuario extends JDialog {
 			contentPanel.add(lblTipo);
 		}
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione el tipo de cuenta>", "Comercial", "Administrativo"}));
-		comboBox.setBounds(137, 143, 141, 21);
-		contentPanel.add(comboBox);
+		cbxtipo = new JComboBox();
+		cbxtipo.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione el tipo de cuenta>", "Comercial", "Administrativo"}));
+		cbxtipo.setBounds(137, 143, 141, 21);
+		contentPanel.add(cbxtipo);
+		
+		JLabel lblOficina = new JLabel("Oficina:");
+		lblOficina.setBounds(10, 191, 62, 13);
+		contentPanel.add(lblOficina);
+		
+		cbxoficina = new JComboBox();
+		cbxoficina.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione la oficina del empleado>", "Las Colinas", "Calle del Sol", "Padre de las Casas"}));
+		cbxoficina.setBounds(137, 187, 141, 21);
+		contentPanel.add(cbxoficina);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton btnregistrar = new JButton("Registrar");
+				btnregistrar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Personal empleado = new Personal(txtnombre.getText(), txtapellido.getText(), cbxoficina.getSelectedItem().toString(), cbxtipo.getSelectedItem().toString(), txtuser.getText(), txtpass.getText(), null);
+						Controladora.getInstance().registrarUsuario(empleado);
+						JOptionPane.showMessageDialog(null, "Operacion Satisfactoria", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
+						clean();
+					}
+				});
 				btnregistrar.setActionCommand("OK");
 				buttonPane.add(btnregistrar);
 				getRootPane().setDefaultButton(btnregistrar);
@@ -121,5 +145,13 @@ public class RegistrarUsuario extends JDialog {
 				buttonPane.add(btncancelar);
 			}
 		}
+	}
+	public void clean() {
+		txtnombre.setText("");
+		txtapellido.setText("");
+		txtuser.setText("");
+		txtpass.setText("");
+		cbxtipo.setSelectedIndex(0);
+		cbxoficina.setSelectedIndex(0);
 	}
 }
