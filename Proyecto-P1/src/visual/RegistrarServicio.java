@@ -117,7 +117,7 @@ public class RegistrarServicio extends JDialog {
 			});
 			rdbtnCable.setBounds(115, 15, 109, 23);
 			panel_1.add(rdbtnCable);
-			
+			 
 			rdbtnTelefono = new JRadioButton("Telefono");
 			rdbtnTelefono.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
