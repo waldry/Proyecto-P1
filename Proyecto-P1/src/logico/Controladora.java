@@ -17,7 +17,7 @@ public class Controladora {
 		this.facturas = new ArrayList<Factura>();
 	}
 	
-	public Controladora getInstance() {
+	public static Controladora getInstance() {
 		if(cont==null) {
 			cont = new Controladora();
 		}

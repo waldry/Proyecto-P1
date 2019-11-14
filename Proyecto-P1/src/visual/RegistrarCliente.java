@@ -8,7 +8,13 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
+
+import logico.Cliente;
+import logico.Controladora;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
@@ -121,6 +127,14 @@ public class RegistrarCliente extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton btnregistrar = new JButton("Registrar");
+				btnregistrar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Cliente client = new Cliente(ftxtcedula.getText(), txtnombre.getText(), txtapellido.getText(), txtdireccion.getText(), ftxttelefono.getText(), true);
+						Controladora.getInstance().registrarCliente(client);
+						JOptionPane.showMessageDialog(null, "Operacion Satisfactoria", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
+						clean();
+					}
+				});
 				btnregistrar.setActionCommand("OK");
 				buttonPane.add(btnregistrar);
 				getRootPane().setDefaultButton(btnregistrar);
@@ -136,5 +150,12 @@ public class RegistrarCliente extends JDialog {
 				buttonPane.add(btncancelar);
 			}
 		}
+	}
+	public void clean() {
+		ftxtcedula.setText("");
+		txtapellido.setText("");
+		txtnombre.setText("");
+		ftxttelefono.setText("");
+		txtdireccion.setText("");
 	}
 }
