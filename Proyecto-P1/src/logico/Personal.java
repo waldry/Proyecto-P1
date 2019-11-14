@@ -1,11 +1,14 @@
 package logico;
 
+import java.util.Date;
+
 public class Personal {
 	private String nombre;
 	private String apellido;
 	private String oficina;
 	private String tipo;
 	private String pass;
+	private Date lastLogin;
 	
 	public Personal(String nombre, String apellido, String oficina, String tipo, String pass) {
 		super();
