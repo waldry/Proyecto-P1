@@ -16,9 +16,9 @@ import javax.swing.JFormattedTextField;
 public class RegistrarCliente extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField txtnombre;
+	private JTextField txtapellido;
+	private JTextField txtdireccion;
 
 	/**
 	 * Launch the application.
@@ -68,28 +68,28 @@ public class RegistrarCliente extends JDialog {
 			contentPanel.add(lblTelfono);
 		}
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(84, 65, 152, 19);
-		contentPanel.add(textField_1);
-		textField_1.setColumns(10);
+		txtnombre = new JTextField();
+		txtnombre.setBounds(84, 65, 152, 19);
+		contentPanel.add(txtnombre);
+		txtnombre.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(84, 107, 152, 19);
-		contentPanel.add(textField_2);
-		textField_2.setColumns(10);
+		txtapellido = new JTextField();
+		txtapellido.setBounds(84, 107, 152, 19);
+		contentPanel.add(txtapellido);
+		txtapellido.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(84, 149, 262, 19);
-		contentPanel.add(textField_3);
-		textField_3.setColumns(10);
+		txtdireccion = new JTextField();
+		txtdireccion.setBounds(84, 149, 262, 19);
+		contentPanel.add(txtdireccion);
+		txtdireccion.setColumns(10);
 		
-		JFormattedTextField formattedTextField = new JFormattedTextField();
-		formattedTextField.setBounds(84, 23, 152, 19);
-		contentPanel.add(formattedTextField);
+		JFormattedTextField ftxtcedula = new JFormattedTextField();
+		ftxtcedula.setBounds(84, 23, 152, 19);
+		contentPanel.add(ftxtcedula);
 		
-		JFormattedTextField formattedTextField_1 = new JFormattedTextField();
-		formattedTextField_1.setBounds(84, 191, 152, 19);
-		contentPanel.add(formattedTextField_1);
+		JFormattedTextField ftxttelefono = new JFormattedTextField();
+		ftxttelefono.setBounds(84, 191, 152, 19);
+		contentPanel.add(ftxttelefono);
 		setLocationRelativeTo(null);
 		{
 			JPanel buttonPane = new JPanel();
