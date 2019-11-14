@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
+import javax.swing.border.TitledBorder;
 
 public class RegistrarCliente extends JDialog {
 
@@ -71,7 +72,7 @@ public class RegistrarCliente extends JDialog {
 		setResizable(false);
 		setBounds(100, 100, 375, 292);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPanel.setBorder(new TitledBorder(null, "Registro de Informaci\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
