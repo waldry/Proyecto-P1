@@ -2,12 +2,16 @@ package logico;
 
 public class Telefono extends Servicio {
 	private int cantMinutos;
-	private boolean ilimitado;
+	private boolean ilimitado = false;
+	private boolean voicemail = false;
+	private boolean doblelinea = false;
 	
-	public Telefono(String nombre, float costo, int cantMinutos, boolean ilimitado) {
+	public Telefono(String nombre, float costo, int cantMinutos, boolean ilimitado, boolean voicemail, boolean doblelinea) {
 		super(nombre, costo);
 		this.cantMinutos = cantMinutos;
 		this.ilimitado = ilimitado;
+		this.voicemail = voicemail;
+		this.doblelinea = doblelinea;
 	}
 
 	public int getCantMinutos() {
@@ -16,6 +20,22 @@ public class Telefono extends Servicio {
 
 	public void setCantMinutos(int cantMinutos) {
 		this.cantMinutos = cantMinutos;
+	}
+
+	public boolean isVoicemail() {
+		return voicemail;
+	}
+
+	public void setVoicemail(boolean voicemail) {
+		this.voicemail = voicemail;
+	}
+
+	public boolean isDoblelinea() {
+		return doblelinea;
+	}
+
+	public void setDoblelinea(boolean doblelinea) {
+		this.doblelinea = doblelinea;
 	}
 
 	public boolean isIlimitado() {
