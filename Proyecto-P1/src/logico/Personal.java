@@ -10,13 +10,14 @@ public class Personal {
 	private String pass;
 	private Date lastLogin;
 	
-	public Personal(String nombre, String apellido, String oficina, String tipo, String pass) {
+	public Personal(String nombre, String apellido, String oficina, String tipo, String pass, Date lastLogin) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.oficina = oficina;
 		this.tipo = tipo;
 		this.pass = pass;
+		this.lastLogin = lastLogin;
 	}
 
 	public String getNombre() {
@@ -57,6 +58,14 @@ public class Personal {
 
 	public void setPass(String pass) {
 		this.pass = pass;
+	}
+
+	public Date getLastLogin() {
+		return lastLogin;
+	}
+
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
 	}
 	
 }
