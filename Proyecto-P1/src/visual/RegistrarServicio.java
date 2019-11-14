@@ -52,7 +52,7 @@ public class RegistrarServicio extends JDialog {
 	 */
 	public RegistrarServicio() {
 		setTitle("Registro de Servicio");
-		setBounds(100, 100, 616, 563);
+		setBounds(100, 100, 499, 305);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -133,16 +133,27 @@ public class RegistrarServicio extends JDialog {
 			rdbtnTelefono.setBounds(227, 15, 109, 23);
 			panel_1.add(rdbtnTelefono);
 			
+			
+			
+			rdbtnMiscelaneos = new JRadioButton("Miscelaneos");
+			rdbtnMiscelaneos.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					rdbtnMiscelaneos.setSelected(true);
+					rdbtnInternet.setSelected(false);
+					rdbtnCable.setSelected(false);
+					rdbtnTelefono.setSelected(false);
+					internet_panel.setVisible(false);
+					cable_panel.setVisible(false);
+					telefono_panel.setVisible(false);
+				}
+			});
+			rdbtnMiscelaneos.setBounds(339, 15, 109, 23);
+			panel_1.add(rdbtnMiscelaneos);
 			bg.add(rdbtnInternet);
 			bg.add(rdbtnCable);
 			bg.add(rdbtnTelefono);
 			bg.add(rdbtnMiscelaneos);
 			rdbtnInternet.setSelected(true);
-			
-			rdbtnMiscelaneos = new JRadioButton("Miscelaneos");
-			rdbtnMiscelaneos.setBounds(339, 15, 109, 23);
-			panel_1.add(rdbtnMiscelaneos);
-			
 			
 			internet_panel = new JPanel();
 			internet_panel.setBorder(new TitledBorder(null, "Internet", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -259,11 +270,6 @@ public class RegistrarServicio extends JDialog {
 			JCheckBox ilimitado_chbx = new JCheckBox("Ilimitado");
 			ilimitado_chbx.setBounds(320, 61, 97, 23);
 			telefono_panel.add(ilimitado_chbx);
-			
-			JPanel miscelaneos_panel = new JPanel();
-			miscelaneos_panel.setBorder(new TitledBorder(null, "Miscelaneos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			miscelaneos_panel.setBounds(10, 218, 451, 106);
-			panel.add(miscelaneos_panel);
 		}
 		{
 			JPanel buttonPane = new JPanel();
