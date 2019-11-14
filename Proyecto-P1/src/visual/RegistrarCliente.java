@@ -21,6 +21,7 @@ public class RegistrarCliente extends JDialog {
 	private JTextField txtapellido;
 	private JTextField txtdireccion;
 	private JFormattedTextField ftxtcedula = new JFormattedTextField();
+	private JFormattedTextField ftxttelefono = new JFormattedTextField();
 	private MaskFormatter mascara() {
 		MaskFormatter mascara = new MaskFormatter();
 		try {
@@ -29,6 +30,15 @@ public class RegistrarCliente extends JDialog {
 			ex.printStackTrace();
 		}
 		return mascara;
+	}
+	private MaskFormatter mascaraTel() {
+		MaskFormatter mask = new MaskFormatter();
+		try {
+			mask = new MaskFormatter("(###)-###-####");
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return mask;
 	}
 
 	/**
@@ -101,7 +111,7 @@ public class RegistrarCliente extends JDialog {
 		ftxtcedula.setBounds(84, 23, 152, 19);
 		contentPanel.add(ftxtcedula);
 		
-		JFormattedTextField ftxttelefono = new JFormattedTextField();
+		ftxttelefono = new JFormattedTextField(mascaraTel());
 		ftxttelefono.setBounds(84, 191, 152, 19);
 		contentPanel.add(ftxttelefono);
 		setLocationRelativeTo(null);
