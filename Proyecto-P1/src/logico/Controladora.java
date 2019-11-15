@@ -102,4 +102,8 @@ public class Controladora {
 		planes.add(aux);
 	}
 	
+	public void eliminarCliente(Cliente cliente) {
+		clientes.remove(cliente);
+	}
+	
 }
