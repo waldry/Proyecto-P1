@@ -105,5 +105,8 @@ public class Controladora {
 	public void eliminarCliente(Cliente cliente) {
 		clientes.remove(cliente);
 	}
+	public void eliminarUsuario(Personal user) {
+		empleados.remove(user);
+	}
 	
 }

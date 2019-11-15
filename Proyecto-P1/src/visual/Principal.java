@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Principal extends JFrame {
 
@@ -50,13 +52,33 @@ public class Principal extends JFrame {
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mntmRegistrarCliente = new JMenuItem("Registrar Cliente");
+		mntmRegistrarCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegistrarCliente regCliente = new RegistrarCliente();
+				regCliente.setModal(true);
+				regCliente.setVisible(true);
+			}
+		});
 		mnNewMenu.add(mntmRegistrarCliente);
 		
 		JMenuItem mntmListadoDeClientes = new JMenuItem("Listado de Clientes");
+		mntmListadoDeClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListaClientes listCliente = new ListaClientes();
+				listCliente.setModal(true);
+				listCliente.setVisible(true);
+			}
+		});
 		mnNewMenu.add(mntmListadoDeClientes);
 		
 		JMenu mnPlanesYServicios = new JMenu("Planes y Servicios");
 		menuBar.add(mnPlanesYServicios);
+		
+		JMenu mnAdministrativo = new JMenu("Administrativo");
+		menuBar.add(mnAdministrativo);
+		
+		JMenuItem mntmAgregarUsuario = new JMenuItem("Agregar Usuario");
+		mnAdministrativo.add(mntmAgregarUsuario);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
