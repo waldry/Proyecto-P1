@@ -8,6 +8,7 @@ public class Controladora {
 	private ArrayList<Factura> facturas;
 	private ArrayList<Cliente> clientes;
 	private ArrayList<Personal> empleados;
+	private ArrayList<Plan> planes;
 	private Personal loggedUser;
 	private Date fecha;
 	
@@ -95,6 +96,10 @@ public class Controladora {
 			}
 		}
 		return login;
+	}
+
+	public void agregarPlan(Plan aux) {
+		planes.add(aux);
 	}
 	
 }
