@@ -1,6 +1,7 @@
 package visual;
 
 import java.awt.BorderLayout;
+import java.awt.CheckboxGroup;
 import java.awt.FlowLayout;
 
 import javax.swing.ButtonGroup;
@@ -9,14 +10,22 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+
+import logico.Controladora;
+import logico.Plan;
+import logico.Servicio;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JCheckBox;
 
@@ -28,12 +37,24 @@ public class RegistrarServicio extends JDialog {
 	private JPanel internet_panel;
 	private JPanel telefono_panel;
 	private JPanel cable_panel;
-	private JRadioButton rdbtnCable;
-	private JRadioButton rdbtnInternet;
-	private JRadioButton rdbtnTelefono;
-	private JRadioButton rdbtnMiscelaneos;
 	private JSpinner canales_spn;
-
+	private JCheckBox internet_chbx;
+	private JCheckBox cable_chbx;
+	private JCheckBox telefono_chbx;
+	private JSpinner subida_spn;
+	private JSpinner bajada_spn;
+	private JLabel lblAnchoDeBanda;
+	private JLabel lblAnchoDeBajada;
+	private JSpinner cant_min_spn;
+	private JLabel lblCantidadCanales;
+	private JCheckBox adultos_chbx;
+	private JCheckBox hbo_chbx;
+	private JCheckBox deportes_chbx;
+	private JLabel lblCantidadCanales_1;
+	private JCheckBox voicemail_chbx;
+	private JCheckBox doble_linea_chbx;
+	private JCheckBox ilimitado_chbx;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -52,12 +73,14 @@ public class RegistrarServicio extends JDialog {
 	 */
 	public RegistrarServicio() {
 		setTitle("Registro de Servicio");
-		setBounds(100, 100, 499, 305);
+		setBounds(100, 100, 500, 534);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
+
+			
 			JPanel panel = new JPanel();
 			panel.setBorder(new TitledBorder(null, "Informacion del Servicio", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			contentPanel.add(panel, BorderLayout.CENTER);
@@ -83,117 +106,124 @@ public class RegistrarServicio extends JDialog {
 			
 			JPanel panel_1 = new JPanel();
 			panel_1.setBorder(new TitledBorder(null, "Tipo de Servicio", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panel_1.setBounds(10, 56, 451, 45);
+			panel_1.setBounds(10, 56, 336, 45);
 			panel.add(panel_1);
 			panel_1.setLayout(null);
-			ButtonGroup bg = new ButtonGroup();
 			
-			rdbtnInternet = new JRadioButton("Internet");
-			rdbtnInternet.addActionListener(new ActionListener() {
+			
+			
+			internet_chbx = new JCheckBox("Internet");
+			internet_chbx.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					rdbtnInternet.setSelected(true);
-					rdbtnCable.setSelected(false);
-					rdbtnTelefono.setSelected(false);
-					rdbtnMiscelaneos.setSelected(false);
-					telefono_panel.setVisible(false);
-					cable_panel.setVisible(false);
-					internet_panel.setVisible(true);
+					if (internet_chbx.isSelected()) {
+						internet_panel.setEnabled(true);
+						subida_spn.setEnabled(true);
+						bajada_spn.setEnabled(true);
+						lblAnchoDeBajada.setEnabled(true);
+						lblAnchoDeBanda.setEnabled(true);
+						
+						
+					}else {
+						internet_panel.setEnabled(false);
+						subida_spn.setEnabled(false);
+						bajada_spn.setEnabled(false);
+						lblAnchoDeBajada.setEnabled(false);
+						lblAnchoDeBanda.setEnabled(false);
+					}
 				}
 			});
-			rdbtnInternet.setBounds(3, 15, 109, 23);
-			panel_1.add(rdbtnInternet);
+			internet_chbx.setBounds(11, 15, 97, 23);
+			panel_1.add(internet_chbx);
 			
-			rdbtnCable = new JRadioButton("Cable");
-			rdbtnCable.addActionListener(new ActionListener() {
+			cable_chbx = new JCheckBox("Cable");
+			cable_chbx.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					rdbtnCable.setSelected(true);
-					rdbtnInternet.setSelected(false);
-					rdbtnTelefono.setSelected(false);
-					rdbtnMiscelaneos.setSelected(false);
-					internet_panel.setVisible(false);
-					telefono_panel.setVisible(false);
-					cable_panel.setVisible(true);
+					if (cable_chbx.isSelected()) {
+						cable_panel.setEnabled(true);
+						lblCantidadCanales.setEnabled(true);
+						adultos_chbx.setEnabled(true);
+						hbo_chbx.setEnabled(true);
+						deportes_chbx.setEnabled(true);
+						canales_spn.setEnabled(true);
+					}else {
+						cable_panel.setEnabled(false);
+						lblCantidadCanales.setEnabled(false);
+						adultos_chbx.setEnabled(false);
+						hbo_chbx.setEnabled(false);
+						deportes_chbx.setEnabled(false);
+						canales_spn.setEnabled(false);
+					}
 				}
 			});
-			rdbtnCable.setBounds(115, 15, 109, 23);
-			panel_1.add(rdbtnCable);
-			 
-			rdbtnTelefono = new JRadioButton("Telefono");
-			rdbtnTelefono.addActionListener(new ActionListener() {
+			cable_chbx.setBounds(119, 15, 97, 23);
+			panel_1.add(cable_chbx);
+			
+			telefono_chbx = new JCheckBox("Telefono");
+			telefono_chbx.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					rdbtnTelefono.setSelected(true);
-					rdbtnCable.setSelected(false);
-					rdbtnInternet.setSelected(false);
-					rdbtnMiscelaneos.setSelected(false);
-					internet_panel.setVisible(false);
-					cable_panel.setVisible(false);
-					telefono_panel.setVisible(true);
+					if (telefono_chbx.isSelected()) {
+						telefono_panel.setEnabled(true);
+						lblCantidadCanales_1.setEnabled(true);
+						cant_min_spn.setEnabled(true);
+						doble_linea_chbx.setEnabled(true);
+						ilimitado_chbx.setEnabled(true);
+						voicemail_chbx.setEnabled(true);
+					}else {
+						telefono_panel.setEnabled(false);
+						lblCantidadCanales_1.setEnabled(false);
+						cant_min_spn.setEnabled(false);
+						doble_linea_chbx.setEnabled(false);
+						ilimitado_chbx.setEnabled(false);
+						voicemail_chbx.setEnabled(false);
+					}
 				}
 			});
-			rdbtnTelefono.setBounds(227, 15, 109, 23);
-			panel_1.add(rdbtnTelefono);
+			telefono_chbx.setBounds(227, 15, 97, 23);
+			panel_1.add(telefono_chbx);
 			
 			
-			
-			rdbtnMiscelaneos = new JRadioButton("Miscelaneos");
-			rdbtnMiscelaneos.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					rdbtnMiscelaneos.setSelected(true);
-					rdbtnInternet.setSelected(false);
-					rdbtnCable.setSelected(false);
-					rdbtnTelefono.setSelected(false);
-					internet_panel.setVisible(false);
-					cable_panel.setVisible(false);
-					telefono_panel.setVisible(false);
-				}
-			});
-			rdbtnMiscelaneos.setBounds(339, 15, 109, 23);
-			panel_1.add(rdbtnMiscelaneos);
-			bg.add(rdbtnInternet);
-			bg.add(rdbtnCable);
-			bg.add(rdbtnTelefono);
-			bg.add(rdbtnMiscelaneos);
-			rdbtnInternet.setSelected(true);
-			 
 			internet_panel = new JPanel();
+			internet_chbx.setSelected(true);
 			internet_panel.setBorder(new TitledBorder(null, "Internet", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			internet_panel.setBounds(10, 101, 451, 106);
 			panel.add(internet_panel);
 			internet_panel.setLayout(null);
 			
-			JLabel lblAnchoDeBanda = new JLabel("Ancho de banda Subida");
+			lblAnchoDeBanda = new JLabel("Ancho de banda Subida");
 			lblAnchoDeBanda.setBounds(10, 27, 145, 14);
 			internet_panel.add(lblAnchoDeBanda);
 			
-			JLabel lblAnchoDeBanda_1 = new JLabel("Ancho de banda Bajada");
-			lblAnchoDeBanda_1.setBounds(10, 64, 145, 14);
-			internet_panel.add(lblAnchoDeBanda_1);
+			lblAnchoDeBajada= new JLabel("Ancho de banda Bajada");
+			lblAnchoDeBajada.setBounds(10, 64, 145, 14);
+			internet_panel.add(lblAnchoDeBajada);
 			
-			JSpinner subida_spn = new JSpinner();
+			subida_spn = new JSpinner();
 			subida_spn.setBounds(165, 27, 29, 20);
 			internet_panel.add(subida_spn);
 			
-			JSpinner bajada_spn = new JSpinner();
+			bajada_spn = new JSpinner();
 			bajada_spn.setBounds(165, 64, 29, 20);
 			internet_panel.add(bajada_spn);
 			
 			cable_panel = new JPanel();
-			cable_panel.setBounds(10, 101, 451, 106);
+			cable_panel.setBounds(10, 218, 451, 106);
 			panel.add(cable_panel);
 			cable_panel.setLayout(null);
 			cable_panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Cable", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			cable_panel.setVisible(false);
+			cable_panel.setEnabled(false);
 			
-			JLabel lblCantidadCanales = new JLabel("Cantidad Canales: ");
+			lblCantidadCanales= new JLabel("Cantidad Canales: ");
 			lblCantidadCanales.setBounds(10, 27, 114, 14);
 			cable_panel.add(lblCantidadCanales);
+			lblCantidadCanales.setEnabled(false);
 			
 			canales_spn = new JSpinner();
 			canales_spn.setModel(new SpinnerNumberModel(new Integer(100), null, null, new Integer(1)));
 			canales_spn.setBounds(138, 24, 68, 20);
 			cable_panel.add(canales_spn);
+			canales_spn.setEnabled(false);
 			
-			JCheckBox adultos_chbx = new JCheckBox("Paquete +18");
+			adultos_chbx= new JCheckBox("Paquete +18");
 			adultos_chbx.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
@@ -210,8 +240,9 @@ public class RegistrarServicio extends JDialog {
 			});
 			adultos_chbx.setBounds(16, 59, 114, 23);
 			cable_panel.add(adultos_chbx);
+			adultos_chbx.setEnabled(false);
 			
-			JCheckBox hbo_chbx = new JCheckBox("Paquete HBO");
+			hbo_chbx= new JCheckBox("Paquete HBO");
 			hbo_chbx.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (hbo_chbx.isSelected()) {
@@ -226,8 +257,9 @@ public class RegistrarServicio extends JDialog {
 			});
 			hbo_chbx.setBounds(146, 59, 124, 23);
 			cable_panel.add(hbo_chbx);
+			hbo_chbx.setEnabled(false);
 			
-			JCheckBox deportes_chbx = new JCheckBox("Paquete Deportes");
+			deportes_chbx = new JCheckBox("Paquete Deportes");
 			deportes_chbx.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (deportes_chbx.isSelected()) {
@@ -242,34 +274,40 @@ public class RegistrarServicio extends JDialog {
 			});
 			deportes_chbx.setBounds(286, 59, 147, 23);
 			cable_panel.add(deportes_chbx);
+			deportes_chbx.setEnabled(false);
 			
 			telefono_panel = new JPanel();
-			telefono_panel.setBounds(10, 101, 451, 106);
+			telefono_panel.setBounds(10, 335, 451, 106);
 			panel.add(telefono_panel);
 			telefono_panel.setLayout(null);
 			telefono_panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Telefono", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			telefono_panel.setVisible(false);
+			telefono_panel.setEnabled(false);
 			
-			JLabel lblCantidadCanales_1 = new JLabel("Cantidad Minutos: ");
+			lblCantidadCanales_1= new JLabel("Cantidad Minutos: ");
 			lblCantidadCanales_1.setBounds(10, 27, 130, 14);
 			telefono_panel.add(lblCantidadCanales_1);
+			lblCantidadCanales_1.setEnabled(false);
 			
-			JSpinner cant_min_spn = new JSpinner();
+			cant_min_spn= new JSpinner();
 			cant_min_spn.setBounds(138, 24, 29, 20);
 			telefono_panel.add(cant_min_spn);
+			cant_min_spn.setEnabled(false);
 			
-			JCheckBox voicemail_chbx = new JCheckBox("Correo de Voz");
+			voicemail_chbx = new JCheckBox("Correo de Voz");
 			
 			voicemail_chbx.setBounds(32, 61, 127, 23);
 			telefono_panel.add(voicemail_chbx);
+			voicemail_chbx.setEnabled(false);
 			
-			JCheckBox doble_linea_chbx = new JCheckBox("Doble Linea");
+			doble_linea_chbx = new JCheckBox("Doble Linea");
 			doble_linea_chbx.setBounds(191, 61, 97, 23);
 			telefono_panel.add(doble_linea_chbx);
+			doble_linea_chbx.setEnabled(false);
 			
-			JCheckBox ilimitado_chbx = new JCheckBox("Ilimitado");
+			ilimitado_chbx = new JCheckBox("Ilimitado");
 			ilimitado_chbx.setBounds(320, 61, 97, 23);
 			telefono_panel.add(ilimitado_chbx);
+			ilimitado_chbx.setEnabled(false);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -277,6 +315,17 @@ public class RegistrarServicio extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton send_btn = new JButton("Registrar");
+				send_btn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+//						if (cable_chbx.isSelected() || telefono_chbx.isSelected() || internet_chbx.isSelected()) {
+//							Plan planToAdd = new Plan(null,null);
+//							for (int i = 0; i < planToAdd.getServicios().size(); i++) {
+//								planToAdd.getServicios().add(e);
+//							}
+//							Controladora.getInstance().agregarPlan(planToAdd);
+//						}
+					}
+				});
 				send_btn.setActionCommand("OK");
 				buttonPane.add(send_btn);
 				getRootPane().setDefaultButton(send_btn);
