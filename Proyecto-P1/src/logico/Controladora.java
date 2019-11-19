@@ -8,7 +8,7 @@ public class Controladora {
 	private ArrayList<Factura> facturas;
 	private ArrayList<Cliente> clientes;
 	private ArrayList<Personal> empleados;
-	private ArrayList<Plan> planes = new ArrayList<Plan>();
+	private ArrayList<Plan> planes ;
 	private Personal loggedUser;
 	private Date fecha;
 	
@@ -16,6 +16,7 @@ public class Controladora {
 		super();
 		this.clientes = new ArrayList<Cliente>();
 		this.facturas = new ArrayList<Factura>();
+		this.planes = new ArrayList<Plan>();
 	}
 	
 	public static Controladora getInstance() {
