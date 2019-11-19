@@ -11,9 +11,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import logico.Cable;
 import logico.Controladora;
+import logico.Internet;
 import logico.Plan;
 import logico.Servicio;
+import logico.Telefono;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -54,6 +57,7 @@ public class RegistrarServicio extends JDialog {
 	private JCheckBox voicemail_chbx;
 	private JCheckBox doble_linea_chbx;
 	private JCheckBox ilimitado_chbx;
+	private ArrayList<Servicio> services = new ArrayList<Servicio>();
 	
 	/**
 	 * Launch the application.
@@ -317,13 +321,22 @@ public class RegistrarServicio extends JDialog {
 				JButton send_btn = new JButton("Registrar");
 				send_btn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-//						if (cable_chbx.isSelected() || telefono_chbx.isSelected() || internet_chbx.isSelected()) {
-//							Plan planToAdd = new Plan(null,null);
-//							for (int i = 0; i < planToAdd.getServicios().size(); i++) {
-//								planToAdd.getServicios().add(e);
-//							}
-//							Controladora.getInstance().agregarPlan(planToAdd);
-//						}
+						
+						
+						if (internet_panel.isEnabled()) {
+							Internet aux = new Internet("Internet", (int)bajada_spn.getValue(), (int)subida_spn.getValue());
+							services.add(aux);
+						}
+						if (cable_panel.isEnabled()) {
+							Cable aux = new Cable("Cable", (int)canales_spn.getValue(),hbo_chbx.isSelected(),adultos_chbx.isSelected(),deportes_chbx.isSelected());
+							services.add(aux);
+						}
+						if (telefono_panel.isEnabled()) {
+							Telefono aux = new Telefono("Telefono", (int)cant_min_spn.getValue(),ilimitado_chbx.isSelected(),voicemail_chbx.isSelected(),doble_linea_chbx.isSelected());
+							services.add(aux);
+						}
+							Plan planToAdd = new Plan(name_txt.getText(),services);
+							Controladora.getInstance().agregarPlan(planToAdd);							
 					}
 				});
 				send_btn.setActionCommand("OK");
