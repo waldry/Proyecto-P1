@@ -74,6 +74,19 @@ public class Principal extends JFrame {
 		JMenu mnPlanesYServicios = new JMenu("Planes y Servicios");
 		menuBar.add(mnPlanesYServicios);
 		
+		JMenuItem mntmRegistrarNuevoPlan = new JMenuItem("Registrar  Plan");
+		mntmRegistrarNuevoPlan.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegistrarServicio RegServ = new RegistrarServicio();
+				RegServ.setModal(true);
+				RegServ.setVisible(true);
+			}
+		});
+		mnPlanesYServicios.add(mntmRegistrarNuevoPlan);
+		
+		JMenuItem mntmListarPlanes = new JMenuItem("Listar Planes");
+		mnPlanesYServicios.add(mntmListarPlanes);
+		
 		JMenu mnAdministrativo = new JMenu("Administrativo");
 		menuBar.add(mnAdministrativo);
 		
