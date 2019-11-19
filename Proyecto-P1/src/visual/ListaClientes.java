@@ -120,6 +120,7 @@ public class ListaClientes extends JDialog {
 				buttonPane.add(btncancelar);
 			}
 		}
+		loadClientes();
 	}
 	public void loadClientes() {
 		model.setRowCount(0);
