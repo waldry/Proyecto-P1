@@ -3,9 +3,11 @@ package logico;
 public class Internet extends Servicio {
 	private int anchoBandaDescarga;
 	private int anchoBandaSubida;
+	private String name;
 	
-	public Internet(String nombre, float costo, int anchoBandaDescarga, int anchoBandaSubida) {
-		super(nombre, costo);
+	public Internet(String nombre, int anchoBandaDescarga, int anchoBandaSubida) {
+		super(nombre);
+		this.name = nombre;
 		this.anchoBandaDescarga = anchoBandaDescarga;
 		this.anchoBandaSubida = anchoBandaSubida;
 	}
@@ -20,6 +22,14 @@ public class Internet extends Servicio {
 
 	public int getAnchoBandaSubida() {
 		return anchoBandaSubida;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public void setAnchoBandaSubida(int anchoBandaSubida) {

@@ -6,8 +6,8 @@ public class Telefono extends Servicio {
 	private boolean voicemail = false;
 	private boolean doblelinea = false;
 	
-	public Telefono(String nombre, float costo, int cantMinutos, boolean ilimitado, boolean voicemail, boolean doblelinea) {
-		super(nombre, costo);
+	public Telefono(String nombre, int cantMinutos, boolean ilimitado, boolean voicemail, boolean doblelinea) {
+		super(nombre);
 		this.cantMinutos = cantMinutos;
 		this.ilimitado = ilimitado;
 		this.voicemail = voicemail;
