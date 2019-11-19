@@ -8,7 +8,7 @@ public class Controladora {
 	private ArrayList<Factura> facturas;
 	private ArrayList<Cliente> clientes;
 	private ArrayList<Personal> empleados;
-	private ArrayList<Plan> planes;
+	private ArrayList<Plan> planes = new ArrayList<Plan>();
 	private Personal loggedUser;
 	private Date fecha;
 	
@@ -49,6 +49,14 @@ public class Controladora {
 		this.fecha = fecha;
 	}
 	
+	public ArrayList<Plan> getPlanes() {
+		return planes;
+	}
+
+	public void setPlanes(ArrayList<Plan> planes) {
+		this.planes = planes;
+	}
+
 	public void registrarCliente(Cliente client) {
 		clientes.add(client);
 	}
@@ -100,6 +108,9 @@ public class Controladora {
 
 	public void agregarPlan(Plan aux) {
 		planes.add(aux);
+	}
+	public void eliminarPlan(Plan aux) {
+		planes.remove(aux);
 	}
 	
 	public void eliminarCliente(Cliente cliente) {
