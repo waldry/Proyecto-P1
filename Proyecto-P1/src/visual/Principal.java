@@ -78,6 +78,7 @@ public class Principal extends JFrame {
 		mnNewMenu.add(mntmListadoDeClientes);
 		
 		JMenu mnPlanesYServicios = new JMenu("Planes y Servicios");
+		mnPlanesYServicios.setIcon(new ImageIcon(Principal.class.getResource("/recursos/cliente.png")));
 		menuBar.add(mnPlanesYServicios);
 		
 		JMenuItem mntmRegistrarNuevoPlan = new JMenuItem("Registrar  Plan");
@@ -107,6 +108,10 @@ public class Principal extends JFrame {
 		
 		JMenuItem mntmAgregarUsuario = new JMenuItem("Agregar Usuario");
 		mnAdministrativo.add(mntmAgregarUsuario);
+		
+		JMenu mnFacturas = new JMenu("Facturacion");
+		mnFacturas.setIcon(new ImageIcon(Principal.class.getResource("/recursos/fact.png")));
+		menuBar.add(mnFacturas);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
