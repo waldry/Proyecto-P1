@@ -13,11 +13,15 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import logico.Cable;
 import logico.Controladora;
 import logico.Internet;
+import logico.Telefono;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ListaPlanes extends JDialog {
 
@@ -49,13 +53,19 @@ public class ListaPlanes extends JDialog {
 	public ListaPlanes() {
 		setTitle("Lista de Planes");
 		setResizable(false);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 600, 355);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new TitledBorder(null, "Listado de Planes", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		
 		JScrollPane scrollPane = new JScrollPane();
-		contentPanel.add(scrollPane, BorderLayout.CENTER);
+		scrollPane.setSize(574, 253);
+		scrollPane.setLocation(10, 22);
+		contentPanel.add(scrollPane);
+		model = new DefaultTableModel();
+		String[] header = {"Nombre","Bajada","Subida","Canales","Pqte Adulto","Pqte HBO","Pqte Deportes","Minutos","VoiceMail","Doble Linea","Ilimitado"};
+		model.setColumnIdentifiers(header);
 		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
 			@Override
@@ -63,6 +73,7 @@ public class ListaPlanes extends JDialog {
 			}
 		});
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setModel(model);
 		scrollPane.setViewportView(table);
 		{
 			JPanel buttonPane = new JPanel();
@@ -76,29 +87,42 @@ public class ListaPlanes extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
+		loadPlanes();
 	}
-//	public void loadPlanes() {
-//		model.setRowCount(0);
-//		row = new Object[model.getColumnCount()];
-//		for (int i = 0; i < Controladora.getInstance().getPlanes().size(); i++) {
-//			if (Controladora.getInstance().getPlanes().get(i).getServicios().get(i) instanceof Internet) {
-//				
-//			}
-//			row[0] = Controladora.getInstance().getClientes().get(i).getCedula();
-//			row[1] = Controladora.getInstance().getClientes().get(i).getNombre();
-//			row[2] = Controladora.getInstance().getClientes().get(i).getApellido();
-//			row[3] = Controladora.getInstance().getClientes().get(i).getDireccion();
-//			row[4] = Controladora.getInstance().getClientes().get(i).getTelefono();
-//			if(Controladora.getInstance().getClientes().get(i).isActivo() == true) {
-//				row[5] = "Si";
-//			}else {
-//				row[5] = "No";
-//			}
-//			model.addRow(row);
-//		}
-//	}
+	public void loadPlanes() {
+		model.setRowCount(0);
+		row = new Object[model.getColumnCount()];
+		for (int i = 0; i < Controladora.getInstance().getPlanes().size(); i++) {
+			row[0] = Controladora.getInstance().getPlanes().get(i).getNombre();
+			if (Controladora.getInstance().getPlanes().get(i).getServicios().get(i) instanceof Internet) {
+				Internet aux = (Internet) Controladora.getInstance().getPlanes().get(i).getServicios().get(i);
+				row[1] = aux.getAnchoBandaDescarga();
+				row[2] = aux.getAnchoBandaSubida();
+			}
+			if (Controladora.getInstance().getPlanes().get(i).getServicios().get(i) instanceof Cable) {
+				Cable aux = (Cable) Controladora.getInstance().getPlanes().get(i).getServicios().get(i);
+				row[3] = aux.getCantCanales();
+				row[4] = aux.isAdultos();
+				row[5] = aux.isHbo();
+				row[6] = aux.isDeportes();
+			}
+			if (Controladora.getInstance().getPlanes().get(i).getServicios().get(i) instanceof Telefono) {
+				Telefono aux = (Telefono) Controladora.getInstance().getPlanes().get(i).getServicios().get(i);
+				row[7] = aux.getCantMinutos();
+				row[8] = aux.isVoicemail();
+				row[9] = aux.isDoblelinea();
+				row[10] = aux.isIlimitado();
+			}
+			model.addRow(row);
+		}
+	}
 }

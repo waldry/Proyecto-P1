@@ -19,6 +19,7 @@ import logico.Servicio;
 import logico.Telefono;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import java.awt.event.ActionListener;
@@ -28,6 +29,7 @@ import javax.swing.UIManager;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dialog;
 
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JCheckBox;
@@ -321,22 +323,21 @@ public class RegistrarServicio extends JDialog {
 				JButton send_btn = new JButton("Registrar");
 				send_btn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
-						
 						if (internet_panel.isEnabled()) {
 							Internet aux = new Internet("Internet", (int)bajada_spn.getValue(), (int)subida_spn.getValue());
 							services.add(aux);
 						}
 						if (cable_panel.isEnabled()) {
-							Cable aux = new Cable("Cable", (int)canales_spn.getValue(),hbo_chbx.isSelected(),adultos_chbx.isSelected(),deportes_chbx.isSelected());
-							services.add(aux);
+							Cable aux1 = new Cable("Cable", (int)canales_spn.getValue(),hbo_chbx.isSelected(),adultos_chbx.isSelected(),deportes_chbx.isSelected());
+							services.add(aux1);
 						}
 						if (telefono_panel.isEnabled()) {
-							Telefono aux = new Telefono("Telefono", (int)cant_min_spn.getValue(),ilimitado_chbx.isSelected(),voicemail_chbx.isSelected(),doble_linea_chbx.isSelected());
-							services.add(aux);
+							Telefono aux2 = new Telefono("Telefono", (int)cant_min_spn.getValue(),ilimitado_chbx.isSelected(),voicemail_chbx.isSelected(),doble_linea_chbx.isSelected());
+							services.add(aux2);
 						}
 							Plan planToAdd = new Plan(name_txt.getText(),services);
-							Controladora.getInstance().agregarPlan(planToAdd);							
+							Controladora.getInstance().agregarPlan(planToAdd);	
+							JOptionPane.showMessageDialog(null, "Plan agregado satisfactoriamente.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 					}
 				});
 				send_btn.setActionCommand("OK");
