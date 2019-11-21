@@ -54,6 +54,7 @@ public class Principal extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenu mnNewMenu = new JMenu("Clientes");
+		mnNewMenu.setIcon(new ImageIcon(Principal.class.getResource("/recursos/habla.png")));
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mntmRegistrarCliente = new JMenuItem("Registrar Cliente");
@@ -101,7 +102,7 @@ public class Principal extends JFrame {
 		mnPlanesYServicios.add(mntmListarPlanes);
 		
 		JMenu mnAdministrativo = new JMenu("Administrativo");
-		mnAdministrativo.setIcon(new ImageIcon("C:\\Iconos\\apoyar.png"));
+		mnAdministrativo.setIcon(new ImageIcon(Principal.class.getResource("/recursos/apoyar.png")));
 		menuBar.add(mnAdministrativo);
 		
 		JMenuItem mntmAgregarUsuario = new JMenuItem("Agregar Usuario");
