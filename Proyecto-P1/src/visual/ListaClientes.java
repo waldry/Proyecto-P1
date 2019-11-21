@@ -58,6 +58,7 @@ public class ListaClientes extends JDialog {
 		contentPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Listado de clientes", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		setLocationRelativeTo(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 22, 521, 253);

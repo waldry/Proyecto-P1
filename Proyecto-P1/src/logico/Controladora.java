@@ -8,7 +8,7 @@ public class Controladora {
 	private ArrayList<Factura> facturas;
 	private ArrayList<Cliente> clientes;
 	private ArrayList<Personal> empleados;
-	private ArrayList<Plan> planes ;
+	private ArrayList<Plan> planes;
 	private Personal loggedUser;
 	private Date fecha;
 	
@@ -82,6 +82,20 @@ public class Controladora {
 		return client;
 	}
 	
+	public Personal findPersonalByUsername(String username) {
+		Personal user = null;
+		boolean found = false;
+		int i = 0;
+		while(!found && i<empleados.size()) {
+			if(empleados.get(i).getUsername().equals(username)) {
+				user = empleados.get(i);
+				found = true;
+			}
+			i++;
+		}
+		return user;
+	}
+	
 	public Factura findFacturaByCodigo(String idFactura) {
 		Factura aux = null;
 		boolean found = false;
@@ -119,6 +133,14 @@ public class Controladora {
 	}
 	public void eliminarUsuario(Personal user) {
 		empleados.remove(user);
+	}
+
+	public ArrayList<Personal> getEmpleados() {
+		return empleados;
+	}
+
+	public void setEmpleados(ArrayList<Personal> empleados) {
+		this.empleados = empleados;
 	}
 	
 }
