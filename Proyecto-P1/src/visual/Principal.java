@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -11,12 +13,15 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
 
 public class Principal extends JFrame {
 
 	private JPanel contentPane;
 	private Dimension dim;
+	private ImageIcon img1;
+	private Icon icono;
 
 	/**
 	 * Launch the application.
@@ -95,6 +100,7 @@ public class Principal extends JFrame {
 		mnPlanesYServicios.add(mntmListarPlanes);
 		
 		JMenu mnAdministrativo = new JMenu("Administrativo");
+		mnAdministrativo.setIcon(new ImageIcon("C:\\Iconos\\apoyar.png"));
 		menuBar.add(mnAdministrativo);
 		
 		JMenuItem mntmAgregarUsuario = new JMenuItem("Agregar Usuario");
