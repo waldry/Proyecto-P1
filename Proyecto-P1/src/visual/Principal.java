@@ -97,6 +97,7 @@ public class Principal extends JFrame {
 				listPlan.setVisible(true);
 			}
 		});
+		
 		mnPlanesYServicios.add(mntmListarPlanes);
 		
 		JMenu mnAdministrativo = new JMenu("Administrativo");
