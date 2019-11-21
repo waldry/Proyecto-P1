@@ -107,6 +107,13 @@ public class Principal extends JFrame {
 		menuBar.add(mnAdministrativo);
 		
 		JMenuItem mntmAgregarUsuario = new JMenuItem("Agregar Usuario");
+		mntmAgregarUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegistrarUsuario regUser = new RegistrarUsuario();
+				regUser.setModal(true);
+				regUser.setVisible(true);
+			}
+		});
 		mnAdministrativo.add(mntmAgregarUsuario);
 		
 		JMenu mnFacturas = new JMenu("Facturacion");
