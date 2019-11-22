@@ -35,6 +35,7 @@ public class RegistrarCliente extends JDialog {
 		MaskFormatter mascara = new MaskFormatter();
 		try {
 			mascara = new MaskFormatter("###-#######-#");
+			mascara.setPlaceholderCharacter('_');
 			} catch(Exception ex){
 			ex.printStackTrace();
 		}
@@ -44,6 +45,7 @@ public class RegistrarCliente extends JDialog {
 		MaskFormatter mask = new MaskFormatter();
 		try {
 			mask = new MaskFormatter("(###)-###-####");
+			mask.setPlaceholderCharacter('_');
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}

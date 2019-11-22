@@ -58,6 +58,7 @@ public class Principal extends JFrame {
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mntmRegistrarCliente = new JMenuItem("Registrar Cliente");
+		mntmRegistrarCliente.setIcon(new ImageIcon(Principal.class.getResource("/recursos/que-hacer.png")));
 		mntmRegistrarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegistrarCliente regCliente = new RegistrarCliente();
@@ -68,6 +69,7 @@ public class Principal extends JFrame {
 		mnNewMenu.add(mntmRegistrarCliente);
 		
 		JMenuItem mntmListadoDeClientes = new JMenuItem("Listado de Clientes");
+		mntmListadoDeClientes.setIcon(new ImageIcon(Principal.class.getResource("/recursos/lista.png")));
 		mntmListadoDeClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListaClientes listCliente = new ListaClientes();
@@ -82,6 +84,7 @@ public class Principal extends JFrame {
 		menuBar.add(mnPlanesYServicios);
 		
 		JMenuItem mntmRegistrarNuevoPlan = new JMenuItem("Registrar  Plan");
+		mntmRegistrarNuevoPlan.setIcon(new ImageIcon(Principal.class.getResource("/recursos/que-hacer.png")));
 		mntmRegistrarNuevoPlan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegistrarServicio RegServ = new RegistrarServicio();
@@ -92,6 +95,7 @@ public class Principal extends JFrame {
 		mnPlanesYServicios.add(mntmRegistrarNuevoPlan);
 		
 		JMenuItem mntmListarPlanes = new JMenuItem("Listar Planes");
+		mntmListarPlanes.setIcon(new ImageIcon(Principal.class.getResource("/recursos/lista.png")));
 		mntmListarPlanes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListaPlanes listPlan = new ListaPlanes();
@@ -107,6 +111,7 @@ public class Principal extends JFrame {
 		menuBar.add(mnAdministrativo);
 		
 		JMenuItem mntmAgregarUsuario = new JMenuItem("Agregar Usuario");
+		mntmAgregarUsuario.setIcon(new ImageIcon(Principal.class.getResource("/recursos/que-hacer.png")));
 		mntmAgregarUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegistrarUsuario regUser = new RegistrarUsuario();
