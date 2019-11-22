@@ -134,14 +134,14 @@ public class RegistrarCliente extends JDialog {
 				JButton btnregistrar = new JButton("Registrar");
 				btnregistrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if(ftxtcedula.getText().isEmpty() || txtnombre.getText().isEmpty() || txtapellido.getText().isEmpty() || txtdireccion.getText().isEmpty() || ftxttelefono.getText().isEmpty()) {
+						if(ftxtcedula.getText().equals("___-_______-_") || txtnombre.getText().isEmpty() || txtapellido.getText().isEmpty() || txtdireccion.getText().isEmpty() || ftxttelefono.getText().equals("(___)-___-____")) {
 							JOptionPane.showMessageDialog(null, "Cliente no registrado. Faltan datos", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 						}else {
 							Cliente client = new Cliente(ftxtcedula.getText(), txtnombre.getText(), txtapellido.getText(), txtdireccion.getText(), ftxttelefono.getText(), true);
 							Controladora.getInstance().registrarCliente(client);
 							JOptionPane.showMessageDialog(null, "Operacion Satisfactoria", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
+							clean();
 						}
-						clean();
 					}
 				});
 				btnregistrar.setActionCommand("OK");
