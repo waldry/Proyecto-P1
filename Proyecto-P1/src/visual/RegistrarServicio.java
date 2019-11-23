@@ -84,6 +84,7 @@ public class RegistrarServicio extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
+		setLocationRelativeTo(null);
 		{
 
 			

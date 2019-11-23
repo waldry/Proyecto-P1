@@ -58,6 +58,7 @@ public class ListaPlanes extends JDialog {
 		contentPanel.setBorder(new TitledBorder(null, "Listado de Planes", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		setLocationRelativeTo(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setSize(574, 253);
