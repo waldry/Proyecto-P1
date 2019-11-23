@@ -33,6 +33,7 @@ import java.awt.Dialog;
 
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JCheckBox;
+import javax.swing.border.EtchedBorder;
 
 public class RegistrarServicio extends JDialog {
 
@@ -79,7 +80,7 @@ public class RegistrarServicio extends JDialog {
 	 */
 	public RegistrarServicio() {
 		setTitle("Registro de Servicio");
-		setBounds(100, 100, 500, 534);
+		setBounds(100, 100, 500, 540);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -89,30 +90,30 @@ public class RegistrarServicio extends JDialog {
 
 			
 			JPanel panel = new JPanel();
-			panel.setBorder(new TitledBorder(null, "Informacion del Servicio", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Informacion del Servicio", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			
 			JLabel lblNombre = new JLabel("Nombre: ");
-			lblNombre.setBounds(10, 31, 86, 14);
+			lblNombre.setBounds(10, 31, 57, 14);
 			panel.add(lblNombre);
 			
 			JLabel lblCosto = new JLabel("Costo: ");
-			lblCosto.setBounds(170, 31, 46, 14);
+			lblCosto.setBounds(173, 31, 46, 14);
 			panel.add(lblCosto);
 			
 			name_txt = new JTextField();
-			name_txt.setBounds(60, 28, 86, 20);
+			name_txt.setBounds(77, 29, 86, 20);
 			panel.add(name_txt);
 			name_txt.setColumns(10);
 			
 			price_txt = new JTextField();
-			price_txt.setBounds(207, 28, 86, 20);
+			price_txt.setBounds(229, 29, 86, 20);
 			panel.add(price_txt);
 			price_txt.setColumns(10);
 			
 			JPanel panel_1 = new JPanel();
-			panel_1.setBorder(new TitledBorder(null, "Tipo de Servicio", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Tipo de Servicio", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 			panel_1.setBounds(10, 56, 336, 45);
 			panel.add(panel_1);
 			panel_1.setLayout(null);
@@ -191,7 +192,7 @@ public class RegistrarServicio extends JDialog {
 			
 			internet_panel = new JPanel();
 			internet_chbx.setSelected(true);
-			internet_panel.setBorder(new TitledBorder(null, "Internet", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			internet_panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Internet", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 			internet_panel.setBounds(10, 101, 451, 106);
 			panel.add(internet_panel);
 			internet_panel.setLayout(null);
@@ -216,7 +217,7 @@ public class RegistrarServicio extends JDialog {
 			cable_panel.setBounds(10, 218, 451, 106);
 			panel.add(cable_panel);
 			cable_panel.setLayout(null);
-			cable_panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Cable", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+			cable_panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Cable", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 			cable_panel.setEnabled(false);
 			
 			lblCantidadCanales= new JLabel("Cantidad Canales: ");
@@ -287,7 +288,7 @@ public class RegistrarServicio extends JDialog {
 			telefono_panel.setBounds(10, 335, 451, 106);
 			panel.add(telefono_panel);
 			telefono_panel.setLayout(null);
-			telefono_panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Telefono", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+			telefono_panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Telefono", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 			telefono_panel.setEnabled(false);
 			
 			lblCantidadCanales_1= new JLabel("Cantidad Minutos: ");
