@@ -16,6 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -29,6 +31,7 @@ public class RegistrarUsuario extends JDialog {
 	private JTextField txtpass;
 	private JComboBox cbxtipo;
 	private JComboBox cbxoficina;
+	private Date fechaActual;
 
 	/**
 	 * Launch the application.
@@ -124,7 +127,7 @@ public class RegistrarUsuario extends JDialog {
 				JButton btnregistrar = new JButton("Registrar");
 				btnregistrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Personal empleado = new Personal(txtnombre.getText(), txtapellido.getText(), cbxoficina.getSelectedItem().toString(), cbxtipo.getSelectedItem().toString(), txtuser.getText(), txtpass.getText(), null);
+						Personal empleado = new Personal(txtnombre.getText(), txtapellido.getText(), cbxoficina.getSelectedItem().toString(), cbxtipo.getSelectedItem().toString(), txtuser.getText(), txtpass.getText(), fechaActual);
 						Controladora.getInstance().registrarUsuario(empleado);
 						JOptionPane.showMessageDialog(null, "Operacion Satisfactoria", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 						clean();
