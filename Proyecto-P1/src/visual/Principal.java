@@ -21,6 +21,9 @@ import java.util.GregorianCalendar;
 import java.awt.event.ActionEvent;
 import javax.swing.border.EtchedBorder;
 import javax.swing.text.DateFormatter;
+
+import logico.Controladora;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
@@ -31,12 +34,6 @@ public class Principal extends JFrame {
 //	private Date fecha = new Date();
 	private Calendar fecha = new GregorianCalendar();
 	private JTextField txtfecha;
-	public static String fechaActual() {
-		String formatFecha = "dd/MM/yyyy";
-		DateTimeFormatter formato = DateTimeFormatter.ofPattern(formatFecha);
-		LocalDateTime ahora = LocalDateTime.now();
-		return formato.format(ahora);
-	}
 	
 
 	/**
@@ -160,7 +157,7 @@ public class Principal extends JFrame {
 		FechaHoraPanel.add(txtfecha);
 		txtfecha.setEditable(false);
 		txtfecha.setColumns(10);
-		txtfecha.setText(fechaActual());
+		txtfecha.setText(Controladora.getInstance().fechaActual());
 		setLocationRelativeTo(null);
 	}
 }

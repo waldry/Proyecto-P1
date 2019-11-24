@@ -1,5 +1,7 @@
 package logico;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -141,6 +143,13 @@ public class Controladora {
 
 	public void setEmpleados(ArrayList<Personal> empleados) {
 		this.empleados = empleados;
+	}
+	
+	public String fechaActual() {
+		String formatFecha = "dd/MM/yyyy";
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern(formatFecha);
+		LocalDateTime ahora = LocalDateTime.now();
+		return formato.format(ahora);
 	}
 	
 }
