@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,14 +13,31 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.awt.event.ActionEvent;
+import javax.swing.border.EtchedBorder;
+import javax.swing.text.DateFormatter;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
 
 public class Principal extends JFrame {
 
 	private JPanel contentPane;
 	private Dimension dim;
-	private ImageIcon img1;
-	private Icon icono;
+//	private Date fecha = new Date();
+	private Calendar fecha = new GregorianCalendar();
+	private JTextField txtfecha;
+	public static String fechaActual() {
+		String formatFecha = "dd/MM/yyyy";
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern(formatFecha);
+		LocalDateTime ahora = LocalDateTime.now();
+		return formato.format(ahora);
+	}
+	
 
 	/**
 	 * Launch the application.
@@ -128,6 +144,23 @@ public class Principal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JPanel FechaHoraPanel = new JPanel();
+		FechaHoraPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		FechaHoraPanel.setBounds(10, 840, dim.width-30, 43);
+		contentPane.add(FechaHoraPanel);
+		FechaHoraPanel.setLayout(null);
+		
+		JLabel lblFecha = new JLabel("Fecha:");
+		lblFecha.setBounds(10, 13, 46, 13);
+		FechaHoraPanel.add(lblFecha);
+		
+		txtfecha = new JTextField();
+		txtfecha.setBounds(66, 10, 96, 19);
+		FechaHoraPanel.add(txtfecha);
+		txtfecha.setEditable(false);
+		txtfecha.setColumns(10);
+		txtfecha.setText(fechaActual());
 		setLocationRelativeTo(null);
 	}
 }
