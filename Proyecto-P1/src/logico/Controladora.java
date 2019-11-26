@@ -19,6 +19,7 @@ public class Controladora {
 		this.clientes = new ArrayList<Cliente>();
 		this.facturas = new ArrayList<Factura>();
 		this.planes = new ArrayList<Plan>();
+		this.empleados = new ArrayList<Personal>();
 	}
 	
 	public static Controladora getInstance() {

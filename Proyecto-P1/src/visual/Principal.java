@@ -107,7 +107,7 @@ public class Principal extends JFrame {
 		});
 		mnPlanesYServicios.add(mntmRegistrarNuevoPlan);
 		
-		JMenuItem mntmListarPlanes = new JMenuItem("Listar Planes");
+		JMenuItem mntmListarPlanes = new JMenuItem("Listado de Planes");
 		mntmListarPlanes.setIcon(new ImageIcon(Principal.class.getResource("/recursos/lista.png")));
 		mntmListarPlanes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -133,6 +133,17 @@ public class Principal extends JFrame {
 			}
 		});
 		mnAdministrativo.add(mntmAgregarUsuario);
+		
+		JMenuItem mntmListaDeUsuarios = new JMenuItem("Listado de Usuarios");
+		mntmListaDeUsuarios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListaUsuarios listUsu = new ListaUsuarios();
+				listUsu.setModal(true);
+				listUsu.setVisible(true);
+			}
+		});
+		mntmListaDeUsuarios.setIcon(new ImageIcon(Principal.class.getResource("/recursos/lista.png")));
+		mnAdministrativo.add(mntmListaDeUsuarios);
 		
 		JMenu mnFacturas = new JMenu("Facturacion");
 		mnFacturas.setIcon(new ImageIcon(Principal.class.getResource("/recursos/fact.png")));

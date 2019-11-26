@@ -61,7 +61,7 @@ public class ListaUsuarios extends JDialog {
 		setLocationRelativeTo(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 34, 432, 226);
+		scrollPane.setBounds(10, 21, 504, 239);
 		contentPanel.add(scrollPane);
 		model = new DefaultTableModel();
 		String[] header = {"Username", "Nombre", "Apellido", "Oficina", "Tipo", "lastlogin"};
