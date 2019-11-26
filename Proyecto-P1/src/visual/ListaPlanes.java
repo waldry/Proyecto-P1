@@ -101,27 +101,50 @@ public class ListaPlanes extends JDialog {
 	}
 	public void loadPlanes() {
 		model.setRowCount(0);
+		Internet auxInt = null;
+		Cable auxCable = null;
+		Telefono auxTel = null;
 		row = new Object[model.getColumnCount()];
 		for (int i = 0; i < Controladora.getInstance().getPlanes().size(); i++) {
 			row[0] = Controladora.getInstance().getPlanes().get(i).getNombre();
 			if (Controladora.getInstance().getPlanes().get(i).getServicios().get(i) instanceof Internet) {
-				Internet aux = (Internet) Controladora.getInstance().getPlanes().get(i).getServicios().get(i);
-				row[1] = aux.getAnchoBandaDescarga();
-				row[2] = aux.getAnchoBandaSubida();
+				auxInt = (Internet) Controladora.getInstance().getPlanes().get(i).getServicios().get(i);
+				row[1] = auxInt.getAnchoBandaDescarga();
+				row[2] = auxInt.getAnchoBandaSubida();
+				row[3] = "";
+				row[4] = "";
+				row[5] = "";
+				row[6] = "";
+				row[7] = "";
+				row[8] = "";
+				row[9] = "";
+				row[10] = "";
 			}
 			if (Controladora.getInstance().getPlanes().get(i).getServicios().get(i) instanceof Cable) {
-				Cable aux = (Cable) Controladora.getInstance().getPlanes().get(i).getServicios().get(i);
-				row[3] = aux.getCantCanales();
-				row[4] = aux.isAdultos();
-				row[5] = aux.isHbo();
-				row[6] = aux.isDeportes();
+				auxCable = (Cable) Controladora.getInstance().getPlanes().get(i).getServicios().get(i);
+				row[1] = "";
+				row[2] = "";
+				row[3] = auxCable.getCantCanales();
+				row[4] = auxCable.isAdultos();
+				row[5] = auxCable.isHbo();
+				row[6] = auxCable.isDeportes();
+				row[7] = "";
+				row[8] = "";
+				row[9] = "";
+				row[10] = "";
 			}
 			if (Controladora.getInstance().getPlanes().get(i).getServicios().get(i) instanceof Telefono) {
-				Telefono aux = (Telefono) Controladora.getInstance().getPlanes().get(i).getServicios().get(i);
-				row[7] = aux.getCantMinutos();
-				row[8] = aux.isVoicemail();
-				row[9] = aux.isDoblelinea();
-				row[10] = aux.isIlimitado();
+				auxTel = (Telefono) Controladora.getInstance().getPlanes().get(i).getServicios().get(i);
+				row[1] = "";
+				row[2] = "";
+				row[3] = "";
+				row[4] = "";
+				row[5] = "";
+				row[6] = "";
+				row[7] = auxTel.getCantMinutos();
+				row[8] = auxTel.isVoicemail();
+				row[9] = auxTel.isDoblelinea();
+				row[10] = auxTel.isIlimitado();
 			}
 			model.addRow(row);
 		}
