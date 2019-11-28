@@ -96,7 +96,7 @@ public class Principal extends JFrame {
 		mnPlanesYServicios.setIcon(new ImageIcon(Principal.class.getResource("/recursos/cliente.png")));
 		menuBar.add(mnPlanesYServicios);
 		
-		JMenuItem mntmRegistrarNuevoPlan = new JMenuItem("Registrar  Plan");
+		JMenuItem mntmRegistrarNuevoPlan = new JMenuItem("Registrar Plan");
 		mntmRegistrarNuevoPlan.setIcon(new ImageIcon(Principal.class.getResource("/recursos/que-hacer.png")));
 		mntmRegistrarNuevoPlan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -148,6 +148,16 @@ public class Principal extends JFrame {
 		JMenu mnFacturas = new JMenu("Facturacion");
 		mnFacturas.setIcon(new ImageIcon(Principal.class.getResource("/recursos/fact.png")));
 		menuBar.add(mnFacturas);
+		
+		JMenuItem mntmFacturarPlan = new JMenuItem("Facturar Plan");
+		mntmFacturarPlan.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearFactura fact = new CrearFactura();
+				fact.setModal(true);
+				fact.setVisible(true);
+			}
+		});
+		mnFacturas.add(mntmFacturarPlan);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
