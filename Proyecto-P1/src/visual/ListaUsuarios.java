@@ -52,6 +52,7 @@ public class ListaUsuarios extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListaUsuarios() {
+		setTitle("Lista de Usuarios");
 		setResizable(false);
 		setBounds(100, 100, 528, 329);
 		getContentPane().setLayout(new BorderLayout());

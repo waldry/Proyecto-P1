@@ -79,6 +79,7 @@ public class RegistrarServicio extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegistrarServicio() {
+		setResizable(false);
 		setTitle("Registro de Servicio");
 		setBounds(100, 100, 500, 540);
 		getContentPane().setLayout(new BorderLayout());
