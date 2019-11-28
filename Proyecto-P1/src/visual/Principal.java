@@ -150,6 +150,7 @@ public class Principal extends JFrame {
 		menuBar.add(mnFacturas);
 		
 		JMenuItem mntmFacturarPlan = new JMenuItem("Facturar Plan");
+		mntmFacturarPlan.setIcon(new ImageIcon(Principal.class.getResource("/recursos/archivo.png")));
 		mntmFacturarPlan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CrearFactura fact = new CrearFactura();
