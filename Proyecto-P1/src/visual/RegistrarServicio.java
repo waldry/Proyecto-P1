@@ -38,6 +38,10 @@ import java.awt.Toolkit;
 
 public class RegistrarServicio extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField name_txt;
 	private JTextField price_txt;

@@ -131,6 +131,8 @@ public class LoginProject extends JDialog {
 							frame.setVisible(true);
 						}else {
 							JOptionPane.showMessageDialog(null, "Favor digitar datos nuevamente de forma correcta", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
+							txtUser.setText("");
+							txtPass.setText("");
 						}
 					}
 				});

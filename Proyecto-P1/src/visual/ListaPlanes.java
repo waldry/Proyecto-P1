@@ -28,6 +28,10 @@ import java.awt.Toolkit;
 public class ListaPlanes extends JDialog {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTable table;
 	private DefaultTableModel model;
