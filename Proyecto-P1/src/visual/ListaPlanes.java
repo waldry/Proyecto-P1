@@ -56,7 +56,7 @@ public class ListaPlanes extends JDialog {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaPlanes.class.getResource("/recursos/portapapeles.png")));
 		setTitle("Lista de Planes");
 		setResizable(false);
-		setBounds(100, 100, 600, 355);
+		setBounds(100, 100, 1017, 428);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(240, 248, 255));
 		contentPanel.setBorder(new TitledBorder(null, "Listado de Planes", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -65,7 +65,7 @@ public class ListaPlanes extends JDialog {
 		setLocationRelativeTo(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setSize(574, 253);
+		scrollPane.setSize(993, 337);
 		scrollPane.setLocation(10, 22);
 		contentPanel.add(scrollPane);
 		model = new DefaultTableModel();

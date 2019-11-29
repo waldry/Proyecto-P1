@@ -55,7 +55,7 @@ public class ListaClientes extends JDialog {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaClientes.class.getResource("/recursos/portapapeles.png")));
 		setTitle("Lista de Clientes");
 		setResizable(false);
-		setBounds(100, 100, 545, 360);
+		setBounds(100, 100, 821, 422);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(240, 248, 255));
 		contentPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Listado de clientes", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
@@ -64,7 +64,7 @@ public class ListaClientes extends JDialog {
 		setLocationRelativeTo(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 22, 521, 253);
+		scrollPane.setBounds(10, 22, 797, 331);
 		contentPanel.add(scrollPane);
 		model = new DefaultTableModel();
 		String[] header = {"Cédula", "Nombre", "Apellido", "Dirección", "Teléfono", "Activo"};

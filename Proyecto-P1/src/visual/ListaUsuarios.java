@@ -56,7 +56,7 @@ public class ListaUsuarios extends JDialog {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaUsuarios.class.getResource("/recursos/portapapeles.png")));
 		setTitle("Lista de Usuarios");
 		setResizable(false);
-		setBounds(100, 100, 528, 339);
+		setBounds(100, 100, 867, 430);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(240, 248, 255));
 		contentPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Listado de Usuarios", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -65,7 +65,7 @@ public class ListaUsuarios extends JDialog {
 		setLocationRelativeTo(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 21, 504, 239);
+		scrollPane.setBounds(10, 21, 843, 340);
 		contentPanel.add(scrollPane);
 		model = new DefaultTableModel();
 		String[] header = {"Username", "Nombre", "Apellido", "Oficina", "Tipo", "lastlogin"};
