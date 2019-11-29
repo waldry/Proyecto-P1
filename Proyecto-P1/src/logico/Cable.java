@@ -1,6 +1,8 @@
 package logico;
 
-public class Cable extends Servicio {
+import java.io.Serializable;
+
+public class Cable extends Servicio implements Serializable{
 	/**
 	 * 
 	 */

@@ -1,6 +1,8 @@
 package logico;
 
-public class Telefono extends Servicio {
+import java.io.Serializable;
+
+public class Telefono extends Servicio implements Serializable{
 	/**
 	 * 
 	 */
