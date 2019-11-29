@@ -22,6 +22,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import javax.swing.ImageIcon;
+import java.awt.Toolkit;
+import javax.swing.UIManager;
 
 public class CrearFactura extends JDialog {
 
@@ -69,6 +71,7 @@ public class CrearFactura extends JDialog {
 	 * Create the dialog.
 	 */
 	public CrearFactura() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CrearFactura.class.getResource("/recursos/expediente.png")));
 		setResizable(false);
 		setTitle("Facturaci\u00F3n");
 		setBounds(100, 100, 668, 424);
@@ -145,10 +148,17 @@ public class CrearFactura extends JDialog {
 				
 			}
 		});
-		btnBuscar.setBounds(222, 17, 85, 21);
+		btnBuscar.setBounds(222, 17, 105, 21);
 		panel.add(btnBuscar);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n de Planes", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
+		panel_1.setBounds(10, 140, 634, 207);
+		contentPanel.add(panel_1);
+		panel_1.setLayout(null);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
