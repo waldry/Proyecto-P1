@@ -24,6 +24,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.awt.EventQueue;
+
 import javax.swing.JTextField;
 
 public class LoginProject extends JDialog implements Serializable{
@@ -40,43 +42,47 @@ public class LoginProject extends JDialog implements Serializable{
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		FileInputStream tricom;
-		FileOutputStream empresa2;
-		ObjectInputStream empresaRead;
-		ObjectOutputStream empresaWrite;
-		try {
-			tricom = new FileInputStream ("empresa.dat");
-			empresaRead = new ObjectInputStream(tricom);
-			Controladora temp = (Controladora)empresaRead.readObject();
-			Controladora.setCont(temp);
-			tricom.close();
-			empresaRead.close();
-		} catch (FileNotFoundException e) {
-			try {
-				empresa2 = new  FileOutputStream("empresa.dat");
-				empresaWrite = new ObjectOutputStream(empresa2);
-				Personal aux = new Personal("Ad", "min", "Central", "Administrativo", "Admin", "Admin");
-				Controladora.getInstance().registrarUsuario(aux);
-				empresaWrite.writeObject(Controladora.getInstance());
-				empresa2.close();
-				empresaWrite.close();
-			} catch (FileNotFoundException e1) {
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				FileInputStream tricom;
+				FileOutputStream empresa2;
+				ObjectInputStream empresaRead;
+				ObjectOutputStream empresaWrite;
+				try {
+					tricom = new FileInputStream ("empresa.dat");
+					empresaRead = new ObjectInputStream(tricom);
+					Controladora temp = (Controladora)empresaRead.readObject();
+					Controladora.setCont(temp);
+					tricom.close();
+					empresaRead.close();
+				} catch (FileNotFoundException e) {
+					try {
+						empresa2 = new  FileOutputStream("empresa.dat");
+						empresaWrite = new ObjectOutputStream(empresa2);
+						Personal aux = new Personal("Ad", "min", "Central", "Administrativo", "Admin", "Admin");
+						Controladora.getInstance().registrarUsuario(aux);
+						empresaWrite.writeObject(Controladora.getInstance());
+						empresa2.close();
+						empresaWrite.close();
+					} catch (FileNotFoundException e1) {
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+					}
+				} catch (IOException e) {
+					
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				try {
+					LoginProject dialog = new LoginProject();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
-		} catch (IOException e) {
-			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			LoginProject dialog = new LoginProject();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		});
 	}
 
 	/**
