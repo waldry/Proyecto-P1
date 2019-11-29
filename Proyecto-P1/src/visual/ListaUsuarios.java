@@ -24,6 +24,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class ListaUsuarios extends JDialog {
 
@@ -52,10 +53,12 @@ public class ListaUsuarios extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListaUsuarios() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaUsuarios.class.getResource("/recursos/portapapeles.png")));
 		setTitle("Lista de Usuarios");
 		setResizable(false);
-		setBounds(100, 100, 528, 329);
+		setBounds(100, 100, 528, 339);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(240, 248, 255));
 		contentPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Listado de Usuarios", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -68,6 +71,7 @@ public class ListaUsuarios extends JDialog {
 		String[] header = {"Username", "Nombre", "Apellido", "Oficina", "Tipo", "lastlogin"};
 		model.setColumnIdentifiers(header);
 		table = new JTable();
+		table.setBackground(new Color(255, 245, 238));
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -84,6 +88,7 @@ public class ListaUsuarios extends JDialog {
 		scrollPane.setViewportView(table);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(240, 248, 255));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
@@ -126,13 +131,13 @@ public class ListaUsuarios extends JDialog {
 	public void loadUsuarios() {
 		model.setRowCount(0);
 		row = new Object[model.getColumnCount()];
-		for (int i = 0; i < Controladora.getInstance().getEmpleados().size(); i++) {
-			row[0] = Controladora.getInstance().getEmpleados().get(i).getUsername();
-			row[1] = Controladora.getInstance().getEmpleados().get(i).getNombre();
-			row[2] = Controladora.getInstance().getEmpleados().get(i).getApellido();
-			row[3] = Controladora.getInstance().getEmpleados().get(i).getOficina();
-			row[4] = Controladora.getInstance().getEmpleados().get(i).getTipo();
-			row[5] = Controladora.getInstance().getEmpleados().get(i).getLastLogin();
+		for (Personal user : Controladora.getInstance().getEmpleados()) {
+			row[0] = user.getUsername();
+			row[1] = user.getNombre();
+			row[2] = user.getApellido();
+			row[3] = user.getOficina();
+			row[4] = user.getTipo();
+			row[5] = user.getLastLogin();
 			model.addRow(row);
 		}
 	}

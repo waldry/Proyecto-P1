@@ -76,12 +76,14 @@ public class CrearFactura extends JDialog {
 		setTitle("Facturaci\u00F3n");
 		setBounds(100, 100, 668, 424);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(240, 248, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		setLocationRelativeTo(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(240, 248, 255));
 		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Datos del cliente", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 		panel.setBounds(10, 10, 634, 124);
 		contentPanel.add(panel);
@@ -152,12 +154,14 @@ public class CrearFactura extends JDialog {
 		panel.add(btnBuscar);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n de Planes", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
+		panel_1.setBackground(new Color(240, 248, 255));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Informaci\u00F3n de Planes", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 		panel_1.setBounds(10, 140, 634, 207);
 		contentPanel.add(panel_1);
 		panel_1.setLayout(null);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(240, 248, 255));
 			buttonPane.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);

@@ -21,6 +21,8 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Toolkit;
+import java.awt.Color;
 
 public class RegistrarUsuario extends JDialog {
 
@@ -50,10 +52,12 @@ public class RegistrarUsuario extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegistrarUsuario() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarUsuario.class.getResource("/recursos/check-list.png")));
 		setTitle("Registrar Usuario");
 		setResizable(false);
 		setBounds(100, 100, 450, 299);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(240, 248, 255));
 		contentPanel.setBorder(new TitledBorder(null, "Registro de informaci\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -121,6 +125,7 @@ public class RegistrarUsuario extends JDialog {
 		contentPanel.add(cbxoficina);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(240, 248, 255));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{

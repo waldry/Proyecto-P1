@@ -22,6 +22,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
+import java.awt.Toolkit;
 
 public class RegistrarCliente extends JDialog {
 
@@ -72,10 +73,12 @@ public class RegistrarCliente extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegistrarCliente() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarCliente.class.getResource("/recursos/check-list.png")));
 		setTitle("Registro de Cliente");
 		setResizable(false);
 		setBounds(100, 100, 375, 292);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(240, 248, 255));
 		contentPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Registro de Informaci\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -128,6 +131,7 @@ public class RegistrarCliente extends JDialog {
 		setLocationRelativeTo(null);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(240, 248, 255));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{

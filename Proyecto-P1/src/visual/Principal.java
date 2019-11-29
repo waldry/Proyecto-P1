@@ -26,6 +26,7 @@ import logico.Controladora;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import java.awt.Color;
 
 public class Principal extends JFrame {
 
@@ -33,7 +34,6 @@ public class Principal extends JFrame {
 	private Dimension dim;
 //	private Date fecha = new Date();
 	private Calendar fecha = new GregorianCalendar();
-	private JTextField txtfecha;
 	
 
 	/**
@@ -64,6 +64,7 @@ public class Principal extends JFrame {
 		super.setSize(dim.width, dim.height-100);
 		
 		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBackground(new Color(240, 248, 255));
 		setJMenuBar(menuBar);
 		
 		JMenu mnNewMenu = new JMenu("Clientes");
@@ -160,26 +161,10 @@ public class Principal extends JFrame {
 		});
 		mnFacturas.add(mntmFacturarPlan);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(240, 248, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JPanel FechaHoraPanel = new JPanel();
-		FechaHoraPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		FechaHoraPanel.setBounds(10, 840, dim.width-30, 43);
-		contentPane.add(FechaHoraPanel);
-		FechaHoraPanel.setLayout(null);
-		
-		JLabel lblFecha = new JLabel("Fecha:");
-		lblFecha.setBounds(10, 13, 46, 13);
-		FechaHoraPanel.add(lblFecha);
-		
-		txtfecha = new JTextField();
-		txtfecha.setBounds(66, 10, 96, 19);
-		FechaHoraPanel.add(txtfecha);
-		txtfecha.setEditable(false);
-		txtfecha.setColumns(10);
-		txtfecha.setText(Controladora.getInstance().fechaActual());
 		setLocationRelativeTo(null);
 	}
 }

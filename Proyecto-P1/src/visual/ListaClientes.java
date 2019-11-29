@@ -23,6 +23,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class ListaClientes extends JDialog {
 
@@ -51,10 +52,12 @@ public class ListaClientes extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListaClientes() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaClientes.class.getResource("/recursos/portapapeles.png")));
 		setTitle("Lista de Clientes");
 		setResizable(false);
 		setBounds(100, 100, 545, 360);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(240, 248, 255));
 		contentPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Listado de clientes", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -67,6 +70,7 @@ public class ListaClientes extends JDialog {
 		String[] header = {"Cédula", "Nombre", "Apellido", "Dirección", "Teléfono", "Activo"};
 		model.setColumnIdentifiers(header);
 		table = new JTable();
+		table.setBackground(new Color(255, 245, 238));
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -83,6 +87,7 @@ public class ListaClientes extends JDialog {
 		scrollPane.setViewportView(table);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(240, 248, 255));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			
@@ -126,13 +131,13 @@ public class ListaClientes extends JDialog {
 	public void loadClientes() {
 		model.setRowCount(0);
 		row = new Object[model.getColumnCount()];
-		for (int i = 0; i < Controladora.getInstance().getClientes().size(); i++) {
-			row[0] = Controladora.getInstance().getClientes().get(i).getCedula();
-			row[1] = Controladora.getInstance().getClientes().get(i).getNombre();
-			row[2] = Controladora.getInstance().getClientes().get(i).getApellido();
-			row[3] = Controladora.getInstance().getClientes().get(i).getDireccion();
-			row[4] = Controladora.getInstance().getClientes().get(i).getTelefono();
-			if(Controladora.getInstance().getClientes().get(i).isActivo() == true) {
+		for (Cliente client : Controladora.getInstance().getClientes()) {
+			row[0] = client.getCedula();
+			row[1] = client.getNombre();
+			row[2] = client.getApellido();
+			row[3] = client.getDireccion();
+			row[4] = client.getTelefono();
+			if(client.isActivo() == true) {
 				row[5] = "Si";
 			}else {
 				row[5] = "No";

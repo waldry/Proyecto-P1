@@ -22,6 +22,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Toolkit;
 
 public class ListaPlanes extends JDialog {
 
@@ -51,10 +53,12 @@ public class ListaPlanes extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListaPlanes() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaPlanes.class.getResource("/recursos/portapapeles.png")));
 		setTitle("Lista de Planes");
 		setResizable(false);
 		setBounds(100, 100, 600, 355);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(240, 248, 255));
 		contentPanel.setBorder(new TitledBorder(null, "Listado de Planes", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -68,6 +72,7 @@ public class ListaPlanes extends JDialog {
 		String[] header = {"Nombre","Bajada","Subida","Canales","Pqte Adulto","Pqte HBO","Pqte Deportes","Minutos","VoiceMail","Doble Linea","Ilimitado"};
 		model.setColumnIdentifiers(header);
 		table = new JTable();
+		table.setBackground(new Color(255, 245, 238));
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -78,13 +83,17 @@ public class ListaPlanes extends JDialog {
 		scrollPane.setViewportView(table);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(240, 248, 255));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			
+			JButton btnModificar_1 = new JButton("Modificar");
+			buttonPane.add(btnModificar_1);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				JButton btnEliminar = new JButton("Eliminar");
+				btnEliminar.setActionCommand("OK");
+				buttonPane.add(btnEliminar);
+				getRootPane().setDefaultButton(btnEliminar);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");

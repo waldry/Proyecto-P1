@@ -34,6 +34,7 @@ import java.awt.Dialog;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JCheckBox;
 import javax.swing.border.EtchedBorder;
+import java.awt.Toolkit;
 
 public class RegistrarServicio extends JDialog {
 
@@ -79,10 +80,12 @@ public class RegistrarServicio extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegistrarServicio() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarServicio.class.getResource("/recursos/check-list.png")));
 		setResizable(false);
 		setTitle("Registro de Servicio");
 		setBounds(100, 100, 500, 540);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(240, 248, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
@@ -91,6 +94,7 @@ public class RegistrarServicio extends JDialog {
 
 			
 			JPanel panel = new JPanel();
+			panel.setBackground(new Color(240, 248, 255));
 			panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Informacion del Servicio", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
@@ -114,6 +118,7 @@ public class RegistrarServicio extends JDialog {
 			price_txt.setColumns(10);
 			
 			JPanel panel_1 = new JPanel();
+			panel_1.setBackground(new Color(240, 248, 255));
 			panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Tipo de Servicio", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 			panel_1.setBounds(10, 56, 336, 45);
 			panel.add(panel_1);
@@ -122,6 +127,7 @@ public class RegistrarServicio extends JDialog {
 			
 			
 			internet_chbx = new JCheckBox("Internet");
+			internet_chbx.setBackground(new Color(240, 248, 255));
 			internet_chbx.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (internet_chbx.isSelected()) {
@@ -145,6 +151,7 @@ public class RegistrarServicio extends JDialog {
 			panel_1.add(internet_chbx);
 			
 			cable_chbx = new JCheckBox("Cable");
+			cable_chbx.setBackground(new Color(240, 248, 255));
 			cable_chbx.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (cable_chbx.isSelected()) {
@@ -168,6 +175,7 @@ public class RegistrarServicio extends JDialog {
 			panel_1.add(cable_chbx);
 			
 			telefono_chbx = new JCheckBox("Telefono");
+			telefono_chbx.setBackground(new Color(240, 248, 255));
 			telefono_chbx.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (telefono_chbx.isSelected()) {
@@ -192,6 +200,7 @@ public class RegistrarServicio extends JDialog {
 			
 			
 			internet_panel = new JPanel();
+			internet_panel.setBackground(new Color(240, 248, 255));
 			internet_chbx.setSelected(true);
 			internet_panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Internet", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 			internet_panel.setBounds(10, 101, 451, 106);
@@ -215,6 +224,7 @@ public class RegistrarServicio extends JDialog {
 			internet_panel.add(bajada_spn);
 			
 			cable_panel = new JPanel();
+			cable_panel.setBackground(new Color(240, 248, 255));
 			cable_panel.setBounds(10, 218, 451, 106);
 			panel.add(cable_panel);
 			cable_panel.setLayout(null);
@@ -233,6 +243,7 @@ public class RegistrarServicio extends JDialog {
 			canales_spn.setEnabled(false);
 			
 			adultos_chbx= new JCheckBox("Paquete +18");
+			adultos_chbx.setBackground(new Color(240, 248, 255));
 			adultos_chbx.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
@@ -252,6 +263,7 @@ public class RegistrarServicio extends JDialog {
 			adultos_chbx.setEnabled(false);
 			
 			hbo_chbx= new JCheckBox("Paquete HBO");
+			hbo_chbx.setBackground(new Color(240, 248, 255));
 			hbo_chbx.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (hbo_chbx.isSelected()) {
@@ -269,6 +281,7 @@ public class RegistrarServicio extends JDialog {
 			hbo_chbx.setEnabled(false);
 			
 			deportes_chbx = new JCheckBox("Paquete Deportes");
+			deportes_chbx.setBackground(new Color(240, 248, 255));
 			deportes_chbx.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (deportes_chbx.isSelected()) {
@@ -286,6 +299,7 @@ public class RegistrarServicio extends JDialog {
 			deportes_chbx.setEnabled(false);
 			
 			telefono_panel = new JPanel();
+			telefono_panel.setBackground(new Color(240, 248, 255));
 			telefono_panel.setBounds(10, 335, 451, 106);
 			panel.add(telefono_panel);
 			telefono_panel.setLayout(null);
@@ -303,23 +317,27 @@ public class RegistrarServicio extends JDialog {
 			cant_min_spn.setEnabled(false);
 			
 			voicemail_chbx = new JCheckBox("Correo de Voz");
+			voicemail_chbx.setBackground(new Color(240, 248, 255));
 			
 			voicemail_chbx.setBounds(32, 61, 127, 23);
 			telefono_panel.add(voicemail_chbx);
 			voicemail_chbx.setEnabled(false);
 			
 			doble_linea_chbx = new JCheckBox("Doble Linea");
+			doble_linea_chbx.setBackground(new Color(240, 248, 255));
 			doble_linea_chbx.setBounds(191, 61, 97, 23);
 			telefono_panel.add(doble_linea_chbx);
 			doble_linea_chbx.setEnabled(false);
 			
 			ilimitado_chbx = new JCheckBox("Ilimitado");
+			ilimitado_chbx.setBackground(new Color(240, 248, 255));
 			ilimitado_chbx.setBounds(320, 61, 97, 23);
 			telefono_panel.add(ilimitado_chbx);
 			ilimitado_chbx.setEnabled(false);
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(240, 248, 255));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
