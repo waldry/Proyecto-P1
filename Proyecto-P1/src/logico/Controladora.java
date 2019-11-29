@@ -129,7 +129,7 @@ public class Controladora implements Serializable{
 	public boolean confirmLogin(String username, String pass) {
 		boolean login = false;
 		for (Personal empleado : empleados) {
-			if(empleado.getUsername().equals(username)) {
+			if(empleado.getUsername().equals(username) && empleado.getPass().equals(pass)) {
 				empleado = loggedUser;
 				login = true;
 			}

@@ -118,7 +118,7 @@ public class LoginProject extends JDialog implements Serializable{
 		txtUser.setColumns(10);
 		
 		txtPass = new TextField();
-		//txtPass.setEchoChar('*');
+		txtPass.setEchoChar('*');
 		txtPass.setBounds(274, 96, 176, 19);
 		contentPanel.add(txtPass);
 		txtPass.setColumns(10);
