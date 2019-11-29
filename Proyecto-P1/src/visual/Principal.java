@@ -30,6 +30,10 @@ import java.awt.Color;
 
 public class Principal extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private Dimension dim;
 //	private Date fecha = new Date();

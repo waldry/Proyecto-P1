@@ -1,6 +1,10 @@
 package logico;
 
 public class Cable extends Servicio {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int cantCanales;
 	private boolean hbo = false;
 	private boolean adultos = false;

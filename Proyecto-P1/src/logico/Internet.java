@@ -1,6 +1,10 @@
 package logico;
 
 public class Internet extends Servicio {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int anchoBandaDescarga;
 	private int anchoBandaSubida;
 	private String name;

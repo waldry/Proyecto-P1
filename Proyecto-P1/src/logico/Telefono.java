@@ -1,6 +1,10 @@
 package logico;
 
 public class Telefono extends Servicio {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int cantMinutos;
 	private boolean ilimitado = false;
 	private boolean voicemail = false;

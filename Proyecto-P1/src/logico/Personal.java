@@ -1,8 +1,13 @@
 package logico;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Personal {
+public class Personal implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String nombre;
 	private String apellido;
 	private String oficina;
@@ -11,7 +16,7 @@ public class Personal {
 	private String pass;
 	private Date lastLogin;
 	
-	public Personal(String nombre, String apellido, String oficina, String tipo, String username, String pass, Date lastLogin) {
+	public Personal(String nombre, String apellido, String oficina, String tipo, String username, String pass) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -19,7 +24,6 @@ public class Personal {
 		this.tipo = tipo;
 		this.username = username;
 		this.pass = pass;
-		this.lastLogin = lastLogin;
 	}
 
 	public String getNombre() {

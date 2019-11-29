@@ -68,7 +68,7 @@ public class ListaUsuarios extends JDialog {
 		scrollPane.setBounds(10, 21, 843, 340);
 		contentPanel.add(scrollPane);
 		model = new DefaultTableModel();
-		String[] header = {"Username", "Nombre", "Apellido", "Oficina", "Tipo", "lastlogin"};
+		String[] header = {"Username", "Nombre", "Apellido", "Oficina", "Tipo"};
 		model.setColumnIdentifiers(header);
 		table = new JTable();
 		table.setBackground(new Color(255, 245, 238));
@@ -137,7 +137,6 @@ public class ListaUsuarios extends JDialog {
 			row[2] = user.getApellido();
 			row[3] = user.getOficina();
 			row[4] = user.getTipo();
-			row[5] = user.getLastLogin();
 			model.addRow(row);
 		}
 	}

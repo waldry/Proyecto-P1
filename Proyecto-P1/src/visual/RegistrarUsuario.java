@@ -132,7 +132,7 @@ public class RegistrarUsuario extends JDialog {
 				JButton btnregistrar = new JButton("Registrar");
 				btnregistrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Personal empleado = new Personal(txtnombre.getText(), txtapellido.getText(), cbxoficina.getSelectedItem().toString(), cbxtipo.getSelectedItem().toString(), txtuser.getText(), txtpass.getText(), fechaActual);
+						Personal empleado = new Personal(txtnombre.getText(), txtapellido.getText(), cbxoficina.getSelectedItem().toString(), cbxtipo.getSelectedItem().toString(), txtuser.getText(), txtpass.getText());
 						Controladora.getInstance().registrarUsuario(empleado);
 						JOptionPane.showMessageDialog(null, "Operacion Satisfactoria", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 						clean();

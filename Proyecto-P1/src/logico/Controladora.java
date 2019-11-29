@@ -1,11 +1,16 @@
 package logico;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Controladora {
+public class Controladora implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static Controladora cont = null;
 	private ArrayList<Factura> facturas;
 	private ArrayList<Cliente> clientes;
@@ -14,7 +19,7 @@ public class Controladora {
 	private Personal loggedUser;
 	private Date fecha;
 	
-	public Controladora() {
+	private Controladora() {
 		super();
 		this.clientes = new ArrayList<Cliente>();
 		this.facturas = new ArrayList<Factura>();
@@ -27,6 +32,14 @@ public class Controladora {
 			cont = new Controladora();
 		}
 		return cont;
+	}
+
+	public static Controladora getCont() {
+		return cont;
+	}
+
+	public static void setCont(Controladora cont) {
+		Controladora.cont = cont;
 	}
 
 	public ArrayList<Factura> getFacturas() {
@@ -116,7 +129,7 @@ public class Controladora {
 	public boolean confirmLogin(String username, String pass) {
 		boolean login = false;
 		for (Personal empleado : empleados) {
-			if(empleado.getNombre().equals(username) && empleado.getPass().equals(pass)) {
+			if(empleado.getUsername().equals(username)) {
 				empleado = loggedUser;
 				login = true;
 			}
@@ -151,6 +164,14 @@ public class Controladora {
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern(formatFecha);
 		LocalDateTime ahora = LocalDateTime.now();
 		return formato.format(ahora);
+	}
+
+	public Personal getLoggedUser() {
+		return loggedUser;
+	}
+
+	public void setLoggedUser(Personal loggedUser) {
+		this.loggedUser = loggedUser;
 	}
 	
 }
