@@ -23,10 +23,11 @@ import javax.swing.ListSelectionModel;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
-public class ListaUsuarios extends JDialog {
+public class ListaUsuarios extends JDialog implements Serializable{
 
 	/**
 	 * 

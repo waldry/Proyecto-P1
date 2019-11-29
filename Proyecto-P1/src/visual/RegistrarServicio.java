@@ -23,6 +23,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
@@ -36,7 +37,7 @@ import javax.swing.JCheckBox;
 import javax.swing.border.EtchedBorder;
 import java.awt.Toolkit;
 
-public class RegistrarServicio extends JDialog {
+public class RegistrarServicio extends JDialog implements Serializable{
 
 	/**
 	 * 

@@ -19,6 +19,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -34,7 +35,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Color;
 
-public class Principal extends JFrame {
+public class Principal extends JFrame implements Serializable{
 
 	/**
 	 * 

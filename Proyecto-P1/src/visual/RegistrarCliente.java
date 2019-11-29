@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
@@ -24,7 +25,7 @@ import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import java.awt.Toolkit;
 
-public class RegistrarCliente extends JDialog {
+public class RegistrarCliente extends JDialog implements Serializable{
 
 	/**
 	 * 

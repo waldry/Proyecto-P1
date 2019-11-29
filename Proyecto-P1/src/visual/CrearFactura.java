@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.awt.event.ActionEvent;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
@@ -25,7 +26,7 @@ import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import javax.swing.UIManager;
 
-public class CrearFactura extends JDialog {
+public class CrearFactura extends JDialog implements Serializable{
 
 	/**
 	 * 

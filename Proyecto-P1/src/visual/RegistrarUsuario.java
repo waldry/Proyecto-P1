@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 import java.awt.event.ActionEvent;
@@ -24,7 +25,7 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.Toolkit;
 import java.awt.Color;
 
-public class RegistrarUsuario extends JDialog {
+public class RegistrarUsuario extends JDialog implements Serializable{
 
 	/**
 	 * 

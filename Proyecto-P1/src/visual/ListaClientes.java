@@ -22,10 +22,11 @@ import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
-public class ListaClientes extends JDialog {
+public class ListaClientes extends JDialog implements Serializable{
 
 	/**
 	 * 
