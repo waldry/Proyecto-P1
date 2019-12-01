@@ -29,11 +29,14 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.EtchedBorder;
 import javax.swing.text.DateFormatter;
 
+import org.jfree.data.general.DefaultPieDataset;
+
 import logico.Controladora;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Color;
+import javax.swing.border.TitledBorder;
 
 public class Principal extends JFrame implements Serializable{
 
@@ -196,11 +199,18 @@ public class Principal extends JFrame implements Serializable{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 10, 623, 395);
-		contentPane.add(panel);
+		JPanel panelGrafico1 = new JPanel();
+		panelGrafico1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gr\u00E1fico 1", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelGrafico1.setBounds(10, 10, 623, 395);
+		contentPane.add(panelGrafico1);
+		/*Recordar recopilar datos para hacer un grafico aqui
+		 * 
+		 * 
+		 */
+		DefaultPieDataset datos = new DefaultPieDataset();
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gr\u00E1fico 2", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
 		panel_1.setBounds(643, 10, 623, 395);
 		contentPane.add(panel_1);
 		
