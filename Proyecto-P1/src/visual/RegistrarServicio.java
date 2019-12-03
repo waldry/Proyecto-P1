@@ -104,23 +104,24 @@ public class RegistrarServicio extends JDialog implements Serializable{
 			panel.add(lblNombre);
 			
 			JLabel lblCosto = new JLabel("Costo: ");
-			lblCosto.setBounds(173, 31, 46, 14);
+			lblCosto.setBounds(241, 31, 46, 14);
 			panel.add(lblCosto);
 			
 			name_txt = new JTextField();
-			name_txt.setBounds(77, 29, 86, 20);
+			name_txt.setBounds(77, 29, 113, 20);
 			panel.add(name_txt);
 			name_txt.setColumns(10);
 			
 			price_txt = new JTextField();
-			price_txt.setBounds(229, 29, 86, 20);
+			price_txt.setEditable(false);
+			price_txt.setBounds(297, 29, 113, 20);
 			panel.add(price_txt);
 			price_txt.setColumns(10);
 			
 			JPanel panel_1 = new JPanel();
 			panel_1.setBackground(new Color(240, 248, 255));
 			panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Tipo de Servicio", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
-			panel_1.setBounds(10, 56, 336, 45);
+			panel_1.setBounds(10, 56, 451, 45);
 			panel.add(panel_1);
 			panel_1.setLayout(null);
 			
@@ -147,7 +148,7 @@ public class RegistrarServicio extends JDialog implements Serializable{
 					}
 				}
 			});
-			internet_chbx.setBounds(11, 15, 97, 23);
+			internet_chbx.setBounds(40, 15, 97, 23);
 			panel_1.add(internet_chbx);
 			
 			cable_chbx = new JCheckBox("Cable");
@@ -171,7 +172,7 @@ public class RegistrarServicio extends JDialog implements Serializable{
 					}
 				}
 			});
-			cable_chbx.setBounds(119, 15, 97, 23);
+			cable_chbx.setBounds(177, 15, 97, 23);
 			panel_1.add(cable_chbx);
 			
 			telefono_chbx = new JCheckBox("Telefono");
@@ -195,7 +196,7 @@ public class RegistrarServicio extends JDialog implements Serializable{
 					}
 				}
 			});
-			telefono_chbx.setBounds(227, 15, 97, 23);
+			telefono_chbx.setBounds(314, 15, 97, 23);
 			panel_1.add(telefono_chbx);
 			
 			
@@ -216,11 +217,11 @@ public class RegistrarServicio extends JDialog implements Serializable{
 			internet_panel.add(lblAnchoDeBajada);
 			
 			subida_spn = new JSpinner();
-			subida_spn.setBounds(165, 27, 29, 20);
+			subida_spn.setBounds(165, 27, 57, 20);
 			internet_panel.add(subida_spn);
 			
 			bajada_spn = new JSpinner();
-			bajada_spn.setBounds(165, 64, 29, 20);
+			bajada_spn.setBounds(165, 64, 57, 20);
 			internet_panel.add(bajada_spn);
 			
 			cable_panel = new JPanel();
@@ -312,7 +313,7 @@ public class RegistrarServicio extends JDialog implements Serializable{
 			lblCantidadCanales_1.setEnabled(false);
 			
 			cant_min_spn= new JSpinner();
-			cant_min_spn.setBounds(138, 24, 29, 20);
+			cant_min_spn.setBounds(138, 24, 59, 20);
 			telefono_panel.add(cant_min_spn);
 			cant_min_spn.setEnabled(false);
 			
