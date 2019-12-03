@@ -66,20 +66,10 @@ public class RegistrarServicio extends JDialog implements Serializable{
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			RegistrarServicio dialog = new RegistrarServicio();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	/**
 	 * Create the dialog.
 	 */
-	public RegistrarServicio() {
+	public RegistrarServicio(Controladora principal, Plan servicios) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarServicio.class.getResource("/recursos/check-list.png")));
 		setResizable(false);
 		setTitle("Registro de Servicio");

@@ -18,6 +18,7 @@ public class Controladora implements Serializable{
 	private ArrayList<Plan> planes;
 	private Personal loggedUser;
 	private Date fecha;
+	private static int cantPlan;
 	
 	private Controladora() {
 		super();
@@ -83,6 +84,9 @@ public class Controladora implements Serializable{
 	public void registrarUsuario(Personal user) {
 		empleados.add(user);
 	}
+	public void insertarPlan(Plan plan) {
+//		planes.get(cantPlan) = plan;
+	}
 	
 	public Cliente findClienteById(String cedulaCliente) {
 		Cliente client = null;
@@ -97,7 +101,18 @@ public class Controladora implements Serializable{
 		}
 		return client;
 	}
-	
+	public Plan findPlanByName(String name) {
+		Plan service = null;
+		boolean found = false;
+		int i = 0;
+		while (!found && i<planes.size()) {
+			if (planes.get(i).getNombre().equals(name)) {
+				service = planes.get(i);
+				found = true;
+			}
+		}
+		return service;
+	}
 	public Personal findPersonalByUsername(String username) {
 		Personal user = null;
 		boolean found = false;
@@ -111,7 +126,28 @@ public class Controladora implements Serializable{
 		}
 		return user;
 	}
-	
+//	private int indexBycodigo(String codigo) {
+//		boolean encontrado = false;
+//		int i = 0;
+//		int index = -1;
+//		while (!encontrado && i< cantPlan) {
+//			if(cantPlan[i].getId().equalsIgnoreCase(codigo)){
+//				encontrado = true;
+//				index = i;
+//				
+//			}
+//			i++;
+//		}
+//		return index;
+//	}
+
+//	public void eliminarPlan(String identify) {
+//		int index = -1;
+//		int i = 0;
+//		if (index) {
+//			
+//		}
+//	}
 	public Factura findFacturaByCodigo(String idFactura) {
 		Factura aux = null;
 		boolean found = false;

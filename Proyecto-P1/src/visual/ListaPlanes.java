@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
@@ -38,25 +39,16 @@ public class ListaPlanes extends JDialog implements Serializable{
 	private Object[] row;
 	private JButton btneliminar;
 	private JButton btnModificar;
-	private String nombre = "";
+	private String nombre;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			ListaPlanes dialog = new ListaPlanes();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Create the dialog.
 	 */
-	public ListaPlanes() {
+	public ListaPlanes(Controladora control) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaPlanes.class.getResource("/recursos/portapapeles.png")));
 		setTitle("Lista de Planes");
 		setResizable(false);
@@ -69,6 +61,17 @@ public class ListaPlanes extends JDialog implements Serializable{
 		setLocationRelativeTo(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if (table.getSelectedRow()>-1) {
+					int index = table.getSelectedRow();
+					btneliminar.setEnabled(true);
+					btnModificar.setEnabled(true);
+					nombre = String.valueOf(table.getValueAt(index,0));
+				}
+			}
+		});
 		scrollPane.setSize(993, 337);
 		scrollPane.setLocation(10, 22);
 		contentPanel.add(scrollPane);
@@ -91,13 +94,35 @@ public class ListaPlanes extends JDialog implements Serializable{
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			
-			JButton btnModificar_1 = new JButton("Modificar");
-			buttonPane.add(btnModificar_1);
+			btnModificar = new JButton("Modificar");
+			btnModificar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if (!nombre.equals("")) {
+						Plan aux = Controladora.getInstance().findPlanByName(nombre);
+						RegistrarServicio regPlan = new RegistrarServicio(control, aux);
+						regPlan.setModal(true);
+						regPlan.setVisible(true);
+					}
+				}
+				
+			});
+			buttonPane.add(btnModificar);
 			{
-				JButton btnEliminar = new JButton("Eliminar");
-				btnEliminar.setActionCommand("OK");
-				buttonPane.add(btnEliminar);
-				getRootPane().setDefaultButton(btnEliminar);
+				btneliminar = new JButton("Eliminar");
+				btneliminar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						if (!nombre.equals("")) {
+							Plan aux = Controladora.getInstance().findPlanByName(nombre);
+							int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea eliminar el Suministrador: " + aux.getNombre(),"Información",JOptionPane.WARNING_MESSAGE);
+							if (option == JOptionPane.OK_OPTION) {
+								
+							}
+						}
+					}
+				});
+				btneliminar.setActionCommand("OK");
+				buttonPane.add(btneliminar);
+				getRootPane().setDefaultButton(btneliminar);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");

@@ -57,7 +57,7 @@ public class Principal extends JFrame implements Serializable{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Principal frame = new Principal();
+					Principal frame = new Principal(Controladora.getInstance());
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -69,7 +69,7 @@ public class Principal extends JFrame implements Serializable{
 	/**
 	 * Create the frame.
 	 */
-	public Principal() {
+	public Principal(Controladora control) {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -134,7 +134,7 @@ public class Principal extends JFrame implements Serializable{
 		mntmRegistrarNuevoPlan.setIcon(new ImageIcon(Principal.class.getResource("/recursos/que-hacer.png")));
 		mntmRegistrarNuevoPlan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegistrarServicio RegServ = new RegistrarServicio();
+				RegistrarServicio RegServ = new RegistrarServicio(control,null);
 				RegServ.setModal(true);
 				RegServ.setVisible(true);
 			}
@@ -145,7 +145,7 @@ public class Principal extends JFrame implements Serializable{
 		mntmListarPlanes.setIcon(new ImageIcon(Principal.class.getResource("/recursos/lista.png")));
 		mntmListarPlanes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ListaPlanes listPlan = new ListaPlanes();
+				ListaPlanes listPlan = new ListaPlanes(control);
 				listPlan.setModal(true);
 				listPlan.setVisible(true);
 			}
