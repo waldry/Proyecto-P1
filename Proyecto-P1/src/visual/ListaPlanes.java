@@ -117,16 +117,63 @@ public class ListaPlanes extends JDialog implements Serializable{
 		row = new Object[model.getColumnCount()];
 		for (Plan plan : Controladora.getInstance().getPlanes()) {
 			row[0] = plan.getNombre();
-			row[1] = plan.getAnchoBandaDescarga();
-			row[2] = plan.getAnchoBandaSubida();
-			row[3] = plan.getCantCanales();
-		    row[4] = plan.getCantMinutos();
-		    row[5] = plan.isAdultos();
-		    row[6] = plan.isHbo();
-		    row[7] = plan.isDeportes();
-		    row[8] = plan.getCantMinutos();
-		    row[9] = plan.isVoicemail();
-		    row[10] = plan.isIlimitado();
+			if (plan.getAnchoBandaDescarga() !=0) {
+				row[1] = plan.getAnchoBandaDescarga();
+			}
+			else {
+				row[1] = "";
+			}
+			if (plan.getAnchoBandaSubida() !=0) {
+				row[2] = plan.getAnchoBandaSubida();
+			}
+			else {
+				row[2] = "";
+			}
+			if (plan.getCantCanales() !=0) {
+				row[3] = plan.getCantCanales();
+			}
+			else {
+				row[3] = "";
+			}
+		    if (plan.isAdultos()) {
+		    	row[4] = plan.isAdultos();
+			}
+		    else {
+		    	row[4] = "";
+			}
+		    if (plan.isHbo()) {
+		    	row[5] = plan.isHbo();
+			}
+		    else {
+		    	row[5] = "";
+			}
+		    if (plan.isDeportes()) {
+		    	row[6] = plan.isDeportes();
+			}
+		    else {
+		    	row[6] = "";
+			}
+		    if (plan.getCantCanales() !=0) {
+		    	row[7] = plan.getCantCanales();
+			}
+		    else {
+				row[7] = "";
+			}
+		    if (plan.isVoicemail()) {
+		    	row[8] = plan.isVoicemail();
+			}
+		    else {
+				row[8] = "";
+			}
+		    if (plan.isIlimitado()) {
+		    	row[9] = plan.isIlimitado();
+			}
+		    else {
+				row[9] = "";
+			}
+		    
+		   
+		    
 			model.addRow(row);
 		}
 			

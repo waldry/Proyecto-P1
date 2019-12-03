@@ -145,6 +145,8 @@ public class RegistrarServicio extends JDialog implements Serializable{
 						bajada_spn.setEnabled(false);
 						lblAnchoDeBajada.setEnabled(false);
 						lblAnchoDeBanda.setEnabled(false);
+						subida_spn.setValue(0);
+						bajada_spn.setValue(0);
 					}
 				}
 			});
@@ -162,13 +164,18 @@ public class RegistrarServicio extends JDialog implements Serializable{
 						hbo_chbx.setEnabled(true);
 						deportes_chbx.setEnabled(true);
 						canales_spn.setEnabled(true);
+						canales_spn.setValue(100);
 					}else {
 						cable_panel.setEnabled(false);
 						lblCantidadCanales.setEnabled(false);
 						adultos_chbx.setEnabled(false);
+						adultos_chbx.setSelected(false);
 						hbo_chbx.setEnabled(false);
+						hbo_chbx.setSelected(false);
 						deportes_chbx.setEnabled(false);
+						deportes_chbx.setSelected(false);
 						canales_spn.setEnabled(false);
+						canales_spn.setValue(0);
 					}
 				}
 			});
@@ -186,13 +193,18 @@ public class RegistrarServicio extends JDialog implements Serializable{
 						doble_linea_chbx.setEnabled(true);
 						ilimitado_chbx.setEnabled(true);
 						voicemail_chbx.setEnabled(true);
+						cant_min_spn.setValue(400);
 					}else {
 						telefono_panel.setEnabled(false);
 						lblCantidadCanales_1.setEnabled(false);
 						cant_min_spn.setEnabled(false);
 						doble_linea_chbx.setEnabled(false);
+						doble_linea_chbx.setSelected(false);
 						ilimitado_chbx.setEnabled(false);
+						ilimitado_chbx.setSelected(false);
 						voicemail_chbx.setEnabled(false);
+						voicemail_chbx.setSelected(false);
+						cant_min_spn.setValue(0);
 					}
 				}
 			});
@@ -238,7 +250,7 @@ public class RegistrarServicio extends JDialog implements Serializable{
 			lblCantidadCanales.setEnabled(false);
 			
 			canales_spn = new JSpinner();
-			canales_spn.setModel(new SpinnerNumberModel(new Integer(100), null, null, new Integer(1)));
+			canales_spn.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(1)));
 			canales_spn.setBounds(138, 24, 68, 20);
 			cable_panel.add(canales_spn);
 			canales_spn.setEnabled(false);
