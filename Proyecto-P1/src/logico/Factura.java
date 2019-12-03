@@ -11,21 +11,19 @@ public class Factura implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String id;
 	private Cliente cliente;
-	private ArrayList<Servicio> services;
 	private Date fecha;
 	private Plan planCliente;
 	private boolean activa;
 	private float monto;
 	
 	
-	public Factura(String id, Cliente cliente, Plan planCliente, Date fecha, float monto, ArrayList<Servicio> services, boolean activa) {
+	public Factura(String id, Cliente cliente, Plan planCliente, Date fecha, float monto, boolean activa) {
 		super();
 		this.id = id;
 		this.cliente = cliente;
 		this.planCliente = planCliente;
 		this.fecha = fecha;
 		this.monto = monto;
-		this.services = services;
 		this.activa = activa;
 	}
 
@@ -37,13 +35,6 @@ public class Factura implements Serializable{
 		this.id = id;
 	}
 	
-	public ArrayList<Servicio> getServices() {
-		return services;
-	}
-
-	public void setServices(ArrayList<Servicio> services) {
-		this.services = services;
-	}
 
 	public boolean isActiva() {
 		return activa;
@@ -85,14 +76,14 @@ public class Factura implements Serializable{
 		this.monto = monto;
 	}
 	
-	public float cotizar() {
-		float total = 0;
-		for (Servicio servicio : services) {
-			total += servicio.costoServicio();
-		}
-		for (Servicio servicioPlan : planCliente.getServicios()) {
-			total += servicioPlan.costoServicio();
-		}
-		return total;
-	}
+//	public float cotizar() {
+//		float total = 0;
+//		for (Servicio servicio : services) {
+//			total += servicio.costoServicio();
+//		}
+//		for (Servicio servicioPlan : planCliente.getServicios()) {
+//			total += servicioPlan.costoServicio();
+//		}
+//		return total;
+//	}
 }

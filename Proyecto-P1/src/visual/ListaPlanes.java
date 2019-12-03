@@ -13,10 +13,9 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-import logico.Cable;
+
 import logico.Controladora;
-import logico.Internet;
-import logico.Telefono;
+import logico.Plan;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -115,52 +114,21 @@ public class ListaPlanes extends JDialog implements Serializable{
 	}
 	public void loadPlanes() {
 		model.setRowCount(0);
-		Internet auxInt = null;
-		Cable auxCable = null;
-		Telefono auxTel = null;
 		row = new Object[model.getColumnCount()];
-		for (int i = 0; i < Controladora.getInstance().getPlanes().size(); i++) {
-			row[0] = Controladora.getInstance().getPlanes().get(i).getNombre();
-			if (Controladora.getInstance().getPlanes().get(i).getServicios().get(i) instanceof Internet) {
-				auxInt = (Internet) Controladora.getInstance().getPlanes().get(i).getServicios().get(i);
-				row[1] = auxInt.getAnchoBandaDescarga();
-				row[2] = auxInt.getAnchoBandaSubida();
-				row[3] = "";
-				row[4] = "";
-				row[5] = "";
-				row[6] = "";
-				row[7] = "";
-				row[8] = "";
-				row[9] = "";
-				row[10] = "";
-			}
-			if (Controladora.getInstance().getPlanes().get(i).getServicios().get(i) instanceof Cable) {
-				auxCable = (Cable) Controladora.getInstance().getPlanes().get(i).getServicios().get(i);
-				row[1] = "";
-				row[2] = "";
-				row[3] = auxCable.getCantCanales();
-				row[4] = auxCable.isAdultos();
-				row[5] = auxCable.isHbo();
-				row[6] = auxCable.isDeportes();
-				row[7] = "";
-				row[8] = "";
-				row[9] = "";
-				row[10] = "";
-			}
-			if (Controladora.getInstance().getPlanes().get(i).getServicios().get(i) instanceof Telefono) {
-				auxTel = (Telefono) Controladora.getInstance().getPlanes().get(i).getServicios().get(i);
-				row[1] = "";
-				row[2] = "";
-				row[3] = "";
-				row[4] = "";
-				row[5] = "";
-				row[6] = "";
-				row[7] = auxTel.getCantMinutos();
-				row[8] = auxTel.isVoicemail();
-				row[9] = auxTel.isDoblelinea();
-				row[10] = auxTel.isIlimitado();
-			}
+		for (Plan plan : Controladora.getInstance().getPlanes()) {
+			row[0] = plan.getNombre();
+			row[1] = plan.getAnchoBandaDescarga();
+			row[2] = plan.getAnchoBandaSubida();
+			row[3] = plan.getCantCanales();
+		    row[4] = plan.getCantMinutos();
+		    row[5] = plan.isAdultos();
+		    row[6] = plan.isHbo();
+		    row[7] = plan.isDeportes();
+		    row[8] = plan.getCantMinutos();
+		    row[9] = plan.isVoicemail();
+		    row[10] = plan.isIlimitado();
 			model.addRow(row);
 		}
+			
 	}
 }
