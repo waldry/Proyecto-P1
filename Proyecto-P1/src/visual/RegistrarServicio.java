@@ -63,6 +63,7 @@ public class RegistrarServicio extends JDialog implements Serializable{
 	private JCheckBox doble_linea_chbx;
 	private JCheckBox ilimitado_chbx;
 	private Plan item = null;
+	private String codigoPlan = "P-"+Controladora.getInstance().genCodPlan;
 	
 	/**
 	 * Launch the application.
@@ -368,7 +369,7 @@ public class RegistrarServicio extends JDialog implements Serializable{
 						if (telefono_panel.isEnabled()) {
 							aux += 500;
 						}
-							Plan planToAdd = new Plan(name_txt.getText(),(int)bajada_spn.getValue(),(int)subida_spn.getValue(),(int)cant_min_spn.getValue(),(int)canales_spn.getValue(),ilimitado_chbx.isSelected(),voicemail_chbx.isSelected(),doble_linea_chbx.isSelected(),hbo_chbx.isSelected(),adultos_chbx.isSelected(),deportes_chbx.isSelected(), aux);
+							Plan planToAdd = new Plan(codigoPlan,name_txt.getText(),(int)bajada_spn.getValue(),(int)subida_spn.getValue(),(int)cant_min_spn.getValue(),(int)canales_spn.getValue(),ilimitado_chbx.isSelected(),voicemail_chbx.isSelected(),doble_linea_chbx.isSelected(),hbo_chbx.isSelected(),adultos_chbx.isSelected(),deportes_chbx.isSelected(), aux);
 							Controladora.getInstance().agregarPlan(planToAdd);	
 							JOptionPane.showMessageDialog(null, "Plan agregado satisfactoriamente.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 					}

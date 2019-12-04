@@ -355,7 +355,7 @@ public class RegContrato extends JDialog {
 						Date fechaGeneracion = new Date();
 						DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 						for (String string : nombresplanes) {
-							planesACotizar.add(Controladora.getInstance().findPlanByName(string));
+							planesACotizar.add(Controladora.getInstance().findPlanByID(string));
 						}
 						for (Plan plan : planesACotizar) {
 							Controladora.getInstance().deletePlan(plan.getNombre());

@@ -21,6 +21,7 @@ public class Controladora implements Serializable{
 	private Date fecha;
 	private static int cantPlan;
 	private static int genCodContrato = 1;
+	public static int genCodPlan = 1;
 	
 	private Controladora() {
 		super();
@@ -97,7 +98,8 @@ public class Controladora implements Serializable{
 		empleados.add(user);
 	}
 	public void insertarPlan(Plan plan) {
-//		planes.get(cantPlan) = plan;
+		planes.add(plan);
+		genCodPlan++;
 	}
 	
 	public Cliente findClienteById(String cedulaCliente) {
@@ -113,12 +115,12 @@ public class Controladora implements Serializable{
 		}
 		return client;
 	}
-	public Plan findPlanByName(String name) {
+	public Plan findPlanByID(String id) {
 		Plan service = null;
 		boolean found = false;
 		int i = 0;
 		while (!found && i<planes.size()) {
-			if (planes.get(i).getNombre().equals(name)) {
+			if (planes.get(i).getId().equalsIgnoreCase(id)) {
 				service = planes.get(i);
 				found = true;
 			}

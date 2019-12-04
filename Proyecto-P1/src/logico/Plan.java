@@ -8,6 +8,7 @@ public class Plan implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private String id;
 	private String nombre;
 	private int anchoBandaDescarga;
 	private int anchoBandaSubida;
@@ -22,9 +23,10 @@ public class Plan implements Serializable{
 	private float costo;
 	
 
-	public Plan(String nombre, int anchoBandaDescarga, int anchoBandaSubida, int cantMinutos, int cantCanales,
+	public Plan(String id, String nombre, int anchoBandaDescarga, int anchoBandaSubida, int cantMinutos, int cantCanales,
 			boolean ilimitado, boolean voicemail, boolean doblelinea, boolean hbo, boolean adultos, boolean deportes,float costo) {
 		super();
+		this.id = id;
 		this.nombre = nombre;
 		this.anchoBandaDescarga = anchoBandaDescarga;
 		this.anchoBandaSubida = anchoBandaSubida;
@@ -133,6 +135,14 @@ public class Plan implements Serializable{
 
 	public void setDeportes(boolean deportes) {
 		this.deportes = deportes;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }
