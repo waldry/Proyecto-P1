@@ -21,8 +21,16 @@ public class Controladora implements Serializable{
 	private Date fecha;
 	private static int cantPlan;
 	private static int genCodContrato = 1;
-	public static int genCodPlan = 1;
+	private static int genCodPlan = 1;
 	
+	public int getGenCodPlan() {
+		return genCodPlan;
+	}
+
+	public static void setGenCodPlan(int genCodPlan) {
+		Controladora.genCodPlan = genCodPlan;
+	}
+
 	private Controladora() {
 		super();
 		this.clientes = new ArrayList<Cliente>();
@@ -96,10 +104,6 @@ public class Controladora implements Serializable{
 	}
 	public void registrarUsuario(Personal user) {
 		empleados.add(user);
-	}
-	public void insertarPlan(Plan plan) {
-		planes.add(plan);
-		genCodPlan++;
 	}
 	
 	public Cliente findClienteById(String cedulaCliente) {
@@ -196,9 +200,11 @@ public class Controladora implements Serializable{
 
 	public void agregarPlan(Plan aux) {
 		planes.add(aux);
+		setGenCodPlan(getGenCodPlan()+1);
 	}
 	public void eliminarPlan(Plan aux) {
 		planes.remove(aux);
+		genCodPlan--;
 	}
 	
 	public void eliminarCliente(Cliente cliente) {
