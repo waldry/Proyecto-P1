@@ -357,19 +357,17 @@ public class RegistrarServicio extends JDialog implements Serializable{
 				JButton send_btn = new JButton("Registrar");
 				send_btn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-//						if (internet_panel.isEnabled()) {
-//							Internet aux = new Internet("Internet", (int)bajada_spn.getValue(), (int)subida_spn.getValue());
-//							services.add(aux); 
-//						}
-//						if (cable_panel.isEnabled()) {
-//							Cable aux1 = new Cable("Cable", (int)canales_spn.getValue(),hbo_chbx.isSelected(),adultos_chbx.isSelected(),deportes_chbx.isSelected());
-//							services.add(aux1);
-//						}
-//						if (telefono_panel.isEnabled()) {
-//							Telefono aux2 = new Telefono("Telefono", (int)cant_min_spn.getValue(),ilimitado_chbx.isSelected(),voicemail_chbx.isSelected(),doble_linea_chbx.isSelected());
-//							services.add(aux2);
-//						}
-							Plan planToAdd = new Plan(name_txt.getText(),(int)bajada_spn.getValue(),(int)subida_spn.getValue(),(int)cant_min_spn.getValue(),(int)canales_spn.getValue(),ilimitado_chbx.isSelected(),voicemail_chbx.isSelected(),doble_linea_chbx.isSelected(),hbo_chbx.isSelected(),adultos_chbx.isSelected(),deportes_chbx.isSelected());
+						float aux = 0;
+						if (internet_panel.isEnabled()) {
+							aux += 1000;
+						}
+						if (cable_panel.isEnabled()) {
+							aux += 750;
+						}
+						if (telefono_panel.isEnabled()) {
+							aux += 500;
+						}
+							Plan planToAdd = new Plan(name_txt.getText(),(int)bajada_spn.getValue(),(int)subida_spn.getValue(),(int)cant_min_spn.getValue(),(int)canales_spn.getValue(),ilimitado_chbx.isSelected(),voicemail_chbx.isSelected(),doble_linea_chbx.isSelected(),hbo_chbx.isSelected(),adultos_chbx.isSelected(),deportes_chbx.isSelected(), aux);
 							Controladora.getInstance().agregarPlan(planToAdd);	
 							JOptionPane.showMessageDialog(null, "Plan agregado satisfactoriamente.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 					}

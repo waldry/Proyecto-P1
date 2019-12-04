@@ -19,10 +19,11 @@ public class Plan implements Serializable{
 	private boolean hbo = false;
 	private boolean adultos = false;
 	private boolean deportes = false;
+	private float costo;
 	
 
 	public Plan(String nombre, int anchoBandaDescarga, int anchoBandaSubida, int cantMinutos, int cantCanales,
-			boolean ilimitado, boolean voicemail, boolean doblelinea, boolean hbo, boolean adultos, boolean deportes) {
+			boolean ilimitado, boolean voicemail, boolean doblelinea, boolean hbo, boolean adultos, boolean deportes,float costo) {
 		super();
 		this.nombre = nombre;
 		this.anchoBandaDescarga = anchoBandaDescarga;
@@ -35,6 +36,15 @@ public class Plan implements Serializable{
 		this.hbo = hbo;
 		this.adultos = adultos;
 		this.deportes = deportes;
+		this.costo = costo;
+	}
+
+	public float getCosto() {
+		return costo;
+	}
+
+	public void setCosto(float costo) {
+		this.costo = costo;
 	}
 
 	public String getNombre() {

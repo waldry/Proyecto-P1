@@ -51,6 +51,7 @@ public class RegContrato extends JDialog {
 	private ArrayList<Plan> planesACotizar = new ArrayList<Plan>();
 	DefaultListModel<String> dbPlanes = new DefaultListModel<String>();
 	DefaultListModel<String> planesSelected = new DefaultListModel<String>();
+	private JLabel subtotal_lbl;
 
 	/**
 	 * Launch the application.
@@ -59,6 +60,7 @@ public class RegContrato extends JDialog {
 		try {
 			RegContrato dialog = new RegContrato();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -203,12 +205,14 @@ public class RegContrato extends JDialog {
 				for (int item : main.getSelectedIndices()) {
 					carrito.addElement(db.getElementAt(item));
 					db.removeElement(db.getElementAt(item));
-//					float aux = 0;
+					float aux = 0;
 					for(int i = 0; i<carrito.getSize(); i++) {
 						String s = (String)carrito.getElementAt(i);
 						String[] separador = s.split("_", 2);
-						String second_p = separador[1];
+						String second_p = separador[0];
 						planesACotizar.add(Controladora.getInstance().findPlanByName(second_p));
+						aux += planesACotizar.get(i).getCosto(); 
+						subtotal_lbl.setText(String.valueOf(aux));
 					}
 				}
 			}
@@ -226,16 +230,18 @@ public class RegContrato extends JDialog {
 				for (int item : second.getSelectedIndices()) {
 					db.addElement(carrito.getElementAt(item));
 					carrito.removeElement(carrito.getElementAt(item));
-//					float aux = 0;
+					float aux = 0;
 					for (int i = 0; i < carrito.getSize(); i++) {
 						String s = (String)carrito.getElementAt(i);
 						String[] separador = s.split("_", 2);
-						String second_p = separador[1];
+						String second_p = separador[0];
 						planesACotizar.remove(Controladora.getInstance().findPlanByName(second_p));
+						aux += planesACotizar.get(i).getCosto();
+						subtotal_lbl.setText(String.valueOf(aux));
 					}
 				}
 				if (second.getModel().getSize()==0) {
-//					Aqui se resetea la variable de los costos.
+					subtotal_lbl.setText("0.00");
 				}
 			}
 		});
@@ -266,11 +272,11 @@ public class RegContrato extends JDialog {
 		lblItbis.setBounds(10, 59, 46, 14);
 		panel_2.add(lblItbis);
 		
-		JLabel lblTotal = new JLabel("Total");
+		JLabel lblTotal= new JLabel("Total");
 		lblTotal.setBounds(10, 88, 46, 14);
 		panel_2.add(lblTotal);
 		
-		JLabel subtotal_lbl = new JLabel("0.00");
+		subtotal_lbl = new JLabel("0.00");
 		subtotal_lbl.setBounds(66, 34, 46, 14);
 		panel_2.add(subtotal_lbl);
 		
@@ -292,7 +298,7 @@ public class RegContrato extends JDialog {
 						Date fechaGeneracion = new Date();
 						DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 						
-						Contrato aux = new Contrato(1,"pepe",planesACotizar,clientelito,dateFormat.format(fechaGeneracion),0,0);
+						Contrato aux = new Contrato(1,"pepe",planesACotizar,clientelito,dateFormat.format(fechaGeneracion),0,Float.parseFloat(subtotal_lbl.getText()));
 						Controladora.getInstance().agregarContrato(aux);
 						JOptionPane.showMessageDialog(null, "Contrato Registrado.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 					}
@@ -317,7 +323,7 @@ public class RegContrato extends JDialog {
 	private void updatePlanes() {
 		dbPlanes.clear();
 		for (Plan aux : Controladora.getInstance().getPlanes()) {
-			dbPlanes.addElement(aux.getNombre());
+			dbPlanes.addElement(aux.getNombre()+"_"+String.valueOf(aux.getCosto()));
 		}
 		
 	}

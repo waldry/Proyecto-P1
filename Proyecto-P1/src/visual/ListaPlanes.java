@@ -67,7 +67,7 @@ public class ListaPlanes extends JDialog implements Serializable{
 		scrollPane.setViewportView(table);
 		contentPanel.add(scrollPane);
 		model = new DefaultTableModel();
-		String[] header = {"Nombre","Bajada","Subida","Canales","Pqte Adulto","Pqte HBO","Pqte Deportes","Minutos","VoiceMail","Doble Linea","Ilimitado"};
+		String[] header = {"Nombre","Bajada","Subida","Canales","Pqte Adulto","Pqte HBO","Pqte Deportes","Minutos","VoiceMail","Doble Linea","Ilimitado","Costo"};
 		model.setColumnIdentifiers(header);
 		table = new JTable();
 		table.setBackground(new Color(255, 245, 238));
@@ -196,6 +196,12 @@ public class ListaPlanes extends JDialog implements Serializable{
 			}
 		    else {
 				row[9] = "";
+			}
+		    if (plan.getCosto() !=0) {
+				row[11] = plan.getCosto();
+			}
+		    else {
+				row[11] = "";
 			}
 		    
 		   
