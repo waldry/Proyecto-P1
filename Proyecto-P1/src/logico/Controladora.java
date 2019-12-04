@@ -16,6 +16,7 @@ public class Controladora implements Serializable{
 	private ArrayList<Cliente> clientes;
 	private ArrayList<Personal> empleados;
 	private ArrayList<Plan> planes;
+	private ArrayList<Contrato> contratos;
 	private Personal loggedUser;
 	private Date fecha;
 	private static int cantPlan;
@@ -34,7 +35,13 @@ public class Controladora implements Serializable{
 		}
 		return cont;
 	}
+	public ArrayList<Contrato> getContratos() {
+		return contratos;
+	}
 
+	public void setContratos(ArrayList<Contrato> contratos) {
+		this.contratos = contratos;
+	}
 	public static Controladora getCont() {
 		return cont;
 	}
@@ -80,6 +87,9 @@ public class Controladora implements Serializable{
 	}
 	public void agregarFactura(Factura fact) {
 		facturas.add(fact);
+	}
+	public void agregarContrato(Contrato contrat) {
+		contratos.add(contrat);
 	}
 	public void registrarUsuario(Personal user) {
 		empleados.add(user);

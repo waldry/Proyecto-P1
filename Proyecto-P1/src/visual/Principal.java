@@ -183,11 +183,11 @@ public class Principal extends JFrame implements Serializable{
 		mnFacturas.setIcon(new ImageIcon(Principal.class.getResource("/recursos/fact.png")));
 		menuBar.add(mnFacturas);
 		
-		JMenuItem mntmFacturarPlan = new JMenuItem("Facturar Plan");
+		JMenuItem mntmFacturarPlan = new JMenuItem("Simular Factura");
 		mntmFacturarPlan.setIcon(new ImageIcon(Principal.class.getResource("/recursos/archivo.png")));
 		mntmFacturarPlan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CrearFactura fact = new CrearFactura();
+				Simulador fact = new Simulador();
 				fact.setModal(true);
 				fact.setVisible(true);
 			}

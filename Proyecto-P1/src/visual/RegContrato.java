@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.border.TitledBorder;
 
 import logico.Cliente;
+import logico.Contrato;
 import logico.Controladora;
 import logico.Plan;
 
@@ -19,6 +20,10 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
@@ -40,8 +45,10 @@ public class RegContrato extends JDialog {
 	private JTextField address_Txt;
 	private JTextField tel_txt;
 	private JCheckBox activo_chbx;
-	private JList main;
-	private JList second;
+	private JList<String> main;
+	private JList<String> second;
+	private Cliente clientelito;
+	private ArrayList<Plan> planesACotizar = new ArrayList<Plan>();
 	DefaultListModel<String> dbPlanes = new DefaultListModel<String>();
 	DefaultListModel<String> planesSelected = new DefaultListModel<String>();
 
@@ -94,6 +101,7 @@ public class RegContrato extends JDialog {
 				else {
 					for (Cliente client : Controladora.getInstance().getClientes()) {
 						if (entry_txt.getText().equalsIgnoreCase(client.getNombre())) {
+							clientelito = client;
 							JOptionPane.showMessageDialog(null, "Cliente existente", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 							cedula_txt.setEnabled(false);
 							cedula_txt.setText(client.getCedula());
@@ -196,13 +204,12 @@ public class RegContrato extends JDialog {
 					carrito.addElement(db.getElementAt(item));
 					db.removeElement(db.getElementAt(item));
 //					float aux = 0;
-//					for(int i = 0; i<carrito.getSize(); i++) {
-//						String s = (String)carrito.getElementAt(i);
-//						String[] separador = s.split("_", 2);
-//						String second_p = separador[1];
-//						Aqui iria la variable que sumara el valor de los costos de los servicios :D
-//						Aqui la asignacion del lbl total de la linea de arriba
-//					}
+					for(int i = 0; i<carrito.getSize(); i++) {
+						String s = (String)carrito.getElementAt(i);
+						String[] separador = s.split("_", 2);
+						String second_p = separador[1];
+						planesACotizar.add(Controladora.getInstance().findPlanByName(second_p));
+					}
 				}
 			}
 		});
@@ -220,12 +227,12 @@ public class RegContrato extends JDialog {
 					db.addElement(carrito.getElementAt(item));
 					carrito.removeElement(carrito.getElementAt(item));
 //					float aux = 0;
-//					for (int i = 0; i < carrito.getSize(); i++) {
-//						String s = (String)carrito.getElementAt(i);
-//						String[] separador = s.split("_", 2);
-//						String second_p = separador[1];
-//						Aqui la variable de la suma del costo del plan
-//					}
+					for (int i = 0; i < carrito.getSize(); i++) {
+						String s = (String)carrito.getElementAt(i);
+						String[] separador = s.split("_", 2);
+						String second_p = separador[1];
+						planesACotizar.remove(Controladora.getInstance().findPlanByName(second_p));
+					}
 				}
 				if (second.getModel().getSize()==0) {
 //					Aqui se resetea la variable de los costos.
@@ -282,7 +289,12 @@ public class RegContrato extends JDialog {
 				JButton okButton = new JButton("Registrar");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
+						Date fechaGeneracion = new Date();
+						DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 						
+						Contrato aux = new Contrato(1,"pepe",planesACotizar,clientelito,dateFormat.format(fechaGeneracion),0,0);
+						Controladora.getInstance().agregarContrato(aux);
+						JOptionPane.showMessageDialog(null, "Contrato Registrado.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 					}
 				});
 				okButton.setActionCommand("OK");

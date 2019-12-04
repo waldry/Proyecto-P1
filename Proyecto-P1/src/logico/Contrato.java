@@ -6,14 +6,14 @@ import java.util.GregorianCalendar;
 
 public class Contrato {
 	private int id;
-	private Personal user;
+	private String user;
 	private ArrayList<Plan> planes;
 	private Cliente client;
-	private Calendar fechaApertura = new GregorianCalendar();
+	private String fechaApertura;
 	private float mora;
 	private float total;
 	
-	public Contrato(int id, Personal user, ArrayList<Plan> planes, Cliente client, Calendar fechaApertura, float mora,
+	public Contrato(int id, String user, ArrayList<Plan> planes, Cliente client, String fechaApertura, float mora,
 			float total) {
 		super();
 		this.id = id;
@@ -30,10 +30,10 @@ public class Contrato {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Personal getUser() {
+	public String getUser() {
 		return user;
 	}
-	public void setUser(Personal user) {
+	public void setUser(String user) {
 		this.user = user;
 	}
 	public ArrayList<Plan> getPlanes() {
@@ -48,10 +48,10 @@ public class Contrato {
 	public void setClient(Cliente client) {
 		this.client = client;
 	}
-	public Calendar getFechaApertura() {
+	public String getFechaApertura() {
 		return fechaApertura;
 	}
-	public void setFechaApertura(Calendar fechaApertura) {
+	public void setFechaApertura(String fechaApertura) {
 		this.fechaApertura = fechaApertura;
 	}
 	public float getMora() {
