@@ -126,28 +126,35 @@ public class Controladora implements Serializable{
 		}
 		return user;
 	}
-//	private int indexBycodigo(String codigo) {
-//		boolean encontrado = false;
-//		int i = 0;
-//		int index = -1;
-//		while (!encontrado && i< cantPlan) {
-//			if(cantPlan[i].getId().equalsIgnoreCase(codigo)){
-//				encontrado = true;
-//				index = i;
-//				
-//			}
-//			i++;
-//		}
-//		return index;
-//	}
+	private int indexBycodigo(String codigo) {
+		boolean encontrado = false;
+		int i = 0;
+		int index = -1;
+		while (!encontrado && i< planes.size()) {
+			if(planes.get(i).getNombre().equals(codigo)) {
+				encontrado = true;
+				index = i;
+				
+			}
+			i++;
+		}
+		return index;
+	}
 
-//	public void eliminarPlan(String identify) {
-//		int index = -1;
-//		int i = 0;
-//		if (index) {
-//			
-//		}
-//	}
+	public void eliminarPlan(String identify) {
+		int index = -1;
+		int i = 0;
+		Object[] misPlanes = planes.toArray();
+		if (indexBycodigo(identify)>-1) {
+			index = indexBycodigo(identify);
+			i = index;
+				while (i<misPlanes.length-1) {
+					misPlanes[i] = misPlanes[i+1];
+					i++;
+				}
+				
+		}
+	}
 	public Factura findFacturaByCodigo(String idFactura) {
 		Factura aux = null;
 		boolean found = false;

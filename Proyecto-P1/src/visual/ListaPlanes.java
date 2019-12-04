@@ -48,7 +48,7 @@ public class ListaPlanes extends JDialog implements Serializable{
 	/**
 	 * Create the dialog.
 	 */
-	public ListaPlanes(Controladora control) {
+	public ListaPlanes() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaPlanes.class.getResource("/recursos/portapapeles.png")));
 		setTitle("Lista de Planes");
 		setResizable(false);
@@ -61,19 +61,10 @@ public class ListaPlanes extends JDialog implements Serializable{
 		setLocationRelativeTo(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				if (table.getSelectedRow()>-1) {
-					int index = table.getSelectedRow();
-					btneliminar.setEnabled(true);
-					btnModificar.setEnabled(true);
-					nombre = String.valueOf(table.getValueAt(index,0));
-				}
-			}
-		});
+		
 		scrollPane.setSize(993, 337);
 		scrollPane.setLocation(10, 22);
+		scrollPane.setViewportView(table);
 		contentPanel.add(scrollPane);
 		model = new DefaultTableModel();
 		String[] header = {"Nombre","Bajada","Subida","Canales","Pqte Adulto","Pqte HBO","Pqte Deportes","Minutos","VoiceMail","Doble Linea","Ilimitado"};
@@ -82,8 +73,14 @@ public class ListaPlanes extends JDialog implements Serializable{
 		table.setBackground(new Color(255, 245, 238));
 		table.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
+				public void mouseClicked(MouseEvent arg0) {
+					if (table.getSelectedRow()>-1) {
+						int index = table.getSelectedRow();
+						btneliminar.setEnabled(true);
+						btnModificar.setEnabled(true);
+						nombre = String.valueOf(table.getValueAt(index,0));
+					}
+				}
 		});
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setModel(model);
@@ -99,13 +96,14 @@ public class ListaPlanes extends JDialog implements Serializable{
 				public void actionPerformed(ActionEvent e) {
 					if (!nombre.equals("")) {
 						Plan aux = Controladora.getInstance().findPlanByName(nombre);
-						RegistrarServicio regPlan = new RegistrarServicio(control, aux);
+						RegistrarServicio regPlan = new RegistrarServicio(aux);
 						regPlan.setModal(true);
 						regPlan.setVisible(true);
 					}
 				}
 				
 			});
+			btnModificar.setEnabled(false);
 			buttonPane.add(btnModificar);
 			{
 				btneliminar = new JButton("Eliminar");
@@ -115,17 +113,20 @@ public class ListaPlanes extends JDialog implements Serializable{
 							Plan aux = Controladora.getInstance().findPlanByName(nombre);
 							int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea eliminar el Suministrador: " + aux.getNombre(),"Información",JOptionPane.WARNING_MESSAGE);
 							if (option == JOptionPane.OK_OPTION) {
-								
+								Controladora.getInstance().eliminarPlan(aux);
+								loadPlanes();
+								btneliminar.setEnabled(false);
+								btnModificar.setEnabled(false);
 							}
 						}
 					}
 				});
-				btneliminar.setActionCommand("OK");
+				btneliminar.setEnabled(false);
 				buttonPane.add(btneliminar);
 				getRootPane().setDefaultButton(btneliminar);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Cancelar");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();

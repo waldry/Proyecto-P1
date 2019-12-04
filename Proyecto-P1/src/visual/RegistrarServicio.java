@@ -62,17 +62,27 @@ public class RegistrarServicio extends JDialog implements Serializable{
 	private JCheckBox voicemail_chbx;
 	private JCheckBox doble_linea_chbx;
 	private JCheckBox ilimitado_chbx;
+	private Plan item = null;
 	
 	/**
 	 * Launch the application.
 	 */
 	/**
 	 * Create the dialog.
+	 * @param aux 
+	 * @param aux 
 	 */
-	public RegistrarServicio(Controladora principal, Plan servicios) {
+	public RegistrarServicio(Plan aux) {
+		this.item = aux;
+		if (item == null) {
+			setTitle("Registrar Plan");
+		}
+		else {
+			setTitle("Modificar: " +item.getNombre());
+		}
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarServicio.class.getResource("/recursos/check-list.png")));
 		setResizable(false);
-		setTitle("Registro de Servicio");
+		
 		setBounds(100, 100, 500, 540);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(240, 248, 255));
