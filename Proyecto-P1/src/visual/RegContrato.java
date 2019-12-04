@@ -22,6 +22,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 
 import java.awt.event.ActionListener;
+import java.awt.print.PrinterIOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -265,7 +266,7 @@ public class RegContrato extends JDialog {
 					String second_p = separador[1];
 					String nombre = separador[0];
 					nombresplanes.add(nombre);
-//					planesACotizar.add(Controladora.getInstance().findPlanByName(second_p));
+//					planesACotizar.add(Controladora.getInstance().findPlanByName(nombre));
 					aux = aux+Float.parseFloat(second_p); 
 					subtotal_lbl.setText(String.valueOf(aux));
 					}
@@ -292,7 +293,7 @@ public class RegContrato extends JDialog {
 						String second_p = separador[1];
 						String nombre = separador[0];
 						nombresplanes.remove(nombre);
-//						planesACotizar.remove(Controladora.getInstance().findPlanByName(second_p));
+//						planesACotizar.remove(Controladora.getInstance().findPlanByName(nombre));
 						aux = Math.abs(aux-Float.parseFloat(second_p));
 						subtotal_lbl.setText(String.valueOf(aux));
 					}
@@ -356,6 +357,7 @@ public class RegContrato extends JDialog {
 						DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 						for (String string : nombresplanes) {
 							planesACotizar.add(Controladora.getInstance().findPlanByName(string));
+							System.out.println("El nombre del plan" + string);
 						}
 						for (Plan plan : planesACotizar) {
 							Controladora.getInstance().deletePlan(plan.getNombre());
