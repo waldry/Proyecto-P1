@@ -20,6 +20,7 @@ public class Controladora implements Serializable{
 	private Personal loggedUser;
 	private Date fecha;
 	private static int cantPlan;
+	private static int genCodContrato = 1;
 	
 	private Controladora() {
 		super();
@@ -90,6 +91,7 @@ public class Controladora implements Serializable{
 	}
 	public void agregarContrato(Contrato contrat) {
 		contratos.add(contrat);
+		genCodContrato++;
 	}
 	public void registrarUsuario(Personal user) {
 		empleados.add(user);
@@ -200,6 +202,14 @@ public class Controladora implements Serializable{
 	public void eliminarCliente(Cliente cliente) {
 		clientes.remove(cliente);
 	}
+	public static int getGenCodContrato() {
+		return genCodContrato;
+	}
+
+	public static void setGenCodContrato(int genCodContrato) {
+		Controladora.genCodContrato = genCodContrato;
+	}
+
 	public void eliminarUsuario(Personal user) {
 		empleados.remove(user);
 	}

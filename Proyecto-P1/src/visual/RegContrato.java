@@ -5,10 +5,12 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFormattedTextField;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.MaskFormatter;
 
 import logico.Cliente;
 import logico.Contrato;
@@ -39,7 +41,8 @@ public class RegContrato extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField entry_txt;
-	private JTextField cedula_txt;
+	private JFormattedTextField cedula_txt;
+	private JFormattedTextField ftxt_buscarCedula;
 	private JTextField nombre_txt;
 	private JTextField apellido_txt;
 	private JTextField address_Txt;
@@ -53,6 +56,16 @@ public class RegContrato extends JDialog {
 	DefaultListModel<String> dbPlanes = new DefaultListModel<>();
 	DefaultListModel<String> planesSelected = new DefaultListModel<String>();
 	private JLabel subtotal_lbl;
+	private MaskFormatter mascara() {
+		MaskFormatter mascara = new MaskFormatter();
+		try {
+			mascara = new MaskFormatter("###-#######-#");
+			mascara.setPlaceholderCharacter('_');
+			} catch(Exception ex){
+			ex.printStackTrace();
+		}
+		return mascara;
+	}
 
 	/**
 	 * Launch the application.
@@ -72,6 +85,8 @@ public class RegContrato extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegContrato() {
+		setTitle("Registro de contraro");
+		setResizable(false);
 		setBounds(100, 100, 1038, 702);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -80,18 +95,34 @@ public class RegContrato extends JDialog {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Informacion - Cliente", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(20, 11, 329, 221);
+		panel.setBounds(20, 11, 407, 221);
 		contentPanel.add(panel);
 		panel.setLayout(null);
 		
 		@SuppressWarnings("rawtypes")
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Buscar Por>", "<Cedula>", "<Nombre>"}));
-		comboBox.setBounds(10, 26, 92, 20);
-		panel.add(comboBox);
+		JComboBox cbxSearch = new JComboBox();
+		cbxSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(cbxSearch.getSelectedIndex()==1) {
+					entry_txt.setVisible(false);
+					ftxt_buscarCedula.setVisible(true);
+					
+				} else if(cbxSearch.getSelectedIndex()==2) {
+					entry_txt.setVisible(true);
+					ftxt_buscarCedula.setVisible(false);
+				} else if(cbxSearch.getSelectedIndex()==0) {
+					entry_txt.setVisible(false);
+					ftxt_buscarCedula.setVisible(false);
+				}
+			}
+		});
+		cbxSearch.setModel(new DefaultComboBoxModel(new String[] {"<Buscar Por>", "<Cedula>", "<Nombre>"}));
+		cbxSearch.setBounds(10, 26, 107, 20);
+		panel.add(cbxSearch);
 		
 		entry_txt = new JTextField();
-		entry_txt.setBounds(104, 26, 86, 20);
+		entry_txt.setVisible(false);
+		entry_txt.setBounds(127, 27, 153, 20);
 		panel.add(entry_txt);
 		entry_txt.setColumns(10);
 		
@@ -119,6 +150,22 @@ public class RegContrato extends JDialog {
 							activo_chbx.setEnabled(false);
 							activo_chbx.setSelected(client.isActivo());
 						}
+						else if(ftxt_buscarCedula.getText().equals(client.getCedula())) {
+							clientelito = client;
+							JOptionPane.showMessageDialog(null, "Cliente existente", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
+							cedula_txt.setEnabled(false);
+							cedula_txt.setText(client.getCedula());
+							nombre_txt.setEnabled(false);
+							nombre_txt.setText(client.getNombre());
+							apellido_txt.setEnabled(false);
+							apellido_txt.setText(client.getApellido());
+							address_Txt.setEnabled(false);
+							address_Txt.setText(client.getDireccion());
+							tel_txt.setEnabled(false);
+							tel_txt.setText(client.getTelefono());
+							activo_chbx.setEnabled(false);
+							activo_chbx.setSelected(client.isActivo());
+						}
 						else {
 							JOptionPane.showMessageDialog(null, "El cliente no existe. Registrelo", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 							RegistrarCliente newClient = new RegistrarCliente();
@@ -129,7 +176,7 @@ public class RegContrato extends JDialog {
 				}
 			}
 		});
-		btn_search.setBounds(192, 25, 89, 23);
+		btn_search.setBounds(308, 25, 89, 23);
 		panel.add(btn_search);
 		
 		JLabel lblNombre = new JLabel("Cedula: ");
@@ -145,7 +192,7 @@ public class RegContrato extends JDialog {
 		panel.add(lblApellido);
 		
 		JLabel lblDireccion = new JLabel("Direccion: ");
-		lblDireccion.setBounds(20, 138, 58, 14);
+		lblDireccion.setBounds(20, 138, 66, 14);
 		panel.add(lblDireccion);
 		
 		JLabel lblTelefono = new JLabel("Telefono: ");
@@ -153,33 +200,38 @@ public class RegContrato extends JDialog {
 		panel.add(lblTelefono);
 		
 		activo_chbx= new JCheckBox("Activo");
-		activo_chbx.setBounds(10, 184, 58, 23);
+		activo_chbx.setBounds(10, 184, 68, 23);
 		panel.add(activo_chbx);
 		
-		cedula_txt = new JTextField();
-		cedula_txt.setBounds(77, 57, 86, 20);
+		cedula_txt = new JFormattedTextField(mascara());
+		cedula_txt.setBounds(113, 55, 167, 20);
 		panel.add(cedula_txt);
 		cedula_txt.setColumns(10);
 		
 		nombre_txt = new JTextField();
-		nombre_txt.setBounds(77, 85, 86, 20);
+		nombre_txt.setBounds(113, 80, 167, 20);
 		panel.add(nombre_txt);
 		nombre_txt.setColumns(10);
 		
 		apellido_txt = new JTextField();
-		apellido_txt.setBounds(77, 110, 86, 20);
+		apellido_txt.setBounds(113, 108, 167, 20);
 		panel.add(apellido_txt);
 		apellido_txt.setColumns(10);
 		
 		address_Txt = new JTextField();
-		address_Txt.setBounds(77, 138, 86, 20);
+		address_Txt.setBounds(113, 136, 167, 20);
 		panel.add(address_Txt);
 		address_Txt.setColumns(10);
 		
 		tel_txt = new JTextField();
-		tel_txt.setBounds(77, 163, 86, 20);
+		tel_txt.setBounds(113, 161, 167, 20);
 		panel.add(tel_txt);
 		tel_txt.setColumns(10);
+		
+		ftxt_buscarCedula = new JFormattedTextField(mascara());
+		ftxt_buscarCedula.setVisible(false);
+		ftxt_buscarCedula.setBounds(127, 27, 153, 20);
+		panel.add(ftxt_buscarCedula);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informacion - Plan", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -265,32 +317,32 @@ public class RegContrato extends JDialog {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new TitledBorder(null, "Importes del Contrato", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_2.setBounds(704, 11, 295, 221);
+		panel_2.setBounds(680, 11, 319, 221);
 		contentPanel.add(panel_2);
 		panel_2.setLayout(null);
 		
-		JLabel lblSubtotal = new JLabel("Subtotal");
-		lblSubtotal.setBounds(10, 34, 46, 14);
+		JLabel lblSubtotal = new JLabel("Subtotal:");
+		lblSubtotal.setBounds(10, 34, 56, 14);
 		panel_2.add(lblSubtotal);
 		
-		JLabel lblItbis = new JLabel("ITBIS");
+		JLabel lblItbis = new JLabel("ITBIS:");
 		lblItbis.setBounds(10, 59, 46, 14);
 		panel_2.add(lblItbis);
 		
-		JLabel lblTotal= new JLabel("Total");
+		JLabel lblTotal= new JLabel("Total:");
 		lblTotal.setBounds(10, 88, 46, 14);
 		panel_2.add(lblTotal);
 		
 		subtotal_lbl = new JLabel("0.00");
-		subtotal_lbl.setBounds(66, 34, 46, 14);
+		subtotal_lbl.setBounds(76, 34, 46, 14);
 		panel_2.add(subtotal_lbl);
 		
 		JLabel itbis_lbl = new JLabel("0.00");
-		itbis_lbl.setBounds(66, 59, 46, 14);
+		itbis_lbl.setBounds(76, 59, 46, 14);
 		panel_2.add(itbis_lbl);
 		
 		JLabel total_lbl = new JLabel("0.00");
-		total_lbl.setBounds(66, 88, 46, 14);
+		total_lbl.setBounds(76, 88, 46, 14);
 		panel_2.add(total_lbl);
 		{
 			JPanel buttonPane = new JPanel();
