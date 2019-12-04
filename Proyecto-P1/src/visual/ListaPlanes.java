@@ -39,7 +39,7 @@ public class ListaPlanes extends JDialog implements Serializable{
 	private Object[] row;
 	private JButton btneliminar;
 	private JButton btnModificar;
-	private String nombre;
+	private String id;
 
 	/**
 	 * Launch the application.
@@ -67,7 +67,7 @@ public class ListaPlanes extends JDialog implements Serializable{
 		scrollPane.setViewportView(table);
 		contentPanel.add(scrollPane);
 		model = new DefaultTableModel();
-		String[] header = {"Nombre","Bajada","Subida","Canales","Pqte Adulto","Pqte HBO","Pqte Deportes","Minutos","VoiceMail","Doble Linea","Ilimitado","Costo"};
+		String[] header = {"ID","Nombre","Bajada","Subida","Canales","Pqte Adulto","Pqte HBO","Pqte Deportes","Minutos","VoiceMail","Doble Linea","Ilimitado","Costo"};
 		model.setColumnIdentifiers(header);
 		table = new JTable();
 		table.setBackground(new Color(255, 245, 238));
@@ -78,7 +78,7 @@ public class ListaPlanes extends JDialog implements Serializable{
 						int index = table.getSelectedRow();
 						btneliminar.setEnabled(true);
 						btnModificar.setEnabled(true);
-						nombre = String.valueOf(table.getValueAt(index,0));
+						id = String.valueOf(table.getValueAt(index,0));
 					}
 				}
 		});
@@ -94,8 +94,8 @@ public class ListaPlanes extends JDialog implements Serializable{
 			btnModificar = new JButton("Modificar");
 			btnModificar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if (!nombre.equals("")) {
-						Plan aux = Controladora.getInstance().findPlanByName(nombre);
+					if (!id.equals("")) {
+						Plan aux = Controladora.getInstance().findPlanByID(id);
 						RegistrarServicio regPlan = new RegistrarServicio(aux);
 						regPlan.setModal(true);
 						regPlan.setVisible(true);
@@ -109,8 +109,8 @@ public class ListaPlanes extends JDialog implements Serializable{
 				btneliminar = new JButton("Eliminar");
 				btneliminar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						if (!nombre.equals("")) {
-							Plan aux = Controladora.getInstance().findPlanByName(nombre);
+						if (!id.equals("")) {
+							Plan aux = Controladora.getInstance().findPlanByID(id);
 							int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea eliminar el Suministrador: " + aux.getNombre(),"Información",JOptionPane.WARNING_MESSAGE);
 							if (option == JOptionPane.OK_OPTION) {
 								Controladora.getInstance().eliminarPlan(aux);
@@ -142,60 +142,61 @@ public class ListaPlanes extends JDialog implements Serializable{
 		model.setRowCount(0);
 		row = new Object[model.getColumnCount()];
 		for (Plan plan : Controladora.getInstance().getPlanes()) {
-			row[0] = plan.getNombre();
+			row[0] = plan.getId();
+			row[1] = plan.getNombre();
 			if (plan.getAnchoBandaDescarga() !=0) {
-				row[1] = plan.getAnchoBandaDescarga();
-			}
-			else {
-				row[1] = "";
-			}
-			if (plan.getAnchoBandaSubida() !=0) {
-				row[2] = plan.getAnchoBandaSubida();
+				row[2] = plan.getAnchoBandaDescarga();
 			}
 			else {
 				row[2] = "";
 			}
-			if (plan.getCantCanales() !=0) {
-				row[3] = plan.getCantCanales();
+			if (plan.getAnchoBandaSubida() !=0) {
+				row[3] = plan.getAnchoBandaSubida();
 			}
 			else {
 				row[3] = "";
 			}
+			if (plan.getCantCanales() !=0) {
+				row[4] = plan.getCantCanales();
+			}
+			else {
+				row[4] = "";
+			}
 		    if (plan.isAdultos()) {
-		    	row[4] = plan.isAdultos();
-			}
-		    else {
-		    	row[4] = "";
-			}
-		    if (plan.isHbo()) {
-		    	row[5] = plan.isHbo();
+		    	row[5] = plan.isAdultos();
 			}
 		    else {
 		    	row[5] = "";
 			}
-		    if (plan.isDeportes()) {
-		    	row[6] = plan.isDeportes();
+		    if (plan.isHbo()) {
+		    	row[6] = plan.isHbo();
 			}
 		    else {
 		    	row[6] = "";
 			}
-		    if (plan.getCantCanales() !=0) {
-		    	row[7] = plan.getCantCanales();
+		    if (plan.isDeportes()) {
+		    	row[7] = plan.isDeportes();
 			}
 		    else {
-				row[7] = "";
+		    	row[7] = "";
 			}
-		    if (plan.isVoicemail()) {
-		    	row[8] = plan.isVoicemail();
+		    if (plan.getCantCanales() !=0) {
+		    	row[8] = plan.getCantCanales();
 			}
 		    else {
 				row[8] = "";
 			}
-		    if (plan.isIlimitado()) {
-		    	row[9] = plan.isIlimitado();
+		    if (plan.isVoicemail()) {
+		    	row[9] = plan.isVoicemail();
 			}
 		    else {
 				row[9] = "";
+			}
+		    if (plan.isIlimitado()) {
+		    	row[10] = plan.isIlimitado();
+			}
+		    else {
+				row[10] = "";
 			}
 		    if (plan.getCosto() !=0) {
 				row[11] = plan.getCosto();
@@ -203,9 +204,6 @@ public class ListaPlanes extends JDialog implements Serializable{
 		    else {
 				row[11] = "";
 			}
-		    
-		   
-		    
 			model.addRow(row);
 		}
 			
