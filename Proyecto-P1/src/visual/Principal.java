@@ -195,9 +195,11 @@ public class Principal extends JFrame implements Serializable{
 		mnFacturas.add(mntmFacturarPlan);
 		
 		JMenu mnContrato = new JMenu("Contrato");
+		mnContrato.setIcon(new ImageIcon(Principal.class.getResource("/recursos/contrato.png")));
 		menuBar.add(mnContrato);
 		
 		JMenuItem mntmNuevoContrato = new JMenuItem("Nuevo Contrato");
+		mntmNuevoContrato.setIcon(new ImageIcon(Principal.class.getResource("/recursos/archivo.png")));
 		mntmNuevoContrato.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				RegContrato aux = new RegContrato();

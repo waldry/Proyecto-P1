@@ -73,6 +73,7 @@ public class RegistrarServicio extends JDialog implements Serializable{
 	 * @param aux 
 	 */
 	public RegistrarServicio(Plan aux) {
+		setTitle("Registro de Plan");
 		this.item = aux;
 		if (item == null) {
 			setTitle("Registrar Plan");
@@ -104,17 +105,17 @@ public class RegistrarServicio extends JDialog implements Serializable{
 			panel.add(lblNombre);
 			
 			JLabel lblCosto = new JLabel("Costo: ");
-			lblCosto.setBounds(241, 31, 46, 14);
+			lblCosto.setBounds(278, 31, 46, 14);
 			panel.add(lblCosto);
 			
 			name_txt = new JTextField();
-			name_txt.setBounds(77, 29, 113, 20);
+			name_txt.setBounds(77, 29, 148, 20);
 			panel.add(name_txt);
 			name_txt.setColumns(10);
 			
 			price_txt = new JTextField();
 			price_txt.setEditable(false);
-			price_txt.setBounds(297, 29, 113, 20);
+			price_txt.setBounds(334, 29, 127, 20);
 			panel.add(price_txt);
 			price_txt.setColumns(10);
 			

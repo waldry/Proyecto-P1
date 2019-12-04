@@ -27,6 +27,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JTextField;
+import java.awt.Toolkit;
 
 public class LoginProject extends JDialog implements Serializable{
 
@@ -89,6 +90,7 @@ public class LoginProject extends JDialog implements Serializable{
 	 * Create the dialog.
 	 */
 	public LoginProject() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(LoginProject.class.getResource("/recursos/formato-de-archivo-de-registro.png")));
 		setTitle("Login");
 		setResizable(false);
 		setBounds(100, 100, 479, 215);
