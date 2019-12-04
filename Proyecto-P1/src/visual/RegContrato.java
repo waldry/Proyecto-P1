@@ -49,7 +49,8 @@ public class RegContrato extends JDialog {
 	private JList<String> second;
 	private Cliente clientelito;
 	private ArrayList<Plan> planesACotizar = new ArrayList<Plan>();
-	DefaultListModel<String> dbPlanes = new DefaultListModel<String>();
+	private ArrayList<String> nombresplanes = new ArrayList<String>();
+	DefaultListModel<String> dbPlanes = new DefaultListModel<>();
 	DefaultListModel<String> planesSelected = new DefaultListModel<String>();
 	private JLabel subtotal_lbl;
 
@@ -207,12 +208,14 @@ public class RegContrato extends JDialog {
 					db.removeElement(db.getElementAt(item));
 					float aux = 0;
 					for(int i = 0; i<carrito.getSize(); i++) {
-						String s = (String)carrito.getElementAt(i);
-						String[] separador = s.split("_", 2);
-						String second_p = separador[0];
-						planesACotizar.add(Controladora.getInstance().findPlanByName(second_p));
-						aux += planesACotizar.get(i).getCosto(); 
-						subtotal_lbl.setText(String.valueOf(aux));
+					String s = (String)carrito.getElementAt(i);
+					String[] separador = s.split("_", 2);
+					String second_p = separador[1];
+					String nombre = separador[0];
+					nombresplanes.add(nombre);
+//					planesACotizar.add(Controladora.getInstance().findPlanByName(second_p));
+					aux = aux+Float.parseFloat(second_p); 
+					subtotal_lbl.setText(String.valueOf(aux));
 					}
 				}
 			}
@@ -234,9 +237,11 @@ public class RegContrato extends JDialog {
 					for (int i = 0; i < carrito.getSize(); i++) {
 						String s = (String)carrito.getElementAt(i);
 						String[] separador = s.split("_", 2);
-						String second_p = separador[0];
-						planesACotizar.remove(Controladora.getInstance().findPlanByName(second_p));
-						aux += planesACotizar.get(i).getCosto();
+						String second_p = separador[1];
+						String nombre = separador[0];
+						nombresplanes.remove(nombre);
+//						planesACotizar.remove(Controladora.getInstance().findPlanByName(second_p));
+						aux = Math.abs(aux-Float.parseFloat(second_p));
 						subtotal_lbl.setText(String.valueOf(aux));
 					}
 				}
@@ -297,7 +302,12 @@ public class RegContrato extends JDialog {
 					public void actionPerformed(ActionEvent arg0) {
 						Date fechaGeneracion = new Date();
 						DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-						
+						for (String string : nombresplanes) {
+							planesACotizar.add(Controladora.getInstance().findPlanByName(string));
+						}
+						for (Plan plan : planesACotizar) {
+							Controladora.getInstance().deletePlan(plan.getNombre());
+						}
 						Contrato aux = new Contrato(1,"pepe",planesACotizar,clientelito,dateFormat.format(fechaGeneracion),0,Float.parseFloat(subtotal_lbl.getText()));
 						Controladora.getInstance().agregarContrato(aux);
 						JOptionPane.showMessageDialog(null, "Contrato Registrado.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);

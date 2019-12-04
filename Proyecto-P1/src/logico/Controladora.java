@@ -226,5 +226,13 @@ public class Controladora implements Serializable{
 	public void setLoggedUser(Personal loggedUser) {
 		this.loggedUser = loggedUser;
 	}
+
+	public void deletePlan(String nombre) {
+		for (Plan planToModify : planes) {
+			if (planToModify.getNombre().equalsIgnoreCase(nombre)) {
+				planes.remove(planToModify);
+			}
+		}
+	}
 	
 }
