@@ -193,6 +193,19 @@ public class Principal extends JFrame implements Serializable{
 			}
 		});
 		mnFacturas.add(mntmFacturarPlan);
+		
+		JMenu mnContrato = new JMenu("Contrato");
+		menuBar.add(mnContrato);
+		
+		JMenuItem mntmNuevoContrato = new JMenuItem("Nuevo Contrato");
+		mntmNuevoContrato.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				RegContrato aux = new RegContrato();
+				aux.setVisible(true);
+				aux.setModal(true);
+			}
+		});
+		mnContrato.add(mntmNuevoContrato);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(240, 248, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
