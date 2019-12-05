@@ -55,6 +55,7 @@ public class ListaContratos extends JDialog {
 		setResizable(false);
 		setBounds(100, 100, 787, 404);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(240, 248, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -83,6 +84,7 @@ public class ListaContratos extends JDialog {
 		scrollPane.setViewportView(table);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(240, 248, 255));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{

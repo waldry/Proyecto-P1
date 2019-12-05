@@ -111,6 +111,7 @@ public class RegContrato extends JDialog {
 		panel.setLayout(null);
 		
 		JButton btn_search = new JButton("Buscar");
+		btn_search.setIcon(new ImageIcon(RegContrato.class.getResource("/recursos/lupa16.png")));
 		btn_search.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (cedula_txt.getText().isEmpty()) {

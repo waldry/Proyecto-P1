@@ -27,6 +27,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 public class Simulador extends JDialog {
 
@@ -64,6 +66,8 @@ public class Simulador extends JDialog {
 	 * Create the dialog.
 	 */
 	public Simulador() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Simulador.class.getResource("/recursos/fact.png")));
+		setResizable(false);
 		
 		
 		String fechaUsandoGregorian = formato();
@@ -85,6 +89,7 @@ public class Simulador extends JDialog {
 		entry.setColumns(10);
 		
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setIcon(new ImageIcon(Simulador.class.getResource("/recursos/lupa16.png")));
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				for (Factura aux : Controladora.getInstance().getFacturas()) {
@@ -99,7 +104,7 @@ public class Simulador extends JDialog {
 				}
 			}
 		});
-		btnBuscar.setBounds(182, 18, 89, 23);
+		btnBuscar.setBounds(182, 18, 101, 23);
 		contentPanel.add(btnBuscar);
 		
 		JPanel panel = new JPanel();
