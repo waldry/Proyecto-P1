@@ -63,15 +63,6 @@ public class PagoFactura extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			PagoFactura dialog = new PagoFactura();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Create the dialog.
@@ -218,6 +209,7 @@ public class PagoFactura extends JDialog {
 		monto_recibido.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
 		monto_recibido.setBounds(115, 250, 59, 17);
 		contentPanel.add(monto_recibido);
+		
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(new Color(240, 248, 255));
@@ -259,10 +251,6 @@ public class PagoFactura extends JDialog {
 			}
 		}
 		updateContratos();
-	}
-	protected void loadContratos(int selection) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public void updateContratos() {
