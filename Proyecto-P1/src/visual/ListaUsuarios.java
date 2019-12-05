@@ -40,20 +40,6 @@ public class ListaUsuarios extends JDialog implements Serializable{
 	private JButton btneliminar;
 	private JButton btnModificar;
 	private String username;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			ListaUsuarios dialog = new ListaUsuarios();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	/**
 	 * Create the dialog.
 	 */

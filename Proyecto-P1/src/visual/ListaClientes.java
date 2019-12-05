@@ -40,18 +40,6 @@ public class ListaClientes extends JDialog implements Serializable{
 	private JButton btnModificar;
 	private String cedula = "";
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			ListaClientes dialog = new ListaClientes();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Create the dialog.

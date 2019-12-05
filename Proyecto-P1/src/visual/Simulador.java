@@ -51,18 +51,6 @@ public class Simulador extends JDialog {
 	private JLabel meses_mostrar;
 	private int mesesAtrasados = 0;
 	private float aux = 0;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			Simulador dialog = new Simulador();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Create the dialog.
