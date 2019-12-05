@@ -33,6 +33,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import java.awt.Toolkit;
 
 public class PagoFactura extends JDialog {
 
@@ -77,6 +78,7 @@ public class PagoFactura extends JDialog {
 	 */
 	@SuppressWarnings("unchecked")
 	public PagoFactura() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(PagoFactura.class.getResource("/recursos/expediente.png")));
 		setTitle("Pago de Factura");
 		setResizable(false);
 		setBounds(100, 100, 714, 368);
@@ -205,7 +207,7 @@ public class PagoFactura extends JDialog {
 		contentPanel.add(lblMontoRecibido);
 		
 		JLabel lblCambio = new JLabel("Cambio: ");
-		lblCambio.setBounds(23, 277, 46, 14);
+		lblCambio.setBounds(23, 277, 59, 14);
 		contentPanel.add(lblCambio);
 		
 		cambio = new JLabel("0.00");
