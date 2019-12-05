@@ -3,6 +3,7 @@ package visual;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -13,6 +14,7 @@ import javax.swing.border.TitledBorder;
 
 import logico.Controladora;
 import logico.Factura;
+import logico.Plan;
 
 import javax.swing.JList;
 import java.awt.event.ActionListener;
@@ -20,6 +22,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -33,6 +36,10 @@ public class Simulador extends JDialog {
 	private JLabel fecha_ahora;
 	private Calendar calendario = new GregorianCalendar();
 	private JLabel fecha_simulada;
+	private Factura facturaFound;
+	private ArrayList<Plan> planesToLoad = new ArrayList<Plan>();
+	private DefaultListModel<String> planesToShow = new DefaultListModel<>();
+	private JList main;
 
 	/**
 	 * Launch the application.
@@ -76,7 +83,8 @@ public class Simulador extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				for (Factura aux : Controladora.getInstance().getFacturas()) {
 					if (entry.getText().equalsIgnoreCase(aux.getId())) {
-						
+						facturaFound = aux;
+						updatePlanes();
 					}
 				}
 			}
@@ -100,10 +108,10 @@ public class Simulador extends JDialog {
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JList list = new JList();
-		list.setEnabled(false);
-		list.setBounds(10, 80, 151, 196);
-		panel.add(list);
+		main = new JList<>(planesToShow);
+		main.setEnabled(false);
+		main.setBounds(10, 80, 151, 196);
+		panel.add(main);
 		
 		JLabel lblServicios = new JLabel("Servicios");
 		lblServicios.setBounds(62, 61, 66, 14);
@@ -167,6 +175,14 @@ public class Simulador extends JDialog {
 			}
 		}
 	}
+	protected void updatePlanes() {
+		planesToShow.clear();
+		for (Plan aux : planesToLoad) {
+			planesToShow.addElement(aux.getNombre());
+		}
+		
+	}
+
 	private int diferenciaMeses() throws IOException, ParseException {
 		Calendar inicio = new GregorianCalendar();
 		Calendar fin = new GregorianCalendar();

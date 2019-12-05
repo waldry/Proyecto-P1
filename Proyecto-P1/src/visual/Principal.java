@@ -198,6 +198,13 @@ public class Principal extends JFrame implements Serializable{
 		});
 		mnFacturas.add(mntmFacturarPlan);
 		
+		JMenuItem mntmPagoFactura = new JMenuItem("Pago Factura");
+		mntmPagoFactura.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		mnFacturas.add(mntmPagoFactura);
+		
 		JMenu mnContrato = new JMenu("Contrato");
 		mnContrato.setIcon(new ImageIcon(Principal.class.getResource("/recursos/contrato.png")));
 		menuBar.add(mnContrato);
@@ -212,6 +219,16 @@ public class Principal extends JFrame implements Serializable{
 			}
 		});
 		mnContrato.add(mntmNuevoContrato);
+		
+		JMenuItem mntmListarPlanes_1 = new JMenuItem("Listar Planes");
+		mntmListarPlanes_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ListaContratos aux = new ListaContratos();
+				aux.setVisible(true);
+				aux.setModal(true);
+			}
+		});
+		mnContrato.add(mntmListarPlanes_1);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(240, 248, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
