@@ -43,15 +43,6 @@ public class RegistrarUsuario extends JDialog implements Serializable{
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			RegistrarUsuario dialog = new RegistrarUsuario();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Create the dialog.
