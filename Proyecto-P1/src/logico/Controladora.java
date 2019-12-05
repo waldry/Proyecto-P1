@@ -24,9 +24,9 @@ public class Controladora implements Serializable{
 	private ArrayList<Personal> empleados;
 	private ArrayList<Plan> planes;
 	private ArrayList<Contrato> contratos;
-	private Personal loggedUser;
+	private static Personal loggedUser;
 	private Date fecha;
-	private static int cantPlan;
+//	private static int cantPlan;
 	private static int genCodContrato;
 	private static int genCodPlan;
 	private static Timer timer = new Timer();
@@ -252,12 +252,12 @@ public class Controladora implements Serializable{
 		return formato.format(ahora);
 	}
 
-	public Personal getLoggedUser() {
+	public static Personal getLoggedUser() {
 		return loggedUser;
 	}
 
-	public void setLoggedUser(Personal loggedUser) {
-		this.loggedUser = loggedUser;
+	public static void setLoggedUser(Personal loggedUser) {
+		Controladora.loggedUser = loggedUser;
 	}
 
 	public void empezarFacturar() {

@@ -39,7 +39,7 @@ public class ListaUsuarios extends JDialog implements Serializable{
 	private Object[] row;
 	private JButton btneliminar;
 	private JButton btnModificar;
-	private String username = "";
+	private String username;
 
 	/**
 	 * Launch the application.
@@ -79,11 +79,11 @@ public class ListaUsuarios extends JDialog implements Serializable{
 		table.setBackground(new Color(255, 245, 238));
 		table.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent arg0) {
 				if(table.getSelectedRow()>-1) {
 					int index = table.getSelectedRow();
 					btneliminar.setEnabled(true);
-					btnModificar.setEnabled(true);
+//					btnModificar.setEnabled(true);
 					username = String.valueOf(table.getValueAt(index, 0));
 				}
 			}
