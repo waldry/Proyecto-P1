@@ -218,6 +218,7 @@ public class PagoFactura extends JDialog {
 		monto_recibido.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
 		monto_recibido.setBounds(115, 250, 59, 17);
 		contentPanel.add(monto_recibido);
+		
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(new Color(240, 248, 255));
