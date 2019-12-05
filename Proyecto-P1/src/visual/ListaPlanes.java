@@ -180,7 +180,7 @@ public class ListaPlanes extends JDialog implements Serializable{
 		    else {
 		    	row[7] = "";
 			}
-		    if (plan.getCantCanales() !=0) {
+		    if (plan.getCantMinutos() !=0) {
 		    	row[8] = plan.getCantMinutos();
 			}
 		    else {
