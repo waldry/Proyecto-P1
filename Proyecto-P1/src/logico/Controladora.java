@@ -213,7 +213,7 @@ public class Controladora implements Serializable{
 		for (Personal empleado : empleados) {
 			if(empleado.getUsername().equals(username) && empleado.getPass().equals(pass)) {
 				empleado = loggedUser;
-				setLoggedUser(empleado);
+//				setLoggedUser(empleado);
 				login = true;
 			}
 		}
@@ -239,7 +239,7 @@ public Personal getUsuario(String username, String pass) {
 	}
 	public void eliminarPlan(Plan aux) {
 		planes.remove(aux);
-		genCodPlan--;
+//		genCodPlan--;
 	}
 	
 	public int getGenCodContrato() {

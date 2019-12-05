@@ -155,6 +155,9 @@ public class Principal extends JFrame implements Serializable{
 		mnPlanesYServicios.add(mntmListarPlanes);
 		
 		JMenu mnAdministrativo = new JMenu("Administrativo");
+//		if(!Controladora.getLoggedUser().getTipo().equalsIgnoreCase("Administrativo")) {
+//			mnAdministrativo.setEnabled(false);
+//		}
 		mnAdministrativo.setIcon(new ImageIcon(Principal.class.getResource("/recursos/apoyar.png")));
 		menuBar.add(mnAdministrativo);
 		
