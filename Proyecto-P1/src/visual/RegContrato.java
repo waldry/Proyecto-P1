@@ -345,8 +345,12 @@ public class RegContrato extends JDialog {
 //						String vendedor = Controladora.getLoggedUser().getNombre();
 						float totalEnviar = Float.parseFloat(subtotal_lbl.getText());
 						Contrato contratoToAdd = new Contrato(idContrato,vendedor,planesACotizar,clientelito,formato.format(fechaGeneracion),totalEnviar,true);
-						Controladora.getInstance().agregarContrato(contratoToAdd);
-						Controladora.getInstance().empezarFacturar();
+						if(cedula_txt.getText().equals("___-_______-_") || nombre_txt.getText().isEmpty() || apellido_txt.getText().isEmpty() || address_Txt.getText().isEmpty() || tel_txt.getText().equals("(___)-___-____")) {
+							JOptionPane.showMessageDialog(null, "No se puede registrar su contrato por falta de datos de cliente", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
+						}else {
+							Controladora.getInstance().agregarContrato(contratoToAdd);
+							Controladora.getInstance().empezarFacturar();
+						}	
 						clean();
 					}
 				});

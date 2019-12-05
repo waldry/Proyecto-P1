@@ -137,9 +137,13 @@ public class RegistrarUsuario extends JDialog implements Serializable{
 				JButton btnregistrar = new JButton("Registrar");
 				btnregistrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Personal empleado = new Personal(txtnombre.getText(), txtapellido.getText(), cbxoficina.getSelectedItem().toString(), cbxtipo.getSelectedItem().toString(), txtuser.getText(), txtpass.getText());
-						Controladora.getInstance().registrarUsuario(empleado);
-						JOptionPane.showMessageDialog(null, "Operacion Satisfactoria", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
+						if(txtnombre.getText().isEmpty() || txtapellido.getText().isEmpty() || txtuser.getText().isEmpty() || txtpass.getText().isEmpty() || cbxtipo.getSelectedIndex()==0 || cbxoficina.getSelectedIndex()==0) {
+							JOptionPane.showMessageDialog(null, "Usuario no registrado. Faltan datos", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
+						}else {
+							Personal empleado = new Personal(txtnombre.getText(), txtapellido.getText(), cbxoficina.getSelectedItem().toString(), cbxtipo.getSelectedItem().toString(), txtuser.getText(), txtpass.getText());
+							Controladora.getInstance().registrarUsuario(empleado);
+							JOptionPane.showMessageDialog(null, "Operacion Satisfactoria", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
+						}
 						clean();
 					}
 				});

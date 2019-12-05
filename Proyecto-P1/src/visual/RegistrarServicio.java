@@ -389,9 +389,14 @@ public class RegistrarServicio extends JDialog implements Serializable{
 							}
 						}
 							Plan planToAdd = new Plan(ID_txt.getText(),name_txt.getText(),(int)bajada_spn.getValue(),(int)subida_spn.getValue(),(int)cant_min_spn.getValue(),(int)canales_spn.getValue(),ilimitado_chbx.isSelected(),voicemail_chbx.isSelected(),doble_linea_chbx.isSelected(),hbo_chbx.isSelected(),adultos_chbx.isSelected(),deportes_chbx.isSelected(), aux);
-							Controladora.getInstance().agregarPlan(planToAdd);
-							JOptionPane.showMessageDialog(null, "Plan agregado satisfactoriamente.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
-							ID_txt.setText("P-"+Controladora.getInstance().getGenCodPlan());
+							if((internet_chbx.isSelected() && (int)bajada_spn.getValue()==0 && (int)subida_spn.getValue()==0) || (telefono_chbx.isSelected() && (int)cant_min_spn.getValue()==0) || (cable_chbx.isSelected() && (int)canales_spn.getValue()==0)) {
+								JOptionPane.showMessageDialog(null, "El plan no pudo ser agregado. Favor intente de nuevo.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
+							}else {
+								Controladora.getInstance().agregarPlan(planToAdd);
+								JOptionPane.showMessageDialog(null, "Plan agregado satisfactoriamente.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
+								ID_txt.setText("P-"+Controladora.getInstance().getGenCodPlan());
+							}
+							clean();
 					}
 				});
 				send_btn.setActionCommand("OK");
@@ -409,5 +414,17 @@ public class RegistrarServicio extends JDialog implements Serializable{
 				buttonPane.add(cancel_btn);
 			}
 		}
+	}
+	public void clean() {
+		bajada_spn.setValue(0);
+		subida_spn.setValue(0);
+		canales_spn.setValue(0);
+		cant_min_spn.setValue(0);
+		adultos_chbx.setSelected(false);
+		deportes_chbx.setSelected(false);
+		hbo_chbx.setSelected(false);
+		doble_linea_chbx.setSelected(false);
+		ilimitado_chbx.setSelected(false);
+		voicemail_chbx.setSelected(false);
 	}
 }
