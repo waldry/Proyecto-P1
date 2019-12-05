@@ -32,15 +32,21 @@ public class Simulador extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField entry;
-	private JTextField textField_1;
+	private JTextField nombre_cliente;
 	private JLabel fecha_ahora;
 	private Calendar calendario = new GregorianCalendar();
 	private JLabel fecha_simulada;
 	private Factura facturaFound;
 	private ArrayList<Plan> planesToLoad = new ArrayList<Plan>();
 	private DefaultListModel<String> planesToShow = new DefaultListModel<>();
+	private float mora= 0;
 	private JList main;
-
+	private JLabel cargo_actual;
+	private JLabel mora_actual;
+	private JLabel total_simulado;
+	private JLabel meses_mostrar;
+	private int mesesAtrasados = 0;
+	private float aux = 0;
 	/**
 	 * Launch the application.
 	 */
@@ -84,7 +90,11 @@ public class Simulador extends JDialog {
 				for (Factura aux : Controladora.getInstance().getFacturas()) {
 					if (entry.getText().equalsIgnoreCase(aux.getId())) {
 						facturaFound = aux;
+						for (Plan plan : facturaFound.getPlanCliente()) {
+							planesToLoad.add(plan);
+						}
 						updatePlanes();
+						nombre_cliente.setText(aux.getCliente().getNombre());
 					}
 				}
 			}
@@ -102,11 +112,11 @@ public class Simulador extends JDialog {
 		lblCliente.setBounds(10, 33, 59, 14);
 		panel.add(lblCliente);
 		
-		textField_1 = new JTextField();
-		textField_1.setEditable(false);
-		textField_1.setBounds(64, 30, 86, 20);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		nombre_cliente= new JTextField();
+		nombre_cliente.setEditable(false);
+		nombre_cliente.setBounds(64, 30, 86, 20);
+		panel.add(nombre_cliente);
+		nombre_cliente.setColumns(10);
 		
 		main = new JList<>(planesToShow);
 		main.setEnabled(false);
@@ -117,24 +127,38 @@ public class Simulador extends JDialog {
 		lblServicios.setBounds(62, 61, 66, 14);
 		panel.add(lblServicios);
 		
-		JButton btnActualizarCargos = new JButton("Actualizar Cargos");
+		JButton btnActualizarCargos = new JButton("Agregar mes");
 		btnActualizarCargos.addActionListener(new ActionListener() {
+			@SuppressWarnings("unchecked")
 			public void actionPerformed(ActionEvent e) {
 				
 				calendario.add(Calendar.DATE, 30);
 				DateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 				fecha_simulada.setText(formato.format(calendario.getTime()));
-				int mesesAtrasados = 0;
+				
 				try {
 					mesesAtrasados = diferenciaMeses();
 				} catch (IOException | ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				System.out.println(mesesAtrasados);
+				DefaultListModel<String> db = ((DefaultListModel<String>)main.getModel());
+				
+				for (int i = 0; i < db.getSize(); i++) {
+					String s = (String)db.getElementAt(i);
+					String[] separador = s.split("_", 2);
+					String costo = separador[1];
+					aux = aux + Float.parseFloat(costo);
+					mora = (float) ((mesesAtrasados*aux)*0.0314);
+					cargo_actual.setText(String.valueOf(aux));
+					mora_actual.setText(String.valueOf(mora));
+					total_simulado.setText(String.valueOf(aux+mora));
+					meses_mostrar.setText(String.valueOf(mesesAtrasados));
+					
+				}
 			}
 		});
-		btnActualizarCargos.setBounds(222, 41, 157, 31);
+		btnActualizarCargos.setBounds(222, 41, 124, 19);
 		panel.add(btnActualizarCargos);
 		
 		JLabel lblFechaActual = new JLabel("Fecha actual:");
@@ -153,6 +177,48 @@ public class Simulador extends JDialog {
 		fecha_simulada = new JLabel("0/0/0");
 		fecha_simulada.setBounds(346, 128, 68, 14);
 		panel.add(fecha_simulada);
+		
+		JLabel lblCargosTotalActual = new JLabel("Cargos Total actual: ");
+		lblCargosTotalActual.setBounds(183, 182, 135, 14);
+		panel.add(lblCargosTotalActual);
+		
+		JLabel lblMoraDeLos = new JLabel("Mora de los Planes: ");
+		lblMoraDeLos.setBounds(183, 207, 135, 14);
+		panel.add(lblMoraDeLos);
+		
+		JLabel lblNuevoCargosTotales = new JLabel("Nuevo Cargos Totales: ");
+		lblNuevoCargosTotales.setBounds(183, 232, 131, 14);
+		panel.add(lblNuevoCargosTotales);
+		
+		cargo_actual = new JLabel("0.00");
+		cargo_actual.setBounds(347, 182, 46, 14);
+		panel.add(cargo_actual);
+		
+		mora_actual = new JLabel("0.00");
+		mora_actual.setBounds(346, 207, 46, 14);
+		panel.add(mora_actual);
+		
+		total_simulado= new JLabel("0.00");
+		total_simulado.setBounds(346, 232, 46, 14);
+		panel.add(total_simulado);
+		
+		JLabel lblMesesDeAtraso = new JLabel("Meses de atraso simulado");
+		lblMesesDeAtraso.setBounds(183, 257, 158, 14);
+		panel.add(lblMesesDeAtraso);
+		
+		meses_mostrar = new JLabel("0");
+		meses_mostrar.setBounds(347, 257, 46, 14);
+		panel.add(meses_mostrar);
+		
+		JButton btnDisminuirMes = new JButton("Disminuir mes");
+		btnDisminuirMes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				mesesAtrasados--;
+				actualizarInfo();
+			}
+		});
+		btnDisminuirMes.setBounds(222, 77, 124, 19);
+		panel.add(btnDisminuirMes);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -175,10 +241,30 @@ public class Simulador extends JDialog {
 			}
 		}
 	}
+	@SuppressWarnings("unchecked")
+	protected void actualizarInfo() {
+		DefaultListModel<String> db = ((DefaultListModel<String>)main.getModel());
+		
+		for (int i = 0; i < db.getSize(); i++) {
+			String s = (String)db.getElementAt(i);
+			String[] separador = s.split("_", 2);
+			String costo = separador[1];
+			aux = aux - Float.parseFloat(costo);
+			mora = mora -(float) ((mesesAtrasados*aux)*0.0314);
+			cargo_actual.setText(String.valueOf(Math.abs(aux)));
+			mora_actual.setText(String.valueOf(Math.abs(mora)));
+			total_simulado.setText(String.valueOf(aux-mora));
+			meses_mostrar.setText(String.valueOf(mesesAtrasados));
+			
+			
+		}
+		
+	}
+
 	protected void updatePlanes() {
 		planesToShow.clear();
 		for (Plan aux : planesToLoad) {
-			planesToShow.addElement(aux.getNombre());
+			planesToShow.addElement(aux.getNombre()+"_"+aux.getCosto());
 		}
 		
 	}

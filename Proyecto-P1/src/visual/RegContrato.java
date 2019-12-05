@@ -74,13 +74,14 @@ public class RegContrato extends JDialog {
 		}
 		return mascara;
 	}
+	private static RegContrato dialog;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			RegContrato dialog = new RegContrato();
+			dialog = new RegContrato();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -113,7 +114,7 @@ public class RegContrato extends JDialog {
 		btn_search.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (cedula_txt.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Se necesita datos del cliente para poder procesar el contrato.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(dialog, "Se necesita datos del cliente para poder procesar el contrato.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else {
 					for (Cliente client : Controladora.getInstance().getClientes()) {
@@ -133,7 +134,7 @@ public class RegContrato extends JDialog {
 							activo_chbx.setSelected(client.isActivo());
 						}
 						else {
-							JOptionPane.showMessageDialog(null, "El cliente no existe. Registrelo", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(dialog, "El cliente no existe. Registrelo", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 							RegistrarCliente newClient = new RegistrarCliente();
 							newClient.setModal(true);
 							newClient.setVisible(true);
@@ -340,7 +341,8 @@ public class RegContrato extends JDialog {
 //						for (Plan plan : planesACotizar) {
 //							Controladora.getInstance().eliminarPlan(plan);
 //						}
-						String vendedor = Controladora.getLoggedUser().getNombre();
+						String vendedor = "pepe";
+//						String vendedor = Controladora.getLoggedUser().getNombre();
 						float totalEnviar = Float.parseFloat(subtotal_lbl.getText());
 						Contrato contratoToAdd = new Contrato(idContrato,vendedor,planesACotizar,clientelito,formato.format(fechaGeneracion),totalEnviar,true);
 						Controladora.getInstance().agregarContrato(contratoToAdd);
