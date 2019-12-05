@@ -285,6 +285,7 @@ public class Controladora implements Serializable{
 						int diffM = diffYear * 12 + fin.get(Calendar.MONTH) - inicio.get(Calendar.MONTH);
 						float cargo = diffM*(float) (item.getMonto()*0.0314);
 						item.setMonto(cargo+item.getMonto());
+						item.setActiva(true);
 					} catch (ParseException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
