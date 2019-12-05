@@ -2,6 +2,7 @@ package logico;
 
 import java.io.Serializable;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -275,7 +276,18 @@ public class Controladora implements Serializable{
 				for (Factura item: facturas) {
 					Calendar inicio = new GregorianCalendar();
 					Calendar fin = new GregorianCalendar();
-					
+					Calendar actualidad = new GregorianCalendar();
+					DateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+					String hoy = formato.format(actualidad);
+					try {
+						inicio.setTime(new SimpleDateFormat("dd/MM/yyyy").parse(item.getFecha()));
+						fin.setTime(new SimpleDateFormat("dd/MM/yyyy").parse(hoy));
+						int diffYear = fin.get(Calendar.YEAR) - inicio.get(Calendar.YEAR);
+						int diffM = diffYear * 12 + fin.get(Calendar.MONTH) - inicio.get(Calendar.MONTH);
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 				
 			}
