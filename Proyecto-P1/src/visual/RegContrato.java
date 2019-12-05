@@ -317,6 +317,7 @@ public class RegContrato extends JDialog {
 						Controladora.getInstance().agregarContrato(contratoToAdd);
 						JOptionPane.showMessageDialog(null, "Contrato Registrado.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 						Controladora.getInstance().empezarFacturar();
+						dispose();
 						
 					}
 				});

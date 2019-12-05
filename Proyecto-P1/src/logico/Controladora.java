@@ -275,9 +275,9 @@ public class Controladora implements Serializable{
 				for (Factura item: facturas) {
 					Calendar inicio = new GregorianCalendar();
 					Calendar fin = new GregorianCalendar();
-					Calendar actualidad = new GregorianCalendar();
+					Date fechaActual = new Date();
 					DateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-					String hoy = formato.format(actualidad);
+					String hoy = formato.format(fechaActual);
 					try {
 						inicio.setTime(new SimpleDateFormat("dd/MM/yyyy").parse(item.getFecha()));
 						fin.setTime(new SimpleDateFormat("dd/MM/yyyy").parse(hoy));
