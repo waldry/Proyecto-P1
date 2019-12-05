@@ -63,12 +63,12 @@ public class Simulador extends JDialog {
 		panel.setLayout(null);
 		
 		JLabel lblCliente = new JLabel("Cliente: ");
-		lblCliente.setBounds(10, 36, 59, 14);
+		lblCliente.setBounds(10, 33, 59, 14);
 		panel.add(lblCliente);
 		
 		textField_1 = new JTextField();
 		textField_1.setEditable(false);
-		textField_1.setBounds(64, 33, 86, 20);
+		textField_1.setBounds(64, 30, 86, 20);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
