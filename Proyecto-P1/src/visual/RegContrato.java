@@ -26,7 +26,9 @@ import java.awt.print.PrinterIOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
@@ -55,6 +57,7 @@ public class RegContrato extends JDialog {
 	DefaultListModel<String> dbPlanes = new DefaultListModel<>();
 	DefaultListModel<String> planesSelected = new DefaultListModel<String>();
 	private JLabel subtotal_lbl;
+	private String idContrato = "C-"+Controladora.getInstance().getGenCodContrato();
 	private MaskFormatter mascara() {
 		MaskFormatter mascara = new MaskFormatter();
 		try {
@@ -302,17 +305,17 @@ public class RegContrato extends JDialog {
 //						Calendar fechaGeneracion = new GregorianCalendar();
 //						DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 //						for (String id : idPlanes) {
-//						//	planesACotizar.add(Controladora.getInstance().findPlanByID(id));
+//						planesACotizar.add(Controladora.getInstance().findPlanByID(id));
 //						}
 //						for (Plan plan : planesACotizar) {
 //							Controladora.getInstance().deletePlan(plan.getNombre());
 //						}
-//						int id = Controladora.getGenCodContrato();
+//						int id = Controladora.getInstance().getGenCodContrato();
 //						String vendedor = Controladora.getInstance().getLoggedUser().getNombre();
 //						String fechaOpen = dateFormat.format(fechaGeneracion);
 //						float totalEnviar = Float.parseFloat(subtotal_lbl.getText());
 //						
-//						Contrato aux = new Contrato(Integer.toString(id))
+//						Contrato aux = new Contrato(idContrato, Controladora.getInstance().getLoggedUser(), planes, client, fechaApertura, total, activo);
 //						Controladora.getInstance().agregarContrato(aux);
 //						JOptionPane.showMessageDialog(null, "Contrato Registrado.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 //						Controladora.getInstance().empezarFacturar();

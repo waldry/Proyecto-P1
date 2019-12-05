@@ -28,7 +28,7 @@ public class Controladora implements Serializable{
 	private Date fecha;
 	private static int cantPlan;
 	private static int genCodContrato;
-	private static int genCodPlan = 1;
+	private static int genCodPlan;
 	private static Timer timer = new Timer();
 	
 	public int getGenCodPlan() {
@@ -46,6 +46,7 @@ public class Controladora implements Serializable{
 		this.planes = new ArrayList<Plan>();
 		this.empleados = new ArrayList<Personal>();
 		genCodPlan = 1;
+		genCodContrato = 1;
 	}
 	
 	public static Controladora getInstance() {
@@ -110,6 +111,10 @@ public class Controladora implements Serializable{
 	public void agregarContrato(Contrato contrat) {
 		contratos.add(contrat);
 		genCodContrato++;
+	}
+	public void eliminarContrato(Contrato contract) {
+		contratos.remove(contract);
+		genCodContrato--;
 	}
 	public void registrarUsuario(Personal user) {
 		empleados.add(user);
@@ -220,11 +225,11 @@ public class Controladora implements Serializable{
 	public void eliminarCliente(Cliente cliente) {
 		clientes.remove(cliente);
 	}
-	public static int getGenCodContrato() {
+	public int getGenCodContrato() {
 		return genCodContrato;
 	}
 
-	public static void setGenCodContrato(int genCodContrato) {
+	public void setGenCodContrato(int genCodContrato) {
 		Controladora.genCodContrato = genCodContrato;
 	}
 
