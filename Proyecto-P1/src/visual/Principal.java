@@ -47,6 +47,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
+import java.awt.Toolkit;
 
 public class Principal extends JFrame implements Serializable{
 
@@ -88,6 +89,7 @@ public class Principal extends JFrame implements Serializable{
 	 * Create the frame.
 	 */
 	public Principal() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/recursos/Logo_de_Tricom.png")));
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -216,6 +218,7 @@ public class Principal extends JFrame implements Serializable{
 		mnFacturas.add(mntmFacturarPlan);
 		
 		JMenuItem mntmPagoFactura = new JMenuItem("Pago Factura");
+		mntmPagoFactura.setIcon(new ImageIcon(Principal.class.getResource("/recursos/lista.png")));
 		mntmPagoFactura.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				PagoFactura pagar = new PagoFactura();
@@ -241,6 +244,7 @@ public class Principal extends JFrame implements Serializable{
 		mnContrato.add(mntmNuevoContrato);
 		
 		JMenuItem mntmListarPlanes_1 = new JMenuItem("Listar Planes");
+		mntmListarPlanes_1.setIcon(new ImageIcon(Principal.class.getResource("/recursos/lista.png")));
 		mntmListarPlanes_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ListaContratos aux = new ListaContratos();

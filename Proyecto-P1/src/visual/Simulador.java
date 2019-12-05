@@ -29,6 +29,8 @@ import java.util.GregorianCalendar;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import java.awt.Color;
+import javax.swing.border.EtchedBorder;
 
 public class Simulador extends JDialog {
 
@@ -72,8 +74,9 @@ public class Simulador extends JDialog {
 		
 		String fechaUsandoGregorian = formato();
 		setTitle("Simulador de Facturas");
-		setBounds(100, 100, 470, 512);
+		setBounds(100, 100, 446, 500);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(240, 248, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -108,7 +111,8 @@ public class Simulador extends JDialog {
 		contentPanel.add(btnBuscar);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "Informacion - Contrato", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBackground(new Color(240, 248, 255));
+		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Informacion - Contrato", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setBounds(0, 84, 424, 287);
 		contentPanel.add(panel);
 		panel.setLayout(null);
@@ -124,6 +128,7 @@ public class Simulador extends JDialog {
 		nombre_cliente.setColumns(10);
 		
 		main = new JList<>(planesToShow);
+		main.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		main.setEnabled(false);
 		main.setBounds(10, 80, 151, 196);
 		panel.add(main);
@@ -226,6 +231,7 @@ public class Simulador extends JDialog {
 		panel.add(btnDisminuirMes);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(240, 248, 255));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
