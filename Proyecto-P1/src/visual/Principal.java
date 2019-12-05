@@ -66,7 +66,6 @@ public class Principal extends JFrame implements Serializable{
 	private int y;
 	private JPanel panelGrafico1;
 	private JPanel panelGrafico2;
-	private JPanel panelGrafico3;
 	
 
 	/**
@@ -113,7 +112,7 @@ public class Principal extends JFrame implements Serializable{
 		setTitle("Menu Principal");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1289, 900);
+		setBounds(100, 100, 1289, 590);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(new Color(240, 248, 255));
@@ -266,10 +265,6 @@ public class Principal extends JFrame implements Serializable{
 		panelGrafico2.setBorder(null);
 		panelGrafico2.setBounds(710, 10, 690, 430);
 		contentPane.add(panelGrafico2);
-		
-		panelGrafico3 = new JPanel();
-		panelGrafico3.setBounds(394, 450, 623, 395);
-		contentPane.add(panelGrafico3);
 		setLocationRelativeTo(null);
 		init1();
 //		init2();
@@ -299,8 +294,10 @@ public class Principal extends JFrame implements Serializable{
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		
 	}
-//	public Plan planMasVendido() {
+//	public String planMasVendido() {
+//		String aux = "";
 //		for (Contrato contract : Controladora.getInstance().getContratos()) {
+//			int mayor = 0;
 //			for (Plan auxPlan : contract.getPlanes()) {
 //				auxPlan.getNombre();
 //			}
