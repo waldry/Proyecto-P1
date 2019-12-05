@@ -66,7 +66,6 @@ public class Principal extends JFrame implements Serializable{
 	private JPanel panelGrafico1;
 	private JPanel panelGrafico2;
 	private JPanel panelGrafico3;
-	private JPanel panelGrafico4;
 	
 
 	/**
@@ -113,9 +112,7 @@ public class Principal extends JFrame implements Serializable{
 		setTitle("Menu Principal");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		dim = super.getToolkit().getScreenSize();
-		super.setSize(dim.width, dim.height-100);
+		setBounds(100, 100, 1289, 900);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(new Color(240, 248, 255));
@@ -221,6 +218,9 @@ public class Principal extends JFrame implements Serializable{
 		JMenuItem mntmPagoFactura = new JMenuItem("Pago Factura");
 		mntmPagoFactura.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				PagoFactura pago = new PagoFactura();
+				pago.setModal(true);
+				pago.setVisible(true);
 			}
 		});
 		mnFacturas.add(mntmPagoFactura);
@@ -256,23 +256,19 @@ public class Principal extends JFrame implements Serializable{
 		contentPane.setLayout(null);
 		
 		panelGrafico1 = new JPanel();
-		panelGrafico1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gr\u00E1fico 1", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelGrafico1.setBounds(10, 10, 623, 395);
+		panelGrafico1.setBorder(null);
+		panelGrafico1.setBounds(10, 10, 690, 430);
 		contentPane.add(panelGrafico1);
 		//Datos grafico
 		
 		panelGrafico2 = new JPanel();
-		panelGrafico2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gr\u00E1fico 2", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
-		panelGrafico2.setBounds(643, 10, 623, 395);
+		panelGrafico2.setBorder(null);
+		panelGrafico2.setBounds(710, 10, 690, 430);
 		contentPane.add(panelGrafico2);
 		
 		panelGrafico3 = new JPanel();
-		panelGrafico3.setBounds(10, 415, 623, 395);
+		panelGrafico3.setBounds(394, 450, 623, 395);
 		contentPane.add(panelGrafico3);
-		
-		panelGrafico4 = new JPanel();
-		panelGrafico4.setBounds(643, 415, 623, 395);
-		contentPane.add(panelGrafico4);
 		setLocationRelativeTo(null);
 		init1();
 //		init2();
@@ -298,26 +294,11 @@ public class Principal extends JFrame implements Serializable{
 			}
 		}
 	}
-//	private void init2() {
-//		contratosPorUsuario();
-//		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-//		dataset.setValue(a, "David", fecha1);
-//		dataset.setValue(b, "Waldry", fecha2);
-//		
-//		JFreeChart chart = ChartFactory.createBarChart("Venta de Contratos por Empleado", "Empleado", "Fecha", dataset, PlotOrientation.VERTICAL, true, true, false);
-//	}
-//	public void contratosPorUsuario() {
-//		int a = 0;
-//		int b = 0;
-//		for (Contrato contract : Controladora.getInstance().getContratos()) {
-//			if(contract.getUser().equalsIgnoreCase("David")) {
-//				a += 1;
-//				fecha1 = contract.getFechaApertura();
-//			}
-//			if(contract.getUser().equalsIgnoreCase("Waldry")) {
-//				b += 1;
-//				fecha2 = contract.getFechaApertura();
-//			}
-//		}
-//	}
+	private void init2() {
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+//		dataset.setValue(a, rowKey, columnKey);
+	}
+	public void factura() {
+		
+	}
 }
