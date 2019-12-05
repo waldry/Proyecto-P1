@@ -294,7 +294,7 @@ public class Controladora implements Serializable{
 			}
 			
 		};
-		timer.schedule(tarea,2592000,2592000);
+		timer.schedule(tarea,0,2592000);
 	}
 	
 }
