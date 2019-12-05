@@ -243,8 +243,8 @@ public class RegContrato extends JDialog {
 						String id = separador[0];
 						String costo = separador[2];
 						idPlanes.remove(id);
-						aux = Math.abs(aux-Float.parseFloat(costo));
-						subtotal_lbl.setText(String.valueOf(aux));
+						aux = aux-Float.parseFloat(costo);
+						subtotal_lbl.setText(String.valueOf(Math.abs(aux)));
 					}
 				}
 				if (second.getModel().getSize()==0) {
@@ -302,23 +302,20 @@ public class RegContrato extends JDialog {
 				JButton okButton = new JButton("Registrar");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-//						Calendar fechaGeneracion = new GregorianCalendar();
-//						DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-//						for (String id : idPlanes) {
-//						planesACotizar.add(Controladora.getInstance().findPlanByID(id));
-//						}
-//						for (Plan plan : planesACotizar) {
-//							Controladora.getInstance().deletePlan(plan.getNombre());
-//						}
-//						int id = Controladora.getInstance().getGenCodContrato();
-//						String vendedor = Controladora.getInstance().getLoggedUser().getNombre();
-//						String fechaOpen = dateFormat.format(fechaGeneracion);
-//						float totalEnviar = Float.parseFloat(subtotal_lbl.getText());
-//						
-//						Contrato aux = new Contrato(idContrato, Controladora.getInstance().getLoggedUser(), planes, client, fechaApertura, total, activo);
-//						Controladora.getInstance().agregarContrato(aux);
-//						JOptionPane.showMessageDialog(null, "Contrato Registrado.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
-//						Controladora.getInstance().empezarFacturar();
+						Date fechaGeneracion = new Date();
+						DateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+						for (String id : idPlanes) {
+						planesACotizar.add(Controladora.getInstance().findPlanByID(id));
+						}
+						for (Plan plan : planesACotizar) {
+							Controladora.getInstance().deletePlan(plan.getNombre());
+						}
+						String vendedor = "pepe";
+						float totalEnviar = Float.parseFloat(subtotal_lbl.getText());
+						Contrato contratoToAdd = new Contrato(idContrato,vendedor,planesACotizar,clientelito,formato.format(fechaGeneracion),totalEnviar,true);
+						Controladora.getInstance().agregarContrato(contratoToAdd);
+						JOptionPane.showMessageDialog(null, "Contrato Registrado.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
+						Controladora.getInstance().empezarFacturar();
 					}
 				});
 				okButton.setActionCommand("OK");
