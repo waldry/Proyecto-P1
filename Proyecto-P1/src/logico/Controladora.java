@@ -296,5 +296,10 @@ public class Controladora implements Serializable{
 		};
 		timer.schedule(tarea,0,2592000);
 	}
+
+//	public Contrato findContratoById(String id) {
+//		
+//		return null;
+//	}
 	
 }
