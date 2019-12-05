@@ -204,6 +204,7 @@ public class Principal extends JFrame implements Serializable{
 				PagoFactura pagar = new PagoFactura();
 				pagar.setVisible(true);
 				pagar.setModal(true);
+				
 			}
 		});
 		mnFacturas.add(mntmPagoFactura);
