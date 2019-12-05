@@ -258,10 +258,6 @@ public class PagoFactura extends JDialog {
 		}
 		updateContratos();
 	}
-	protected void loadContratos(int selection) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public void updateContratos() {
 		idContratos.clear();
