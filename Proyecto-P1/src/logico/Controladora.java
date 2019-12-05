@@ -219,7 +219,20 @@ public class Controladora implements Serializable{
 		}
 		return login;
 	}
-
+public Personal getUsuario(String username, String pass) {
+	boolean login = false;
+	for (Personal empleado : empleados) {
+		if (empleado.getUsername().equalsIgnoreCase(username) && empleado.getPass().equalsIgnoreCase(pass)) {
+			loggedUser = empleado;
+			setLoggedUser(loggedUser);
+			
+		}
+		
+	}
+	return loggedUser;
+	
+	
+}
 	public void agregarPlan(Plan aux) {
 		planes.add(aux);
 		genCodPlan++;

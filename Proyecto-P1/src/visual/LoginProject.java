@@ -134,6 +134,7 @@ public class LoginProject extends JDialog implements Serializable{
 				btnAcceder.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(Controladora.getInstance().confirmLogin(txtUser.getText(), txtPass.getText())) {
+							Controladora.setLoggedUser(Controladora.getInstance().getUsuario(txtUser.getText(), txtPass.getText()));
 							JOptionPane.showMessageDialog(null, "Ha accedido con éxito", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 							Principal frame = new Principal();
 							
