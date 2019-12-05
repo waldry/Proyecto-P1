@@ -181,7 +181,7 @@ public class ListaPlanes extends JDialog implements Serializable{
 		    	row[7] = "";
 			}
 		    if (plan.getCantCanales() !=0) {
-		    	row[8] = plan.getCantCanales();
+		    	row[8] = plan.getCantMinutos();
 			}
 		    else {
 				row[8] = "";
@@ -192,18 +192,24 @@ public class ListaPlanes extends JDialog implements Serializable{
 		    else {
 				row[9] = "";
 			}
-		    if (plan.isIlimitado()) {
-		    	row[10] = plan.isIlimitado();
+		    if (plan.isDoblelinea()) {
+		    	row[10] = plan.isDoblelinea();
 			}
 		    else {
 				row[10] = "";
 			}
-		    if (plan.getCosto() !=0) {
-				row[11] = plan.getCosto();
+		    if (plan.isIlimitado()) {
+				row[11] = plan.isIlimitado();
 			}
 		    else {
 				row[11] = "";
 			}
+		    if(plan.getCosto() != 0) {
+		    	row[12] = plan.getCosto();
+		    }
+		    else {
+		    	row[12] = "";
+		    }
 			model.addRow(row);
 		}
 			

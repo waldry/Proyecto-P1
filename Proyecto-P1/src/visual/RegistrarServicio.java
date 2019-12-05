@@ -41,7 +41,7 @@ public class RegistrarServicio extends JDialog implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField name_txt;
-	private JTextField price_txt;
+	private JTextField ID_txt;
 	private JPanel internet_panel;
 	private JPanel telefono_panel;
 	private JPanel cable_panel;
@@ -105,20 +105,21 @@ public class RegistrarServicio extends JDialog implements Serializable{
 			lblNombre.setBounds(10, 31, 57, 14);
 			panel.add(lblNombre);
 			
-			JLabel lblCosto = new JLabel("Costo: ");
-			lblCosto.setBounds(278, 31, 46, 14);
-			panel.add(lblCosto);
+			JLabel lblId = new JLabel("Id:");
+			lblId.setBounds(358, 31, 29, 14);
+			panel.add(lblId);
 			
 			name_txt = new JTextField();
 			name_txt.setBounds(77, 29, 148, 20);
 			panel.add(name_txt);
 			name_txt.setColumns(10);
 			
-			price_txt = new JTextField();
-			price_txt.setEditable(false);
-			price_txt.setBounds(334, 29, 127, 20);
-			panel.add(price_txt);
-			price_txt.setColumns(10);
+			ID_txt = new JTextField();
+			ID_txt.setEditable(false);
+			ID_txt.setBounds(404, 29, 57, 20);
+			panel.add(ID_txt);
+			ID_txt.setColumns(10);
+			ID_txt.setText(codigoPlan);
 			
 			JPanel panel_1 = new JPanel();
 			panel_1.setBackground(new Color(240, 248, 255));
@@ -231,11 +232,11 @@ public class RegistrarServicio extends JDialog implements Serializable{
 			internet_panel.add(lblAnchoDeBajada);
 			
 			subida_spn = new JSpinner();
-			subida_spn.setBounds(165, 27, 57, 20);
+			subida_spn.setBounds(165, 27, 68, 20);
 			internet_panel.add(subida_spn);
 			
 			bajada_spn = new JSpinner();
-			bajada_spn.setBounds(165, 64, 57, 20);
+			bajada_spn.setBounds(165, 64, 68, 20);
 			internet_panel.add(bajada_spn);
 			
 			cable_panel = new JPanel();
@@ -327,7 +328,7 @@ public class RegistrarServicio extends JDialog implements Serializable{
 			lblCantidadCanales_1.setEnabled(false);
 			
 			cant_min_spn= new JSpinner();
-			cant_min_spn.setBounds(138, 24, 59, 20);
+			cant_min_spn.setBounds(138, 24, 68, 20);
 			telefono_panel.add(cant_min_spn);
 			cant_min_spn.setEnabled(false);
 			
@@ -361,13 +362,31 @@ public class RegistrarServicio extends JDialog implements Serializable{
 					public void actionPerformed(ActionEvent e) {
 						float aux = 0;
 						if (internet_panel.isEnabled()) {
-							aux += 1000;
+							aux += 1000 + (((int)bajada_spn.getValue()*10) + ((int)subida_spn.getValue()*15));
 						}
 						if (cable_panel.isEnabled()) {
-							aux += 750;
+							aux += 7.5*(int)canales_spn.getValue();
+							if(adultos_chbx.isSelected()) {
+								aux += 200;
+							}
+							if(deportes_chbx.isSelected()) {
+								aux += 150;
+							}
+							if(hbo_chbx.isSelected()) {
+								aux += 300;
+							}
 						}
 						if (telefono_panel.isEnabled()) {
-							aux += 500;
+							aux += 2.5*(int)cant_min_spn.getValue();
+							if(doble_linea_chbx.isSelected()) {
+								aux += 100;
+							}
+							if(voicemail_chbx.isSelected()) {
+								aux += 75;
+							}
+							if(ilimitado_chbx.isSelected()) {
+								aux += 125;
+							}
 						}
 							Plan planToAdd = new Plan(codigoPlan,name_txt.getText(),(int)bajada_spn.getValue(),(int)subida_spn.getValue(),(int)cant_min_spn.getValue(),(int)canales_spn.getValue(),ilimitado_chbx.isSelected(),voicemail_chbx.isSelected(),doble_linea_chbx.isSelected(),hbo_chbx.isSelected(),adultos_chbx.isSelected(),deportes_chbx.isSelected(), aux);
 							Controladora.getInstance().agregarPlan(planToAdd);
