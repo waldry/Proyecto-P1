@@ -307,11 +307,12 @@ public class RegContrato extends JDialog {
 						for (String id : idPlanes) {
 						planesACotizar.add(Controladora.getInstance().findPlanByID(id));
 						}
-						for (Plan plan : planesACotizar) {
-							Controladora.getInstance().deletePlan(plan.getNombre());
-						}
+//						for (Plan plan : planesACotizar) {
+//							Controladora.getInstance().eliminarPlan(plan);
+//						}
 						String vendedor = "pepe";
 						float totalEnviar = Float.parseFloat(subtotal_lbl.getText());
+						System.out.println("ID:" + idContrato+"Vendedor: "+vendedor+"Planes a cotizar:"+ planesACotizar.get(0).getNombre()+"Cliente: "+clientelito.getNombre()+"Fecha: "+formato.format(fechaGeneracion)+"PRecio total: "+totalEnviar+"Activo: "+true);
 						Contrato contratoToAdd = new Contrato(idContrato,vendedor,planesACotizar,clientelito,formato.format(fechaGeneracion),totalEnviar,true);
 						Controladora.getInstance().agregarContrato(contratoToAdd);
 						JOptionPane.showMessageDialog(null, "Contrato Registrado.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);

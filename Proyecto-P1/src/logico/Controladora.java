@@ -260,14 +260,6 @@ public class Controladora implements Serializable{
 		this.loggedUser = loggedUser;
 	}
 
-	public void deletePlan(String ids) {
-		for (Plan planToModify : planes) {
-			if (planToModify.getId().equalsIgnoreCase(ids)) {
-				planes.remove(planToModify);
-				setGenCodPlan(getGenCodPlan()-1);
-			}
-		}
-	}
 	public void empezarFacturar() {
 		TimerTask tarea = new TimerTask() {
 			
