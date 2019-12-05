@@ -221,7 +221,6 @@ public class RegContrato extends JDialog {
 				DefaultListModel<String> carrito = ((DefaultListModel<String>)second.getModel());
 				for (int item : main.getSelectedIndices()) {
 					carrito.addElement(db.getElementAt(item));
-					db.removeElement(db.getElementAt(item));
 					float aux = 0;
 					for(int i = 0; i<carrito.getSize(); i++) {
 					String s = (String)carrito.getElementAt(i);
@@ -233,6 +232,7 @@ public class RegContrato extends JDialog {
 					subtotal_lbl.setText(String.valueOf(aux));
 					itbis_lbl.setText(String.valueOf(aux*0.28));
 					total_lbl.setText(String.valueOf(aux+(0.28*aux)));
+					
 					}
 				}
 			}
@@ -247,7 +247,6 @@ public class RegContrato extends JDialog {
 				DefaultListModel<String> db = ((DefaultListModel<String>)main.getModel());
 				DefaultListModel<String> carrito = ((DefaultListModel<String>)second.getModel());
 				for (int item : second.getSelectedIndices()) {
-					db.addElement(carrito.getElementAt(item));
 					carrito.removeElement(carrito.getElementAt(item));
 					float aux = 0;
 					for (int i = 0; i < carrito.getSize(); i++) {
@@ -258,11 +257,15 @@ public class RegContrato extends JDialog {
 						idPlanes.remove(id);
 						aux = aux-Float.parseFloat(costo);
 						subtotal_lbl.setText(String.valueOf(Math.abs(aux)));
+						itbis_lbl.setText(String.valueOf(Math.abs(aux*0.28)));
+						total_lbl.setText(String.valueOf(Math.abs(aux+(0.28*aux))));
 						
 					}
 				}
 				if (second.getModel().getSize()==0) {
 					subtotal_lbl.setText("0.00");
+					itbis_lbl.setText("0.00");
+					total_lbl.setText("0.00");
 				}
 			}
 		});
@@ -343,7 +346,7 @@ public class RegContrato extends JDialog {
 						Controladora.getInstance().agregarContrato(contratoToAdd);
 						JOptionPane.showMessageDialog(null, "Contrato Registrado.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 						Controladora.getInstance().empezarFacturar();
-						
+						clean();
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -361,6 +364,19 @@ public class RegContrato extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+
+	protected void clean() {
+		subtotal_lbl.setText("0.00");
+		main.setModel(dbPlanes);
+		cedula_txt.setText("");
+		nombre_txt.setText("");
+		apellido_txt.setText("");
+		address_Txt.setText("");
+		tel_txt.setText("");
+		activo_chbx.setSelected(false);
+		itbis_lbl.setText("0.00");
+		total_lbl.setText("0.00");
 	}
 
 	private void updatePlanes() {
