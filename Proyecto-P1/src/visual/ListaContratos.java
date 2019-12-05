@@ -64,7 +64,7 @@ public class ListaContratos extends JDialog {
 		scrollPane.setBounds(10, 10, 763, 325);
 		contentPanel.add(scrollPane);
 		model = new DefaultTableModel();
-		String[] header = {"ID", "Plan", "Cliente", "Fecha", "Total", "Despachado por", "Activo"};
+		String[] header = {"ID", "Cliente", "Fecha", "Total", "Despachado por", "Activo"};
 		model.setColumnIdentifiers(header);
 		table = new JTable();
 		table.setBackground(new Color(255,245,238));
@@ -112,14 +112,14 @@ public class ListaContratos extends JDialog {
 		row = new Object[model.getColumnCount()];
 		for (Contrato contract : Controladora.getInstance().getContratos()) {
 			row[0] = contract.getId();
-			row[2] = contract.getClient().getNombre()+" "+contract.getClient().getApellido();
-			row[3] = contract.getFechaApertura();
-			row[4] = contract.getTotal();
-			row[5] = contract.getUser();
+			row[1] = contract.getClient().getNombre()+" "+contract.getClient().getApellido();
+			row[2] = contract.getFechaApertura();
+			row[3] = contract.getTotal();
+			row[4] = contract.getUser();
 			if(contract.isActivo()==true) {
-				row[6] = "Si";
+				row[5] = "Si";
 			}else {
-				row[6] = "No";
+				row[5] = "No";
 			}
 			model.addRow(row);
 		}

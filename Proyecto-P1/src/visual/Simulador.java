@@ -60,6 +60,7 @@ public class Simulador extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		setLocationRelativeTo(null);
 		
 		JLabel lblNewLabel = new JLabel("ID Contrato: ");
 		lblNewLabel.setBounds(10, 22, 90, 14);

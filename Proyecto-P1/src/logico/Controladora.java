@@ -106,6 +106,9 @@ public class Controladora implements Serializable{
 	public void registrarCliente(Cliente client) {
 		clientes.add(client);
 	}
+	public void eliminarCliente(Cliente cliente) {
+		clientes.remove(cliente);
+	}
 	public void agregarFactura(Factura fact) {
 		facturas.add(fact);
 	}
@@ -119,6 +122,9 @@ public class Controladora implements Serializable{
 	}
 	public void registrarUsuario(Personal user) {
 		empleados.add(user);
+	}
+	public void eliminarUsuario(Personal user) {
+		empleados.remove(user);
 	}
 	
 	public Cliente findClienteById(String cedulaCliente) {
@@ -223,19 +229,12 @@ public class Controladora implements Serializable{
 		genCodPlan--;
 	}
 	
-	public void eliminarCliente(Cliente cliente) {
-		clientes.remove(cliente);
-	}
 	public int getGenCodContrato() {
 		return genCodContrato;
 	}
 
 	public void setGenCodContrato(int genCodContrato) {
 		Controladora.genCodContrato = genCodContrato;
-	}
-
-	public void eliminarUsuario(Personal user) {
-		empleados.remove(user);
 	}
 
 	public ArrayList<Personal> getEmpleados() {

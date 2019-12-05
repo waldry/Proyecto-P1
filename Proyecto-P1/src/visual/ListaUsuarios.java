@@ -98,17 +98,19 @@ public class ListaUsuarios extends JDialog implements Serializable{
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton btnModificar = new JButton("Modificar");
+				btnModificar.setEnabled(false);
 				btnModificar.setActionCommand("OK");
 				buttonPane.add(btnModificar);
 				getRootPane().setDefaultButton(btnModificar);
 			}
 			{
 				JButton btnEliminar = new JButton("Eliminar");
+				btnEliminar.setEnabled(false);
 				btnEliminar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(!username.equals("")) {
 							Personal aux = Controladora.getInstance().findPersonalByUsername(username);
-							int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea eliminar el Usuario: " + aux.getNombre(),"Información",JOptionPane.WARNING_MESSAGE);
+							int option = JOptionPane.showConfirmDialog(null, "Está seguro de que desea eliminar el Usuario: " + aux.getNombre()+"?","Información",JOptionPane.WARNING_MESSAGE);
 							if(option == JOptionPane.OK_OPTION) {
 								Controladora.getInstance().eliminarUsuario(aux);
 								loadUsuarios();
