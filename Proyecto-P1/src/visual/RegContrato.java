@@ -41,9 +41,7 @@ import java.awt.Color;
 public class RegContrato extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField entry_txt;
 	private JFormattedTextField cedula_txt;
-	private JFormattedTextField ftxt_buscarCedula;
 	private JTextField nombre_txt;
 	private JTextField apellido_txt;
 	private JTextField address_Txt;
@@ -75,7 +73,6 @@ public class RegContrato extends JDialog {
 		try {
 			RegContrato dialog = new RegContrato();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -86,7 +83,7 @@ public class RegContrato extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegContrato() {
-		setTitle("Registro de contraro");
+		setTitle("Registro de contrato");
 		setResizable(false);
 		setBounds(100, 100, 1038, 702);
 		getContentPane().setLayout(new BorderLayout());
@@ -96,62 +93,19 @@ public class RegContrato extends JDialog {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Informacion - Cliente", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(20, 11, 407, 221);
+		panel.setBounds(20, 11, 368, 221);
 		contentPanel.add(panel);
 		panel.setLayout(null);
-		
-		@SuppressWarnings("rawtypes")
-		JComboBox cbxSearch = new JComboBox();
-		cbxSearch.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(cbxSearch.getSelectedIndex()==1) {
-					entry_txt.setVisible(false);
-					ftxt_buscarCedula.setVisible(true);
-					
-				} else if(cbxSearch.getSelectedIndex()==2) {
-					entry_txt.setVisible(true);
-					ftxt_buscarCedula.setVisible(false);
-				} else if(cbxSearch.getSelectedIndex()==0) {
-					entry_txt.setVisible(false);
-					ftxt_buscarCedula.setVisible(false);
-				}
-			}
-		});
-		cbxSearch.setModel(new DefaultComboBoxModel(new String[] {"<Buscar Por>", "<Cedula>", "<Nombre>"}));
-		cbxSearch.setBounds(10, 26, 107, 20);
-		panel.add(cbxSearch);
-		
-		entry_txt = new JTextField();
-		entry_txt.setVisible(false);
-		entry_txt.setBounds(127, 27, 153, 20);
-		panel.add(entry_txt);
-		entry_txt.setColumns(10);
 		
 		JButton btn_search = new JButton("Buscar");
 		btn_search.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (entry_txt.getText().isEmpty()) {
+				if (cedula_txt.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Se necesita datos del cliente para poder procesar el contrato.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else {
 					for (Cliente client : Controladora.getInstance().getClientes()) {
-						if (entry_txt.getText().equalsIgnoreCase(client.getNombre())) {
-							clientelito = client;
-							JOptionPane.showMessageDialog(null, "Cliente existente", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
-							cedula_txt.setEnabled(false);
-							cedula_txt.setText(client.getCedula());
-							nombre_txt.setEnabled(false);
-							nombre_txt.setText(client.getNombre());
-							apellido_txt.setEnabled(false);
-							apellido_txt.setText(client.getApellido());
-							address_Txt.setEnabled(false);
-							address_Txt.setText(client.getDireccion());
-							tel_txt.setEnabled(false);
-							tel_txt.setText(client.getTelefono());
-							activo_chbx.setEnabled(false);
-							activo_chbx.setSelected(client.isActivo());
-						}
-						else if(ftxt_buscarCedula.getText().equals(client.getCedula())) {
+						if(cedula_txt.getText().equals(client.getCedula())) {
 							clientelito = client;
 							JOptionPane.showMessageDialog(null, "Cliente existente", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 							cedula_txt.setEnabled(false);
@@ -177,62 +131,57 @@ public class RegContrato extends JDialog {
 				}
 			}
 		});
-		btn_search.setBounds(308, 25, 89, 23);
+		btn_search.setBounds(263, 14, 89, 23);
 		panel.add(btn_search);
 		
 		JLabel lblNombre = new JLabel("Cedula: ");
-		lblNombre.setBounds(20, 57, 58, 14);
+		lblNombre.setBounds(20, 18, 58, 14);
 		panel.add(lblNombre);
 		
 		JLabel lblNombre_1 = new JLabel("Nombre: ");
-		lblNombre_1.setBounds(20, 82, 58, 14);
+		lblNombre_1.setBounds(20, 50, 58, 14);
 		panel.add(lblNombre_1);
 		
 		JLabel lblApellido = new JLabel("Apellido: ");
-		lblApellido.setBounds(20, 110, 58, 14);
+		lblApellido.setBounds(20, 82, 58, 14);
 		panel.add(lblApellido);
 		
 		JLabel lblDireccion = new JLabel("Direccion: ");
-		lblDireccion.setBounds(20, 138, 66, 14);
+		lblDireccion.setBounds(20, 114, 66, 14);
 		panel.add(lblDireccion);
 		
 		JLabel lblTelefono = new JLabel("Telefono: ");
-		lblTelefono.setBounds(20, 163, 58, 14);
+		lblTelefono.setBounds(20, 146, 58, 14);
 		panel.add(lblTelefono);
 		
 		activo_chbx= new JCheckBox("Activo");
-		activo_chbx.setBounds(10, 184, 68, 23);
+		activo_chbx.setBounds(10, 178, 68, 23);
 		panel.add(activo_chbx);
 		
 		cedula_txt = new JFormattedTextField(mascara());
-		cedula_txt.setBounds(113, 55, 167, 20);
+		cedula_txt.setBounds(88, 16, 167, 20);
 		panel.add(cedula_txt);
 		cedula_txt.setColumns(10);
 		
 		nombre_txt = new JTextField();
-		nombre_txt.setBounds(113, 80, 167, 20);
+		nombre_txt.setBounds(88, 48, 167, 20);
 		panel.add(nombre_txt);
 		nombre_txt.setColumns(10);
 		
 		apellido_txt = new JTextField();
-		apellido_txt.setBounds(113, 108, 167, 20);
+		apellido_txt.setBounds(88, 80, 167, 20);
 		panel.add(apellido_txt);
 		apellido_txt.setColumns(10);
 		
 		address_Txt = new JTextField();
-		address_Txt.setBounds(113, 136, 167, 20);
+		address_Txt.setBounds(88, 112, 167, 20);
 		panel.add(address_Txt);
 		address_Txt.setColumns(10);
 		
 		tel_txt = new JTextField();
-		tel_txt.setBounds(113, 161, 167, 20);
+		tel_txt.setBounds(88, 144, 167, 20);
 		panel.add(tel_txt);
 		tel_txt.setColumns(10);
-		
-		ftxt_buscarCedula = new JFormattedTextField(mascara());
-		ftxt_buscarCedula.setVisible(false);
-		ftxt_buscarCedula.setBounds(127, 27, 153, 20);
-		panel.add(ftxt_buscarCedula);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informacion - Plan", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -278,7 +227,6 @@ public class RegContrato extends JDialog {
 		
 		JButton eliminar_btn = new JButton("<-");
 		eliminar_btn.addActionListener(new ActionListener() {
-			@SuppressWarnings("unchecked")
 			public void actionPerformed(ActionEvent e) {
 				DefaultListModel<String> db = ((DefaultListModel<String>)main.getModel());
 				DefaultListModel<String> carrito = ((DefaultListModel<String>)second.getModel());
@@ -351,21 +299,21 @@ public class RegContrato extends JDialog {
 				JButton okButton = new JButton("Registrar");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						Date fechaGeneracion = new Date();
-						DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-						for (String id : idPlanes) {
-							planesACotizar.add(Controladora.getInstance().findPlanByID(id));
-						}
-						for (Plan plan : planesACotizar) {
-							Controladora.getInstance().deletePlan(plan.getNombre());
-						}
-						int id = Controladora.getGenCodContrato();
-						String vendedor = Controladora.getInstance().getLoggedUser().getNombre();
-						String fechaOpen = dateFormat.format(fechaGeneracion);
-						float totalEnviar = Float.parseFloat(subtotal_lbl.getText());
-						Contrato aux = new Contrato(id,vendedor,planesACotizar,clientelito,fechaOpen,0,totalEnviar);
-						Controladora.getInstance().agregarContrato(aux);
-						JOptionPane.showMessageDialog(null, "Contrato Registrado.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
+//						Date fechaGeneracion = new Date();
+//						DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//						for (String id : idPlanes) {
+//						//	planesACotizar.add(Controladora.getInstance().findPlanByID(id));
+//						}
+//						for (Plan plan : planesACotizar) {
+//							Controladora.getInstance().deletePlan(plan.getNombre());
+//						}
+//						int id = Controladora.getGenCodContrato();
+//						String vendedor = Controladora.getInstance().getLoggedUser().getNombre();
+//						String fechaOpen = dateFormat.format(fechaGeneracion);
+//						float totalEnviar = Float.parseFloat(subtotal_lbl.getText());
+//						Contrato aux = new Contrato(id,vendedor,planesACotizar,clientelito,fechaOpen,0,totalEnviar);
+//						Controladora.getInstance().agregarContrato(aux);
+//						JOptionPane.showMessageDialog(null, "Contrato Registrado.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 					}
 				});
 				okButton.setActionCommand("OK");
