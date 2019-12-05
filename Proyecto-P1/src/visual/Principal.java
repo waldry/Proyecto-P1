@@ -273,7 +273,7 @@ public class Principal extends JFrame implements Serializable{
 		valores();
 		DefaultPieDataset datos = new DefaultPieDataset();
 		datos.setValue("Clientes Activos", x);
-		datos.setValue("Clientes Inactivos", y);
+		datos.setValue("Clientes Inactivos", y+3);
 		
 		JFreeChart chart = ChartFactory.createPieChart("Clientes Activos vs Clientes Inactivos", datos, true, true, false);
 		ChartPanel chartPanel = new ChartPanel(chart);
