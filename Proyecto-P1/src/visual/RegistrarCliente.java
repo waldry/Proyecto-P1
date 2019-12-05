@@ -175,5 +175,6 @@ public class RegistrarCliente extends JDialog implements Serializable{
 		txtnombre.setText("");
 		ftxttelefono.setText("");
 		txtdireccion.setText("");
+		
 	}
 }
