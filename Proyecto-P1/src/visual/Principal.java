@@ -30,9 +30,17 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.EtchedBorder;
 import javax.swing.text.DateFormatter;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
+import logico.Cliente;
+import logico.Contrato;
 import logico.Controladora;
+import logico.Personal;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -49,6 +57,15 @@ public class Principal extends JFrame implements Serializable{
 	private Dimension dim;
 //	private Date fecha = new Date();
 	private Calendar fecha = new GregorianCalendar();
+	private int a;
+	private int b;
+	private String fecha1;
+	private String fecha2;
+	private int x;
+	private int y;
+	private JPanel panelGrafico1;
+	private JPanel panelGrafico2;
+	private JPanel panelGrafico3;
 	
 
 	/**
@@ -90,12 +107,12 @@ public class Principal extends JFrame implements Serializable{
 				
 			}
 		});
+		valores();
+//		contratosPorUsuario();
 		setTitle("Menu Principal");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		dim = super.getToolkit().getScreenSize();
-		super.setSize(dim.width, dim.height-100);
+		setBounds(100, 100, 1289, 900);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(new Color(240, 248, 255));
@@ -204,7 +221,6 @@ public class Principal extends JFrame implements Serializable{
 				PagoFactura pagar = new PagoFactura();
 				pagar.setVisible(true);
 				pagar.setModal(true);
-				
 			}
 		});
 		mnFacturas.add(mntmPagoFactura);
@@ -239,28 +255,50 @@ public class Principal extends JFrame implements Serializable{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panelGrafico1 = new JPanel();
-		panelGrafico1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gr\u00E1fico 1", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelGrafico1.setBounds(10, 10, 623, 395);
+		panelGrafico1 = new JPanel();
+		panelGrafico1.setBorder(null);
+		panelGrafico1.setBounds(10, 10, 690, 430);
 		contentPane.add(panelGrafico1);
-		/*Recordar recopilar datos para hacer un grafico aqui
-		 * 
-		 * 
-		 */
-		DefaultPieDataset datos = new DefaultPieDataset();
+		//Datos grafico
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Gr\u00E1fico 2", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
-		panel_1.setBounds(643, 10, 623, 395);
-		contentPane.add(panel_1);
+		panelGrafico2 = new JPanel();
+		panelGrafico2.setBorder(null);
+		panelGrafico2.setBounds(710, 10, 690, 430);
+		contentPane.add(panelGrafico2);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(10, 415, 623, 395);
-		contentPane.add(panel_2);
-		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(643, 415, 623, 395);
-		contentPane.add(panel_3);
+		panelGrafico3 = new JPanel();
+		panelGrafico3.setBounds(394, 450, 623, 395);
+		contentPane.add(panelGrafico3);
 		setLocationRelativeTo(null);
+		init1();
+//		init2();
+	}
+	private void init1() {
+		valores();
+		DefaultPieDataset datos = new DefaultPieDataset();
+		datos.setValue("Clientes Activos", x);
+		datos.setValue("Clientes Inactivos", y);
+		
+		JFreeChart chart = ChartFactory.createPieChart("Clientes Activos vs Clientes Inactivos", datos, true, true, false);
+		ChartPanel chartPanel = new ChartPanel(chart);
+		panelGrafico1.add(chartPanel);
+	}
+	
+	public void valores() {
+		for (Cliente client : Controladora.getInstance().getClientes()) {
+			if(client.isActivo()) {
+				x += 1;
+			}
+			if(!client.isActivo()) {
+				y += 1;
+			}
+		}
+	}
+	private void init2() {
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+//		dataset.setValue(a, rowKey, columnKey);
+	}
+	public void factura() {
+		
 	}
 }
