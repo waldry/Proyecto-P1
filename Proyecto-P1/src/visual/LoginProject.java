@@ -136,6 +136,7 @@ public class LoginProject extends JDialog implements Serializable{
 						if(Controladora.getInstance().confirmLogin(txtUser.getText(), txtPass.getText())) {
 							JOptionPane.showMessageDialog(null, "Ha accedido con éxito", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 							Principal frame = new Principal();
+							
 							dispose();
 							frame.setVisible(true);
 						}else {

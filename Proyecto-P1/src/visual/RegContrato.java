@@ -53,7 +53,7 @@ public class RegContrato extends JDialog {
 	private JList<String> second;
 	private Cliente clientelito;
 	private ArrayList<Plan> planesACotizar = new ArrayList<Plan>();
-	private ArrayList<String> nombresplanes = new ArrayList<String>();
+	private ArrayList<String> idPlanes = new ArrayList<String>();
 	DefaultListModel<String> dbPlanes = new DefaultListModel<>();
 	DefaultListModel<String> planesSelected = new DefaultListModel<String>();
 	private JLabel subtotal_lbl;
@@ -262,12 +262,11 @@ public class RegContrato extends JDialog {
 					float aux = 0;
 					for(int i = 0; i<carrito.getSize(); i++) {
 					String s = (String)carrito.getElementAt(i);
-					String[] separador = s.split("_", 2);
-					String second_p = separador[1];
-					String nombre = separador[0];
-					nombresplanes.add(nombre);
-//					planesACotizar.add(Controladora.getInstance().findPlanByName(nombre));
-					aux = aux+Float.parseFloat(second_p); 
+					String[] separador = s.split("_", 5);
+					String id = separador[0];
+					String costo = separador[2];
+					idPlanes.add(id);
+					aux = aux+Float.parseFloat(costo); 
 					subtotal_lbl.setText(String.valueOf(aux));
 					}
 				}
@@ -289,12 +288,11 @@ public class RegContrato extends JDialog {
 					float aux = 0;
 					for (int i = 0; i < carrito.getSize(); i++) {
 						String s = (String)carrito.getElementAt(i);
-						String[] separador = s.split("_", 2);
-						String second_p = separador[1];
-						String nombre = separador[0];
-						nombresplanes.remove(nombre);
-//						planesACotizar.remove(Controladora.getInstance().findPlanByName(nombre));
-						aux = Math.abs(aux-Float.parseFloat(second_p));
+						String[] separador = s.split("_", 5);
+						String id = separador[0];
+						String costo = separador[2];
+						idPlanes.remove(id);
+						aux = Math.abs(aux-Float.parseFloat(costo));
 						subtotal_lbl.setText(String.valueOf(aux));
 					}
 				}
@@ -355,14 +353,17 @@ public class RegContrato extends JDialog {
 					public void actionPerformed(ActionEvent arg0) {
 						Date fechaGeneracion = new Date();
 						DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-						for (String string : nombresplanes) {
-							System.out.println("El nombre del plan" + string);
-							planesACotizar.add(Controladora.getInstance().findPlanByID(string));
+						for (String id : idPlanes) {
+							planesACotizar.add(Controladora.getInstance().findPlanByID(id));
 						}
 						for (Plan plan : planesACotizar) {
 							Controladora.getInstance().deletePlan(plan.getNombre());
 						}
-						Contrato aux = new Contrato(1,"pepe",planesACotizar,clientelito,dateFormat.format(fechaGeneracion),0,Float.parseFloat(subtotal_lbl.getText()));
+						int id = Controladora.getGenCodContrato();
+						String vendedor = Controladora.getInstance().getLoggedUser().getNombre();
+						String fechaOpen = dateFormat.format(fechaGeneracion);
+						float totalEnviar = Float.parseFloat(subtotal_lbl.getText());
+						Contrato aux = new Contrato(id,vendedor,planesACotizar,clientelito,fechaOpen,0,totalEnviar);
 						Controladora.getInstance().agregarContrato(aux);
 						JOptionPane.showMessageDialog(null, "Contrato Registrado.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 					}
@@ -387,7 +388,7 @@ public class RegContrato extends JDialog {
 	private void updatePlanes() {
 		dbPlanes.clear();
 		for (Plan aux : Controladora.getInstance().getPlanes()) {
-			dbPlanes.addElement(aux.getNombre()+"_"+String.valueOf(aux.getCosto()));
+			dbPlanes.addElement(aux.getId()+"_"+aux.getNombre()+"_"+String.valueOf(aux.getCosto()));
 		}
 		
 	}

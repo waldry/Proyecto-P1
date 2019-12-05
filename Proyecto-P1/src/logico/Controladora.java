@@ -192,6 +192,7 @@ public class Controladora implements Serializable{
 		for (Personal empleado : empleados) {
 			if(empleado.getUsername().equals(username) && empleado.getPass().equals(pass)) {
 				empleado = loggedUser;
+				setLoggedUser(empleado);
 				login = true;
 			}
 		}
@@ -245,10 +246,11 @@ public class Controladora implements Serializable{
 		this.loggedUser = loggedUser;
 	}
 
-	public void deletePlan(String nombre) {
+	public void deletePlan(String ids) {
 		for (Plan planToModify : planes) {
-			if (planToModify.getNombre().equalsIgnoreCase(nombre)) {
+			if (planToModify.getId().equalsIgnoreCase(ids)) {
 				planes.remove(planToModify);
+				setGenCodPlan(getGenCodPlan()-1);
 			}
 		}
 	}
