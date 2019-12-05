@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
@@ -118,7 +119,6 @@ public class RegContrato extends JDialog {
 					for (Cliente client : Controladora.getInstance().getClientes()) {
 						if(cedula_txt.getText().equals(client.getCedula())) {
 							clientelito = client;
-							JOptionPane.showMessageDialog(null, "Cliente existente", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 							cedula_txt.setEnabled(false);
 							cedula_txt.setText(client.getCedula());
 							nombre_txt.setEnabled(false);
@@ -344,7 +344,6 @@ public class RegContrato extends JDialog {
 						float totalEnviar = Float.parseFloat(subtotal_lbl.getText());
 						Contrato contratoToAdd = new Contrato(idContrato,vendedor,planesACotizar,clientelito,formato.format(fechaGeneracion),totalEnviar,true);
 						Controladora.getInstance().agregarContrato(contratoToAdd);
-						JOptionPane.showMessageDialog(null, "Contrato Registrado.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 						Controladora.getInstance().empezarFacturar();
 						clean();
 					}
