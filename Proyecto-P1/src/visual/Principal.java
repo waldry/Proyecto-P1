@@ -231,7 +231,7 @@ public class Principal extends JFrame implements Serializable{
 		});
 		mnContrato.add(mntmNuevoContrato);
 		
-		JMenuItem mntmListarPlanes_1 = new JMenuItem("Listar Planes");
+		JMenuItem mntmListarPlanes_1 = new JMenuItem("Listar Contratos");
 		mntmListarPlanes_1.setIcon(new ImageIcon(Principal.class.getResource("/recursos/lista.png")));
 		mntmListarPlanes_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

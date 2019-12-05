@@ -125,12 +125,12 @@ public class RegContrato extends JDialog {
 							activo_chbx.setEnabled(false);
 							activo_chbx.setSelected(client.isActivo());
 						}
-						else {
-							JOptionPane.showMessageDialog(dialog, "El cliente no existe. Registrelo", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
-							RegistrarCliente newClient = new RegistrarCliente();
-							newClient.setModal(true);
-							newClient.setVisible(true);
-						}
+//						else {
+//							JOptionPane.showMessageDialog(dialog, "El cliente no existe. Registrelo", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
+//							RegistrarCliente newClient = new RegistrarCliente();
+//							newClient.setModal(true);
+//							newClient.setVisible(true);
+//						}
 					}
 				}
 			}
@@ -333,8 +333,7 @@ public class RegContrato extends JDialog {
 //						for (Plan plan : planesACotizar) {
 //							Controladora.getInstance().eliminarPlan(plan);
 //						}
-						String vendedor = "pepe";
-//						String vendedor = Controladora.getLoggedUser().getNombre();
+						String vendedor = Controladora.getLoggedUser().getNombre();
 						float totalEnviar = Float.parseFloat(subtotal_lbl.getText());
 						Contrato contratoToAdd = new Contrato(idContrato,vendedor,planesACotizar,clientelito,formato.format(fechaGeneracion),totalEnviar,true);
 						if(cedula_txt.getText().equals("___-_______-_") || nombre_txt.getText().isEmpty() || apellido_txt.getText().isEmpty() || address_Txt.getText().isEmpty() || tel_txt.getText().equals("(___)-___-____")) {
