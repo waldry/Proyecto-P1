@@ -132,7 +132,6 @@ public class PagoFactura extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				for (Cliente client : Controladora.getInstance().getClientes()) {
 					if(ftxtCedula.getText().equals(client.getCedula())) {
-						JOptionPane.showMessageDialog(null, "Cliente existente", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 						clientelito = client;
 						txtNombre.setText(client.getNombre());
 						txtApellido.setText(client.getApellido());
@@ -162,7 +161,6 @@ public class PagoFactura extends JDialog {
 		panel_1.setLayout(null);
 		
 		contratos = new JList<>(idContratos);
-		contratos.setEnabled(false);
 		contratos.setBounds(10, 25, 246, 154);
 		panel_1.add(contratos);
 		{

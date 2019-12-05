@@ -219,9 +219,9 @@ public class Principal extends JFrame implements Serializable{
 		JMenuItem mntmPagoFactura = new JMenuItem("Pago Factura");
 		mntmPagoFactura.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				PagoFactura pago = new PagoFactura();
-				pago.setModal(true);
-				pago.setVisible(true);
+				PagoFactura pagar = new PagoFactura();
+				pagar.setVisible(true);
+				pagar.setModal(true);
 			}
 		});
 		mnFacturas.add(mntmPagoFactura);
