@@ -14,6 +14,7 @@ import javax.swing.text.MaskFormatter;
 import logico.Cliente;
 import logico.Contrato;
 import logico.Controladora;
+import logico.Factura;
 
 import java.awt.Color;
 import javax.swing.border.EtchedBorder;
@@ -26,6 +27,12 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class PagoFactura extends JDialog {
 
@@ -38,6 +45,9 @@ public class PagoFactura extends JDialog {
 	private JList<String> contratos;
 	private JFormattedTextField ftxtCedula;
 	private Cliente clientelito;
+	private JLabel cambio;
+	private JLabel total_para_pagar;
+	private Factura auxFact;
 	private MaskFormatter mascara() {
 		MaskFormatter mascara = new MaskFormatter();
 		try {
@@ -65,10 +75,11 @@ public class PagoFactura extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
+	@SuppressWarnings("unchecked")
 	public PagoFactura() {
 		setTitle("Pago de Factura");
 		setResizable(false);
-		setBounds(100, 100, 633, 276);
+		setBounds(100, 100, 714, 368);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(240, 248, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -79,7 +90,7 @@ public class PagoFactura extends JDialog {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(240, 248, 255));
 		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Informaci\u00F3n de Cliente", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
-		panel.setBounds(10, 10, 331, 189);
+		panel.setBounds(10, 10, 331, 204);
 		contentPanel.add(panel);
 		panel.setLayout(null);
 		
@@ -156,13 +167,55 @@ public class PagoFactura extends JDialog {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(240, 248, 255));
 		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Contrato(s) del Cliente", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
-		panel_1.setBounds(351, 10, 268, 189);
+		panel_1.setBounds(351, 10, 336, 204);
 		contentPanel.add(panel_1);
 		panel_1.setLayout(null);
 		
 		contratos = new JList<>(idContratos);
-		contratos.setBounds(10, 25, 246, 154);
+		contratos.setBounds(10, 25, 316, 134);
 		panel_1.add(contratos);
+		
+		JButton btnPasarACaja = new JButton("Pasar a Caja");
+		btnPasarACaja.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				for (int posicion : contratos.getSelectedIndices()) {
+					String linea = idContratos.getElementAt(posicion);
+					for (Factura jodete : Controladora.getInstance().getFacturas()) {
+						auxFact = jodete;
+						if (linea.equalsIgnoreCase(jodete.getId())) {
+							total_para_pagar.setText(String.valueOf(jodete.getMonto()));
+						}
+					}
+				}
+			}
+		});
+		btnPasarACaja.setBounds(10, 170, 115, 23);
+		panel_1.add(btnPasarACaja);
+		
+		total_para_pagar = new JLabel("0.00");
+		total_para_pagar.setBounds(115, 232, 46, 14);
+		contentPanel.add(total_para_pagar);
+		
+		JLabel lblValorAPagar = new JLabel("Valor a pagar: ");
+		lblValorAPagar.setBounds(23, 232, 89, 14);
+		contentPanel.add(lblValorAPagar);
+		
+		JLabel lblMontoRecibido = new JLabel("Monto recibido: ");
+		lblMontoRecibido.setBounds(23, 252, 84, 14);
+		contentPanel.add(lblMontoRecibido);
+		
+		JLabel lblCambio = new JLabel("Cambio: ");
+		lblCambio.setBounds(23, 277, 46, 14);
+		contentPanel.add(lblCambio);
+		
+		cambio = new JLabel("0.00");
+		cambio.setBounds(115, 277, 46, 14);
+		contentPanel.add(cambio);
+		
+		JSpinner monto_recibido = new JSpinner();
+		monto_recibido.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		monto_recibido.setBounds(115, 250, 59, 17);
+		contentPanel.add(monto_recibido);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(new Color(240, 248, 255));
@@ -173,6 +226,19 @@ public class PagoFactura extends JDialog {
 				JButton btnPago = new JButton("Pagar");
 				btnPago.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						float aux = Float.parseFloat(total_para_pagar.getText());
+						int recibido = (Integer)monto_recibido.getValue();
+						float diff = recibido-aux;
+						if (recibido >= auxFact.getMonto()) {
+							for (Factura lol : Controladora.getInstance().getFacturas()) {
+								if (lol.getId().equalsIgnoreCase(auxFact.getId())) {
+									lol.setActiva(false);
+									lol.setMonto(0);
+									JOptionPane.showMessageDialog(null, "Factura pagada exitosamente", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+								}
+							}
+						}
+						cambio.setText(String.valueOf(diff));
 					}
 				});
 				btnPago.setActionCommand("OK");
@@ -192,11 +258,16 @@ public class PagoFactura extends JDialog {
 		}
 		updateContratos();
 	}
+	protected void loadContratos(int selection) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public void updateContratos() {
 		idContratos.clear();
 		for (Contrato contract : Controladora.getInstance().getContratos()) {
 			if(contract.getClient() == clientelito) {
-				idContratos.addElement(contract.getId()+". Precio: "+contract.getTotal());
+				idContratos.addElement(contract.getId());
 			}
 		}
 	}
