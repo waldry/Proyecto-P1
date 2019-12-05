@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Controladora implements Serializable{
 	/**
@@ -22,6 +24,7 @@ public class Controladora implements Serializable{
 	private static int cantPlan;
 	private static int genCodContrato = 1;
 	private static int genCodPlan = 1;
+	private Timer timer = new Timer();
 	
 	public int getGenCodPlan() {
 		return genCodPlan;
@@ -254,5 +257,18 @@ public class Controladora implements Serializable{
 			}
 		}
 	}
+	TimerTask tarea = new TimerTask() {
+		
+		@Override
+		public void run() {
+			for (Contrato contract : contratos) {
+				if (contract.isActivo()) {
+					Factura aux = new Factura(contract.getId(), contract.getClient(),contract.getPlanes(), contract.getFechaApertura(), contract.getTotal(), contract.isActivo());
+					facturas.add(aux);
+				}
+			}
+			
+		}
+	};
 	
 }

@@ -311,7 +311,8 @@ public class RegContrato extends JDialog {
 //						String vendedor = Controladora.getInstance().getLoggedUser().getNombre();
 //						String fechaOpen = dateFormat.format(fechaGeneracion);
 //						float totalEnviar = Float.parseFloat(subtotal_lbl.getText());
-//						Contrato aux = new Contrato(id,vendedor,planesACotizar,clientelito,fechaOpen,0,totalEnviar);
+						
+//						Contrato aux = new Contrato(id,vendedor,planesACotizar,clientelito,fechaOpen,totalEnviar, true);
 //						Controladora.getInstance().agregarContrato(aux);
 //						JOptionPane.showMessageDialog(null, "Contrato Registrado.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 					}

@@ -37,6 +37,7 @@ public class Simulador extends JDialog {
 	 * Create the dialog.
 	 */
 	public Simulador() {
+		setTitle("Simulador de Facturas");
 		setBounds(100, 100, 470, 502);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

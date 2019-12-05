@@ -1,6 +1,7 @@
 package logico;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -11,20 +12,22 @@ public class Factura implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String id;
 	private Cliente cliente;
-	private Date fecha;
-	private Plan planCliente;
-	private boolean activa;
-	private float monto;
+	private String fecha;
+	private ArrayList<Plan> planes;
+	private boolean vencida = false;
+	private float mora;
+	private float total;
 	
 	
-	public Factura(String id, Cliente cliente, Plan planCliente, Date fecha, float monto, boolean activa) {
+	public Factura(String id, Cliente cliente, ArrayList<Plan>planCliente, String fecha, float monto, boolean vencida) {
 		super();
 		this.id = id;
 		this.cliente = cliente;
-		this.planCliente = planCliente;
+		this.planes = planCliente;
 		this.fecha = fecha;
-		this.monto = monto;
-		this.activa = activa;
+		this.total = monto;
+		this.vencida = vencida;
+		this.setMora(0);
 	}
 
 	public String getId() {
@@ -37,11 +40,11 @@ public class Factura implements Serializable{
 	
 
 	public boolean isActiva() {
-		return activa;
+		return vencida;
 	}
 
 	public void setActiva(boolean activa) {
-		this.activa = activa;
+		this.vencida = activa;
 	}
 
 	public Cliente getCliente() {
@@ -52,28 +55,36 @@ public class Factura implements Serializable{
 		this.cliente = cliente;
 	}
 
-	public Plan getPlanCliente() {
-		return planCliente;
+	public ArrayList<Plan> getPlanCliente() {
+		return planes;
 	}
 
-	public void setPlanCliente(Plan planCliente) {
-		this.planCliente = planCliente;
+	public void setPlanCliente(ArrayList<Plan> planCliente) {
+		this.planes = planCliente;
 	}
 
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 
 	public float getMonto() {
-		return monto;
+		return total;
 	}
 
 	public void setMonto(float monto) {
-		this.monto = monto;
+		this.total = monto;
+	}
+
+	public float getMora() {
+		return mora;
+	}
+
+	public void setMora(float mora) {
+		this.mora = mora;
 	}
 	
 //	public float cotizar() {
