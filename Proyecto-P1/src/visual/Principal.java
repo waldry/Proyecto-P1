@@ -41,6 +41,7 @@ import logico.Cliente;
 import logico.Contrato;
 import logico.Controladora;
 import logico.Personal;
+import logico.Plan;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -296,9 +297,13 @@ public class Principal extends JFrame implements Serializable{
 	}
 	private void init2() {
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-//		dataset.setValue(a, rowKey, columnKey);
-	}
-	public void factura() {
 		
 	}
+//	public Plan planMasVendido() {
+//		for (Contrato contract : Controladora.getInstance().getContratos()) {
+//			for (Plan auxPlan : contract.getPlanes()) {
+//				auxPlan.getNombre();
+//			}
+//		}
+//	}
 }
