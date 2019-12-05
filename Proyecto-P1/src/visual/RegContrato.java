@@ -299,7 +299,7 @@ public class RegContrato extends JDialog {
 				JButton okButton = new JButton("Registrar");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-//						Date fechaGeneracion = new Date();
+//						Calendar fechaGeneracion = new GregorianCalendar();
 //						DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 //						for (String id : idPlanes) {
 //						//	planesACotizar.add(Controladora.getInstance().findPlanByID(id));
@@ -315,6 +315,7 @@ public class RegContrato extends JDialog {
 //						Contrato aux = new Contrato(id,vendedor,planesACotizar,clientelito,fechaOpen,totalEnviar, true);
 //						Controladora.getInstance().agregarContrato(aux);
 //						JOptionPane.showMessageDialog(null, "Contrato Registrado.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
+						Controladora.getInstance().empezarFacturar();
 					}
 				});
 				okButton.setActionCommand("OK");

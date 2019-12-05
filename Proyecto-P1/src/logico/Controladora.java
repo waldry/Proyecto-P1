@@ -1,10 +1,14 @@
 package logico;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -24,7 +28,7 @@ public class Controladora implements Serializable{
 	private static int cantPlan;
 	private static int genCodContrato = 1;
 	private static int genCodPlan = 1;
-	private Timer timer = new Timer();
+	private static Timer timer = new Timer();
 	
 	public int getGenCodPlan() {
 		return genCodPlan;
@@ -204,7 +208,7 @@ public class Controladora implements Serializable{
 
 	public void agregarPlan(Plan aux) {
 		planes.add(aux);
-		setGenCodPlan(getGenCodPlan()+1);
+		genCodPlan++;
 	}
 	public void eliminarPlan(Plan aux) {
 		planes.remove(aux);
@@ -257,18 +261,27 @@ public class Controladora implements Serializable{
 			}
 		}
 	}
-	TimerTask tarea = new TimerTask() {
-		
-		@Override
-		public void run() {
-			for (Contrato contract : contratos) {
-				if (contract.isActivo()) {
-					Factura aux = new Factura(contract.getId(), contract.getClient(),contract.getPlanes(), contract.getFechaApertura(), contract.getTotal(), contract.isActivo());
-					facturas.add(aux);
+	public void empezarFacturar() {
+		TimerTask tarea = new TimerTask() {
+			
+			@Override
+			public void run() {
+				for (Contrato contract : contratos) {
+					if (contract.isActivo()) {
+						Factura aux = new Factura(contract.getId(), contract.getClient(),contract.getPlanes(), contract.getFechaApertura(), contract.getTotal(), contract.isActivo());
+						facturas.add(aux);
+					}
 				}
+				for (Factura item: facturas) {
+					Calendar inicio = new GregorianCalendar();
+					Calendar fin = new GregorianCalendar();
+					
+				}
+				
 			}
 			
-		}
-	};
+		};
+		timer.schedule(tarea,2592000,2592000);
+	}
 	
 }
