@@ -63,7 +63,7 @@ public class RegistrarServicio extends JDialog implements Serializable{
 	private JCheckBox doble_linea_chbx;
 	private JCheckBox ilimitado_chbx;
 	private Plan item = null;
-	private String codigoPlan = "P-"+Controladora.getInstance().getGenCodPlan();
+	private String codigoPlan;
 	
 	/**
 	 * Launch the application.
@@ -119,7 +119,7 @@ public class RegistrarServicio extends JDialog implements Serializable{
 			ID_txt.setBounds(404, 29, 57, 20);
 			panel.add(ID_txt);
 			ID_txt.setColumns(10);
-			ID_txt.setText(codigoPlan);
+			ID_txt.setText("P-"+Controladora.getInstance().getGenCodPlan());
 			
 			JPanel panel_1 = new JPanel();
 			panel_1.setBackground(new Color(240, 248, 255));
@@ -391,7 +391,7 @@ public class RegistrarServicio extends JDialog implements Serializable{
 							Plan planToAdd = new Plan(codigoPlan,name_txt.getText(),(int)bajada_spn.getValue(),(int)subida_spn.getValue(),(int)cant_min_spn.getValue(),(int)canales_spn.getValue(),ilimitado_chbx.isSelected(),voicemail_chbx.isSelected(),doble_linea_chbx.isSelected(),hbo_chbx.isSelected(),adultos_chbx.isSelected(),deportes_chbx.isSelected(), aux);
 							Controladora.getInstance().agregarPlan(planToAdd);
 							JOptionPane.showMessageDialog(null, "Plan agregado satisfactoriamente.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
-							
+							ID_txt.setText("P-"+Controladora.getInstance().getGenCodPlan());
 					}
 				});
 				send_btn.setActionCommand("OK");

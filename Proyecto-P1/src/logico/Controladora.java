@@ -27,7 +27,7 @@ public class Controladora implements Serializable{
 	private Personal loggedUser;
 	private Date fecha;
 	private static int cantPlan;
-	private static int genCodContrato = 1;
+	private static int genCodContrato;
 	private static int genCodPlan = 1;
 	private static Timer timer = new Timer();
 	
@@ -45,6 +45,7 @@ public class Controladora implements Serializable{
 		this.facturas = new ArrayList<Factura>();
 		this.planes = new ArrayList<Plan>();
 		this.empleados = new ArrayList<Personal>();
+		genCodPlan = 1;
 	}
 	
 	public static Controladora getInstance() {
