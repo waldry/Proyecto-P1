@@ -45,6 +45,7 @@ public class Controladora implements Serializable{
 		this.facturas = new ArrayList<Factura>();
 		this.planes = new ArrayList<Plan>();
 		this.empleados = new ArrayList<Personal>();
+		this.contratos = new ArrayList<Contrato>();
 		genCodPlan = 1;
 		genCodContrato = 1;
 	}
@@ -282,6 +283,8 @@ public class Controladora implements Serializable{
 						fin.setTime(new SimpleDateFormat("dd/MM/yyyy").parse(hoy));
 						int diffYear = fin.get(Calendar.YEAR) - inicio.get(Calendar.YEAR);
 						int diffM = diffYear * 12 + fin.get(Calendar.MONTH) - inicio.get(Calendar.MONTH);
+						float cargo = diffM*(float) (item.getMonto()*0.0314);
+						item.setMonto(cargo+item.getMonto());
 					} catch (ParseException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

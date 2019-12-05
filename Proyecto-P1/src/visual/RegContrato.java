@@ -313,11 +313,11 @@ public class RegContrato extends JDialog {
 //						}
 						String vendedor = "pepe";
 						float totalEnviar = Float.parseFloat(subtotal_lbl.getText());
-						System.out.println("ID:" + idContrato+"Vendedor: "+vendedor+"Planes a cotizar:"+ planesACotizar.get(0).getNombre()+"Cliente: "+clientelito.getNombre()+"Fecha: "+formato.format(fechaGeneracion)+"PRecio total: "+totalEnviar+"Activo: "+true);
 						Contrato contratoToAdd = new Contrato(idContrato,vendedor,planesACotizar,clientelito,formato.format(fechaGeneracion),totalEnviar,true);
 						Controladora.getInstance().agregarContrato(contratoToAdd);
 						JOptionPane.showMessageDialog(null, "Contrato Registrado.", "Notificacion", JOptionPane.INFORMATION_MESSAGE);
 						Controladora.getInstance().empezarFacturar();
+						
 					}
 				});
 				okButton.setActionCommand("OK");
